@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app  version="2.5">
+    <welcome-file-list>
+        <welcome-file>dish</welcome-file>
+    </welcome-file-list>
+    
+    <!-- Dish Actions -->
+    <servlet>
+      <servlet-name>dish</servlet-name>
+      <servlet-class>surveytest.controller.DishServlet</servlet-class>
+    </servlet>
+    <servlet>
+      <servlet-name>dishAdd</servlet-name>
+      <servlet-class>surveytest.controller.DishAddServlet</servlet-class>
+    </servlet>
+    <servlet>
+      <servlet-name>dishUpdate</servlet-name>
+      <servlet-class>surveytest.controller.DishUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>dish</servlet-name>
+      <url-pattern>/dish</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+      <servlet-name>dishAdd</servlet-name>
+      <url-pattern>/dishAdd</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+      <servlet-name>dishUpdate</servlet-name>
+      <url-pattern>/dishUpdate</url-pattern>
+    </servlet-mapping>
+       
+    <error-page>
+      <exception-type>java.lang.Exception</exception-type>
+      <location>/WEB-INF/redirects/error.jsp</location>
+    </error-page>
+    
+</web-app>
