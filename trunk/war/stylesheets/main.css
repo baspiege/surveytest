@@ -1,0 +1,27 @@
+#mapCanvas {width: 300px;height: 300px;float: left;}
+#infoPanel {float: left;margin-left: 10px;}
+#infoPanel div {margin-bottom: 5px;}
+
+a:link, a:visited {color:DarkBlue;text-decoration:none;}
+a.add:link, a.add:visited, a.edit:link, a.edit:visited, a.more:link, a.more:visited  {text-decoration:none; color:#909090; font-size:small;}
+
+.addTh { padding-left: 5px; font-weight:normal;}
+
+.data th {background-color: WhiteSmoke;}
+.data table {border-collapse:collapse;}
+.data table,.data th,.data td { padding: 5px; border: 1px solid black; word-wrap:break-word; height:45px;}
+
+.button {margin-right:30px;}
+
+footer { font-size:small; clear:both;margin-top:1.5em; }
+
+#navlist {margin:0;padding:0;}
+#navlist li {display: inline; list-style-type: none; padding-right: 20px;}
+
+.center { text-align: center; }
+
+section {margin-top:1.5em; }
+
+progress {display: block;}
+
+.nw {white-space:nowrap;}
