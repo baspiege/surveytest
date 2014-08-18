@@ -1,6 +1,6 @@
 package surveytest.controller;
 
-import surveytest.data.model.Dish;
+import surveytest.data.model.Question;
 import surveytest.utils.RequestUtils;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
-* Show dish.
+* Show question.
 */
-public class DishServlet extends HttpServlet {
+public class QuestionServlet extends HttpServlet {
 
     /**
     * Display page.
     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
-        RequestUtils.forwardTo(request,response,ControllerConstants.DISH);
+        RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION);
     }
 
     /**
@@ -33,14 +33,14 @@ public class DishServlet extends HttpServlet {
     */
     private void setUpData(HttpServletRequest request) {
 
-        // Get dish
-        Long dishId=RequestUtils.getNumericInput(request,"dishId","dishId",true);
-        Dish dish=null;
+        // Get question
+        Long questionId=RequestUtils.getNumericInput(request,"questionId","questionId",true);
+        Question question=null;
 
-        if (dish==null) {
-            throw new RuntimeException("Dish not found: " + dishId);
+        if (question==null) {
+            throw new RuntimeException("Question not found: " + questionId);
         } else {
-            request.setAttribute(RequestUtils.DISH,dish);
+            request.setAttribute(RequestUtils.QUESTION,question);
         }
 
     }

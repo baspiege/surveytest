@@ -1,10 +1,10 @@
-var Dish = (function(){
+var Question = (function(){
 
   ///////////////////
   // Vars
   ///////////////////
 
-  var dishId;
+  var questionId;
   var reviewId;
   var gettingReviews=false;
   var moreReviews=false;
@@ -20,7 +20,7 @@ var Dish = (function(){
     moreReviews=false;
     startIndexReview=0;
     //setOnlineListeners();
-    createDishLayout();
+    createQuestionLayout();
     setUpPage();
     setUpReviews();
     window.onscroll=function(){ checkForMoreReviews(); };
@@ -29,21 +29,21 @@ var Dish = (function(){
   var setUpPage=function() {
 
     // Check if logged in
-    var dishRevUser=getCookie("dishRevUser");
-    DishRevUser.isLoggedIn=false;
-    if (dishRevUser!="") {
-      DishRevUser.isLoggedIn=true;
+    var questionRevUser=getCookie("questionRevUser");
+    QuestionRevUser.isLoggedIn=false;
+    if (questionRevUser!="") {
+      QuestionRevUser.isLoggedIn=true;
     }
 
     // If logged in and online, can edit
-    DishRevUser.canEdit=DishRevUser.isLoggedIn && navigator.onLine;
+    QuestionRevUser.canEdit=QuestionRevUser.isLoggedIn && navigator.onLine;
 
     // Show 'Edit link' if can edit
-    var dishEditLink=document.getElementById("dishEditLink");
-    if (DishRevUser.canEdit) {
-       dishEditLink.style.display='inline';
+    var questionEditLink=document.getElementById("questionEditLink");
+    if (QuestionRevUser.canEdit) {
+       questionEditLink.style.display='inline';
     } else {
-       dishEditLink.style.display='none';
+       questionEditLink.style.display='none';
     }
   }
 
@@ -52,7 +52,7 @@ var Dish = (function(){
       getReviewsDataById();
       var allReviewsLink=document.getElementById("allReviewsLink");
       allReviewsLink.style.display="inline";
-      allReviewsLink.addEventListener('click', function(e){e.preventDefault();Dish.display(dishId);}, false);
+      allReviewsLink.addEventListener('click', function(e){e.preventDefault();Question.display(questionId);}, false);
     } else {
       getReviewsData();
     }
@@ -99,7 +99,7 @@ var Dish = (function(){
           displayData(xmlDoc);
         }
       }
-      sendRequest('/reviewsXml?dishId='+dishId+'&start=' + startIndexReview, handleReviewsDataRequest, displayCachedData);
+      sendRequest('/reviewsXml?questionId='+questionId+'&start=' + startIndexReview, handleReviewsDataRequest, displayCachedData);
     } else {
       displayCachedData();
     }
@@ -109,7 +109,7 @@ var Dish = (function(){
     if (reviewId) {
       return "REVIEW_"+reviewId;
     } else {
-      return "DISH_"+dishId+"_"+startIndexReview;
+      return "DISH_"+questionId+"_"+startIndexReview;
     }
   }
 
@@ -162,13 +162,13 @@ var Dish = (function(){
   }
 
   var postReviewToFacebook=function(aReviewId) {
-    var reviewLink="http://dishrev.appspot.com/dish?dishId=" + dishId + "&reviewId=" + aReviewId;
-    var reviewImageLink="http://dishrev.appspot.com/reviewThumbNailImage?reviewId" + aReviewId;
-    var dishName=document.getElementById("dishName").innerHTML;
+    var reviewLink="http://questionrev.appspot.com/question?questionId=" + questionId + "&reviewId=" + aReviewId;
+    var reviewImageLink="http://questionrev.appspot.com/reviewThumbNailImage?reviewId" + aReviewId;
+    var questionName=document.getElementById("questionName").innerHTML;
     var storeName=document.getElementById("storeName").innerHTML;
     var publish = {
       method: 'feed',
-      name: dishName + " at " + storeName,
+      name: questionName + " at " + storeName,
       link: reviewLink,
       picture: reviewImageLink
     };
@@ -180,12 +180,12 @@ var Dish = (function(){
   // View
   ///////////////////
 
-  var createDishLayout=function () {
-    createDishNav();
-    createDishSections();
+  var createQuestionLayout=function () {
+    createQuestionNav();
+    createQuestionSections();
   }
 
-  var createDishNav=function() {
+  var createQuestionNav=function() {
     var nav=document.getElementById("nav");
     removeChildrenFromElement(nav);
 
@@ -224,7 +224,7 @@ var Dish = (function(){
     navItem.appendChild(document.createTextNode("Offline"));
   }
 
-  var createDishSections=function() {
+  var createQuestionSections=function() {
     // Clear content
     var content=document.getElementById("content");
     removeChildrenFromElement(content);
@@ -232,10 +232,10 @@ var Dish = (function(){
     var sectionData=document.createElement("section");
     content.appendChild(sectionData);
 
-    // Dish name
-    var dishName=document.createElement("span");
-    sectionData.appendChild(dishName);
-    dishName.setAttribute("id","dishName");
+    // Question name
+    var questionName=document.createElement("span");
+    sectionData.appendChild(questionName);
+    questionName.setAttribute("id","questionName");
 
     // Space between name and edit link
     sectionData.appendChild(document.createTextNode(" "));
@@ -243,10 +243,10 @@ var Dish = (function(){
     // Edit link
     var editLink=document.createElement("a");
     sectionData.appendChild(editLink);
-    editLink.setAttribute("href","/dishUpdate?dishId=" + dishId);
+    editLink.setAttribute("href","/questionUpdate?questionId=" + questionId);
     editLink.setAttribute("class","edit");
     editLink.setAttribute("style","display:none");
-    editLink.setAttribute("id","dishEditLink");
+    editLink.setAttribute("id","questionEditLink");
     editLink.appendChild(document.createTextNode("Edit"));
 
     // Space
@@ -256,7 +256,7 @@ var Dish = (function(){
     var allReviewsLink=document.createElement("a");
     sectionData.appendChild(allReviewsLink);
     allReviewsLink.setAttribute("href","#");
-    allReviewsLink.addEventListener('click', function(e){e.preventDefault();Dish.linkTo(dishId);}, false);
+    allReviewsLink.addEventListener('click', function(e){e.preventDefault();Question.linkTo(questionId);}, false);
     allReviewsLink.setAttribute("class","more");
     allReviewsLink.setAttribute("style","display:none");
     allReviewsLink.setAttribute("id","allReviewsLink");
@@ -269,11 +269,11 @@ var Dish = (function(){
     waitingForData.setAttribute("id","waitingForData");
     waitingForData.setAttribute("title","Waiting for data");
 
-    // Dish data
-    var dishData=document.createElement("div");
-    sectionData.appendChild(dishData);
-    dishData.setAttribute("class","data");
-    dishData.setAttribute("id","dishData");
+    // Question data
+    var questionData=document.createElement("div");
+    sectionData.appendChild(questionData);
+    questionData.setAttribute("class","data");
+    questionData.setAttribute("id","questionData");
 
     // More indicator
     var moreIndicator=document.createElement("progress");
@@ -299,32 +299,32 @@ var Dish = (function(){
     if (table==null) {
       newTable=true;
       table=createTable();
-      document.getElementById("dishData").appendChild(table);
+      document.getElementById("questionData").appendChild(table);
     }
 
-    var dish=xmlDoc.getElementsByTagName("dish")[0];
+    var question=xmlDoc.getElementsByTagName("question")[0];
 
     // Store name
-    var storeName=dish.getAttribute("storeName");
+    var storeName=question.getAttribute("storeName");
     var storeNameTag=document.getElementById("storeName");
     removeChildrenFromElement(storeNameTag);
     storeNameTag.appendChild(document.createTextNode(storeName));
 
     // Store link
-    var storeId=dish.getAttribute("storeId");
+    var storeId=question.getAttribute("storeId");
     var storeLinkTag=document.getElementById("storeLink");
     storeLinkTag.addEventListener('click', function(e){e.preventDefault();Store.linkTo(storeId);}, false);
 
-    // Dish Name
-    var dishName=dish.getAttribute("dishName");
-    var dishNameTag=document.getElementById("dishName");
-    removeChildrenFromElement(dishNameTag);
-    dishNameTag.appendChild(document.createTextNode(dishName));
+    // Question Name
+    var questionName=question.getAttribute("questionName");
+    var questionNameTag=document.getElementById("questionName");
+    removeChildrenFromElement(questionNameTag);
+    questionNameTag.appendChild(document.createTextNode(questionName));
 
     // Title
     var title=document.getElementById("title");
     removeChildrenFromElement(title);
-    title.appendChild(document.createTextNode(dishName));
+    title.appendChild(document.createTextNode(questionName));
 
     // Process reviews
     var reviews=xmlDoc.getElementsByTagName("review");
@@ -381,9 +381,9 @@ var Dish = (function(){
     thReview.appendChild(document.createTextNode("Review"));
 
     // Show Add link
-    if (DishRevUser.canEdit) {
+    if (QuestionRevUser.canEdit) {
       var addLink=document.createElement("a");
-      addLink.setAttribute("href","/reviewAdd?dishId="+dishId);
+      addLink.setAttribute("href","/reviewAdd?questionId="+questionId);
       addLink.setAttribute("class","add addTh");
       addLink.appendChild(document.createTextNode("Add"));
       thReview.appendChild(addLink);
@@ -437,7 +437,7 @@ var Dish = (function(){
       descReview.appendChild(document.createTextNode(" "));
 
       var postButton=document.createElement("button");
-      postButton.setAttribute("onclick","Dish.postReviewToFacebook(\"" + reviewId + "\");return false;");
+      postButton.setAttribute("onclick","Question.postReviewToFacebook(\"" + reviewId + "\");return false;");
       postButton.appendChild(document.createTextNode("Share on Facebook"));
       descReview.appendChild(postButton);
     } else {
@@ -455,7 +455,7 @@ var Dish = (function(){
     tr.appendChild(timeReview);
 
     // Vote
-    if (DishRevUser.canEdit) {
+    if (QuestionRevUser.canEdit) {
         var voteDisplay=document.createElement("td");
         var voteLink=document.createElement("a");
         voteLink.setAttribute("href","/reviewVote?reviewId="+reviewId);
@@ -547,32 +547,32 @@ var Dish = (function(){
     var table=document.getElementById("reviews");
     if (table==null) {
       table=createTable();
-      document.getElementById("dishData").appendChild(table);
+      document.getElementById("questionData").appendChild(table);
     }
     table.appendChild(createTableRowForNoCachedData());
   }
 
-  var reloadDishesPage=function() {
-    window.location='/stores?dishId='+dishId;
+  var reloadQuestionesPage=function() {
+    window.location='/stores?questionId='+questionId;
     return false;
   }
 
   return {
-    display: function(aDishId, aReviewId) {
-      dishId=aDishId;
+    display: function(aQuestionId, aReviewId) {
+      questionId=aQuestionId;
       reviewId=aReviewId;
       create();
     },
-    linkTo: function(aDishId, aReviewId) {
-      dishId=aDishId;
+    linkTo: function(aQuestionId, aReviewId) {
+      questionId=aQuestionId;
       reviewId=aReviewId;
-      DishRev.lock=false;
+      QuestionRev.lock=false;
       if (reviewId) {
-        var stateObj = { action: "review", dishId: dishId, reviewId: reviewId };
+        var stateObj = { action: "review", questionId: questionId, reviewId: reviewId };
         history.pushState(stateObj, "Review", "/stores?reviewId=" + reviewId );
       } else {
-        var stateObj = { action: "dish", dishId: dishId };
-        history.pushState(stateObj, "Dish", "/stores?dishId=" + dishId );
+        var stateObj = { action: "question", questionId: questionId };
+        history.pushState(stateObj, "Question", "/stores?questionId=" + questionId );
       }
       create();
     },

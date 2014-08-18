@@ -1,7 +1,7 @@
 package surveytest.controller;
 
-import surveytest.data.DishAdd;
-import surveytest.data.model.Dish;
+import surveytest.data.QuestionAdd;
+import surveytest.data.model.Question;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
-* Process dish adds.
+* Process question adds.
 */
-public class DishAddServlet extends HttpServlet {
+public class QuestionAddServlet extends HttpServlet {
 
     /**
     * Display page.
@@ -23,35 +23,35 @@ public class DishAddServlet extends HttpServlet {
         setUpData(request);
 
         // Default note
-        Dish dish=(Dish)request.getAttribute(RequestUtils.DISH);
-        dish.setNote("");
+        Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
+        question.setNote("");
         RequestUtils.forwardTo(request,response,ControllerConstants.DISH_ADD);
     }
 
     /**
-    * Add dish.
+    * Add question.
     */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
         String action=RequestUtils.getAlphaInput(request,"action","Action",true);
         ResourceBundle bundle = ResourceBundle.getBundle("Text");
-        Dish dish=(Dish)request.getAttribute(RequestUtils.DISH);
+        Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
 
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
             if (action.equals(bundle.getString("addLabel"))) {		
                 // Fields
                 String note=RequestUtils.getAlphaInput(request,"note",bundle.getString("noteLabel"),true);
-                dish.setNote(note);
+                question.setNote(note);
                 if (!RequestUtils.hasEdits(request)) {
-                    dish=DishAdd.execute(dish);
+                    question=QuestionAdd.execute(question);
                 }
             }
         }
 
-        // If no edits, forward to dish.
+        // If no edits, forward to question.
         if (!RequestUtils.hasEdits(request)) {
-            request.setAttribute("dishId",dish.getKey().getId());
+            request.setAttribute("questionId",question.getKey().getId());
             RequestUtils.forwardTo(request,response,ControllerConstants.DISH_REDIRECT);
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.DISH_ADD);
@@ -69,9 +69,9 @@ public class DishAddServlet extends HttpServlet {
             throw new SecurityException("User principal not found");
         }
 
-        // Set dish
-        Dish dish=new Dish();
-        dish.setUser(request.getUserPrincipal().getName());
-        request.setAttribute(RequestUtils.DISH, dish);
+        // Set question
+        Question question=new Question();
+        question.setUser(request.getUserPrincipal().getName());
+        request.setAttribute(RequestUtils.QUESTION, question);
     }
 }
