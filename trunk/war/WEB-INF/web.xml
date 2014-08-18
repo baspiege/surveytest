@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app  version="2.5">
     <welcome-file-list>
-        <welcome-file>dish</welcome-file>
+        <welcome-file>question</welcome-file>
     </welcome-file-list>
     
-    <!-- Dish Actions -->
+    <!-- Question Actions -->
     <servlet>
-      <servlet-name>dish</servlet-name>
-      <servlet-class>surveytest.controller.DishServlet</servlet-class>
+      <servlet-name>question</servlet-name>
+      <servlet-class>surveytest.controller.QuestionServlet</servlet-class>
     </servlet>
     <servlet>
-      <servlet-name>dishAdd</servlet-name>
-      <servlet-class>surveytest.controller.DishAddServlet</servlet-class>
+      <servlet-name>questionAdd</servlet-name>
+      <servlet-class>surveytest.controller.QuestionAddServlet</servlet-class>
     </servlet>
     <servlet>
-      <servlet-name>dishUpdate</servlet-name>
-      <servlet-class>surveytest.controller.DishUpdateServlet</servlet-class>
+      <servlet-name>questionUpdate</servlet-name>
+      <servlet-class>surveytest.controller.QuestionUpdateServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-      <servlet-name>dish</servlet-name>
-      <url-pattern>/dish</url-pattern>
+      <servlet-name>question</servlet-name>
+      <url-pattern>/question</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-      <servlet-name>dishAdd</servlet-name>
-      <url-pattern>/dishAdd</url-pattern>
+      <servlet-name>questionAdd</servlet-name>
+      <url-pattern>/questionAdd</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-      <servlet-name>dishUpdate</servlet-name>
-      <url-pattern>/dishUpdate</url-pattern>
+      <servlet-name>questionUpdate</servlet-name>
+      <url-pattern>/questionUpdate</url-pattern>
     </servlet-mapping>
        
     <error-page>

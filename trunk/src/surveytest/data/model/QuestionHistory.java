@@ -10,14 +10,16 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import surveytest.utils.NumberUtils;
+
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
 
 /**
- * Dish.
+ * Question history.
  *
  * @author Brian Spiegel
  */
-public class Dish implements Serializable {
+public class QuestionHistory implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,22 +28,16 @@ public class Dish implements Serializable {
     private Key key;
 
     @Persistent
+    private long questionId;
+
+    @Persistent
     private String lastReview;	
-
-    @Persistent
-    private String lastReviewUserId;	
-
-    @Persistent
-    private Long lastReviewImageId;
 
     @Persistent
     private Date lastUpdateTime;	
 
     @Persistent
     private String note;
-
-    @Persistent
-    private String noteLowerCase;
 
     @Persistent
     private long reviewCount;
@@ -53,74 +49,43 @@ public class Dish implements Serializable {
     private String user;
 
     @Persistent
-    private Long vote;
-
-    @Persistent
-    private Long yesVote;
+    private long yesVote;
 
     /**
      * Constructor.
      *
      */
-    public Dish()
-    {
+    public QuestionHistory() {
+    }
+
+    /**
+     * Constructor.
+     *
+     */
+    public QuestionHistory(Question aQuestion) {
+        setQuestionId(aQuestion.getKey().getId());
+        setNote(aQuestion.getNote());
+        setLastUpdateTime(aQuestion.getLastUpdateTime());
+        setStoreId(aQuestion.getStoreId());
+        setYesVote(aQuestion.getYesVote());
+        setUser(aQuestion.getUser());
     }
 
     public Key getKey() {
         return key;
     }
-    
-    public String getNote() {
-        return note;
+
+    public void setQuestionId(long aQuestionId) {
+        questionId=aQuestionId;
     }
 
-    public String getLastReview() {
-        return lastReview;
-    }
-
-    public String getLastReviewUserId() {
-        return lastReviewUserId;
-    }
-
-    public Long getLastReviewImageId() {
-        return lastReviewImageId;
-    }
-
-    public Date getLastUpdateTime() {
-        return lastUpdateTime;
-    }
-
-    public long getReviewCount() {
-        return reviewCount;
-    }
-
-    public long getStoreId() {
-        return storeId;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public Long getYesVote() {
-        return yesVote;
-    }
 
     public void setNote(String aNote) {
         note=aNote;
-        noteLowerCase=aNote.toLowerCase();
     }
 
     public void setLastReview(String aLastReview) {
         lastReview=aLastReview;
-    }
-
-    public void setLastReviewUserId(String aLastReviewUserId) {
-        lastReviewUserId=aLastReviewUserId;
-    }
-
-    public void setLastReviewImageId(long aId) {
-        lastReviewImageId=aId;
     }
 
     public void setLastUpdateTime(Date aLastUpdateTime) {
@@ -139,7 +104,7 @@ public class Dish implements Serializable {
         user=aUser;
     }
 
-    public void setYesVote(Long aYes) {
+    public void setYesVote(long aYes) {
         yesVote=aYes;
     }
 }

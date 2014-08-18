@@ -1,8 +1,8 @@
 package surveytest.controller;
 
-import surveytest.data.DishDelete;
-import surveytest.data.DishUpdate;
-import surveytest.data.model.Dish;
+import surveytest.data.QuestionDelete;
+import surveytest.data.QuestionUpdate;
+import surveytest.data.model.Question;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
-* Process dish updates.
+* Process question updates.
 */
-public class DishUpdateServlet extends HttpServlet {
+public class QuestionUpdateServlet extends HttpServlet {
 
     /**
     * Display page.
@@ -26,12 +26,12 @@ public class DishUpdateServlet extends HttpServlet {
     }
 
     /**
-    * Update or delete dish.
+    * Update or delete question.
     */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
 
-        Dish dish=(Dish)request.getAttribute(RequestUtils.DISH);
+        Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
         String action=RequestUtils.getAlphaInput(request,"action","Action",true);
         ResourceBundle bundle = ResourceBundle.getBundle("Text");
 
@@ -39,7 +39,7 @@ public class DishUpdateServlet extends HttpServlet {
         if (!StringUtils.isEmpty(action)) {
             if (action.equals(bundle.getString("updateLabel"))) {		
                 String note=RequestUtils.getAlphaInput(request,"note",bundle.getString("nameLabel"),true);
-                dish.setNote(note);
+                question.setNote(note);
                 updateAction(request,response);
             } else if (action.equals(bundle.getString("deleteLabel"))) {		
                 deleteAction(request,response);
@@ -53,13 +53,13 @@ public class DishUpdateServlet extends HttpServlet {
     * Update action.
     */
     private void updateAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Dish dish=(Dish)request.getAttribute(RequestUtils.DISH);
+        Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
         if (!RequestUtils.hasEdits(request)) {
-            dish=DishUpdate.execute(dish);
+            question=QuestionUpdate.execute(question);
         }
-        // If no edits, forward to dish.
+        // If no edits, forward to question.
         if (!RequestUtils.hasEdits(request)) {
-            request.setAttribute("dishId",dish.getKey().getId());
+            request.setAttribute("questionId",question.getKey().getId());
             RequestUtils.forwardTo(request,response,ControllerConstants.DISH_REDIRECT);
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.DISH_UPDATE);
@@ -70,16 +70,16 @@ public class DishUpdateServlet extends HttpServlet {
     * Delete action.
     */
     private void deleteAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Dish dish=(Dish)request.getAttribute(RequestUtils.DISH);
-        if (dish.getReviewCount()>0) {
-            RequestUtils.addEditUsingKey(request,"dishesWithReviewsCantBeDeletedEditMessage");
+        Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
+        if (question.getReviewCount()>0) {
+            RequestUtils.addEditUsingKey(request,"questionesWithReviewsCantBeDeletedEditMessage");
         }
         if (!RequestUtils.hasEdits(request)) {
-            DishDelete.execute(dish);
+            QuestionDelete.execute(question);
         }
         // If no edits, forward to store.
         if (!RequestUtils.hasEdits(request)) {
-            request.setAttribute("storeId",dish.getStoreId());
+            request.setAttribute("storeId",question.getStoreId());
             RequestUtils.forwardTo(request,response,ControllerConstants.STORE_REDIRECT);
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.DISH_UPDATE);
@@ -97,15 +97,15 @@ public class DishUpdateServlet extends HttpServlet {
             throw new SecurityException("User principal not found");
         }
 
-        // Get dish
-        Long dishId=RequestUtils.getNumericInput(request,"dishId","dishId",true);
-        Dish dish=null;
+        // Get question
+        Long questionId=RequestUtils.getNumericInput(request,"questionId","questionId",true);
+        Question question=null;
 
-        if (dish==null) {
-            throw new RuntimeException("Dish not found: " + dishId);
+        if (question==null) {
+            throw new RuntimeException("Question not found: " + questionId);
         }
 
-        dish.setUser(request.getUserPrincipal().getName());
-        request.setAttribute(RequestUtils.DISH, dish);
+        question.setUser(request.getUserPrincipal().getName());
+        request.setAttribute(RequestUtils.QUESTION, question);
     }
 }

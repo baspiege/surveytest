@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RequestUtils {
 
     public static String EDITS="edits";
-    public static String DISH="dish";
+    public static String QUESTION="question";
     public static String STORE="store";
     public static String REVIEW="review";
 

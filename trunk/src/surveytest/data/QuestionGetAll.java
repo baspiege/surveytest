@@ -1,6 +1,6 @@
 package surveytest.data;
 
-import surveytest.data.model.Dish;
+import surveytest.data.model.Question;
 import surveytest.utils.NumberUtils;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,28 +8,28 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 /**
- * Get dishes.
+ * Get questiones.
  *
  * @author Brian Spiegel
  */
-public class DishesGetAll {
+public class QuestionesGetAll {
 
     /**
-     * Get dishes.
+     * Get questiones.
      *
      * @param aStoreId
      * @param aStart starting position
      * @param aSortBy sort by
      * @since 1.0
      */
-    public static List<Dish> execute(Long aStoreId, Long aStart, String aSortBy) {
+    public static List<Question> execute(Long aStoreId, Long aStart, String aSortBy) {
         PersistenceManager pm=null;
-        List<Dish> results=null;
+        List<Question> results=null;
         try {
             pm=PMF.get().getPersistenceManager();
             Query query=null;
             try {
-                query = pm.newQuery(Dish.class);
+                query = pm.newQuery(Question.class);
                 query.setFilter("storeId==storeIdParam");
                 query.declareParameters("long storeIdParam");
 
@@ -42,7 +42,7 @@ public class DishesGetAll {
 
                 query.setRange(aStart, aStart+10);
 
-                results = (List<Dish>) query.execute(aStoreId);
+                results = (List<Question>) query.execute(aStoreId);
 
                 // Touch object to get data.  Size method triggers the underlying database call.
                 results.size();
