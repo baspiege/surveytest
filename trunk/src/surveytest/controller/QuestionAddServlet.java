@@ -25,7 +25,7 @@ public class QuestionAddServlet extends HttpServlet {
         // Default note
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
         question.setNote("");
-        RequestUtils.forwardTo(request,response,ControllerConstants.DISH_ADD);
+        RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_ADD);
     }
 
     /**
@@ -52,9 +52,9 @@ public class QuestionAddServlet extends HttpServlet {
         // If no edits, forward to question.
         if (!RequestUtils.hasEdits(request)) {
             request.setAttribute("questionId",question.getKey().getId());
-            RequestUtils.forwardTo(request,response,ControllerConstants.DISH_REDIRECT);
+            RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_REDIRECT);
         } else {
-            RequestUtils.forwardTo(request,response,ControllerConstants.DISH_ADD);
+            RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_ADD);
         }
     }
 
@@ -64,14 +64,14 @@ public class QuestionAddServlet extends HttpServlet {
     private void setUpData(HttpServletRequest request) {
 
         // Check if signed in
-        boolean isSignedIn=request.getUserPrincipal().getName()!=null;
-        if (!isSignedIn) {
-            throw new SecurityException("User principal not found");
-        }
+//        boolean isSignedIn=request.getUserPrincipal().getName()!=null;
+//        if (!isSignedIn) {
+//            throw new SecurityException("User principal not found");
+//        }
 
         // Set question
         Question question=new Question();
-        question.setUser(request.getUserPrincipal().getName());
+        //question.setUser(request.getUserPrincipal().getName());
         request.setAttribute(RequestUtils.QUESTION, question);
     }
 }
