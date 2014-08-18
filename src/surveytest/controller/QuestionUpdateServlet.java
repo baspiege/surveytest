@@ -22,7 +22,7 @@ public class QuestionUpdateServlet extends HttpServlet {
     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
-        RequestUtils.forwardTo(request,response,ControllerConstants.DISH_UPDATE);
+        RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_UPDATE);
     }
 
     /**
@@ -60,9 +60,9 @@ public class QuestionUpdateServlet extends HttpServlet {
         // If no edits, forward to question.
         if (!RequestUtils.hasEdits(request)) {
             request.setAttribute("questionId",question.getKey().getId());
-            RequestUtils.forwardTo(request,response,ControllerConstants.DISH_REDIRECT);
+            RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_REDIRECT);
         } else {
-            RequestUtils.forwardTo(request,response,ControllerConstants.DISH_UPDATE);
+            RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_UPDATE);
         }
     }
 
@@ -82,7 +82,7 @@ public class QuestionUpdateServlet extends HttpServlet {
             request.setAttribute("storeId",question.getStoreId());
             RequestUtils.forwardTo(request,response,ControllerConstants.STORE_REDIRECT);
         } else {
-            RequestUtils.forwardTo(request,response,ControllerConstants.DISH_UPDATE);
+            RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_UPDATE);
         }
     }
 

@@ -6,7 +6,7 @@ package surveytest.controller;
 public class ControllerConstants {
 
     // Redirects
-    public static String DISH_REDIRECT="/WEB-INF/redirects/question.jsp";
+    public static String QUESTION_REDIRECT="/WEB-INF/redirects/question.jsp";
     public static String REVIEWS_REDIRECT="/WEB-INF/redirects/reviews.jsp";
     public static String STORE_REDIRECT="/WEB-INF/redirects/store.jsp";
     public static String STORES_REDIRECT="/WEB-INF/redirects/stores.jsp";
@@ -20,9 +20,9 @@ public class ControllerConstants {
 
     // Question pages
     public static String QUESTION="/WEB-INF/pages/question.jsp";
-    public static String DISH_ADD="/WEB-INF/pages/questionAdd.jsp";
-    public static String DISH_UPDATE="/WEB-INF/pages/questionUpdate.jsp";
-    public static String DISH_VOTE="/WEB-INF/pages/questionVote.jsp";
+    public static String QUESTION_ADD="/WEB-INF/pages/questionAdd.jsp";
+    public static String QUESTION_UPDATE="/WEB-INF/pages/questionUpdate.jsp";
+    public static String QUESTION_VOTE="/WEB-INF/pages/questionVote.jsp";
 
     // Store pages
     public static String STORE="/WEB-INF/pages/store.jsp";
