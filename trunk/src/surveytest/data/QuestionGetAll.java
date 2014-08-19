@@ -30,15 +30,13 @@ public class QuestionesGetAll {
             Query query=null;
             try {
                 query = pm.newQuery(Question.class);
-                query.setFilter("storeId==storeIdParam");
-                query.declareParameters("long storeIdParam");
+                query.setFilter("surveyId==surveyIdParam");
+                query.declareParameters("long surveyIdParam");
 
                 // Sorting
-                if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
-                    query.setOrdering("noteLowerCase ASC");
-                } else if (aSortBy.equalsIgnoreCase("vote")){
-                    query.setOrdering("yesVote DESC");
-                }
+                // if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
+                //    query.setOrdering("noteLowerCase ASC");
+                //}
 
                 query.setRange(aStart, aStart+10);
 

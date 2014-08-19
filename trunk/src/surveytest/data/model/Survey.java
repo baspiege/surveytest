@@ -10,16 +10,14 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import surveytest.utils.NumberUtils;
-
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
 
 /**
- * Question history.
+ * Survey.
  *
  * @author Brian Spiegel
  */
-public class QuestionHistory implements Serializable {
+public class Survey implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,37 +26,25 @@ public class QuestionHistory implements Serializable {
     private Key key;
 
     @Persistent
-    private long questionId;
-
-    @Persistent
-    private String text;
+    private String name;	
 
     /**
      * Constructor.
      *
      */
-    public QuestionHistory() {
-    }
-
-    /**
-     * Constructor.
-     *
-     */
-    public QuestionHistory(Question aQuestion) {
-        setQuestionId(aQuestion.getKey().getId());
-        setText(aQuestion.getText());
+    public Survey()
+    {
     }
 
     public Key getKey() {
         return key;
     }
-
-    public void setQuestionId(long aQuestionId) {
-        questionId=aQuestionId;
+    
+    public String getName() {
+        return name;
     }
 
-    public void setText(String aText) {
-        text=aText;
+    public void setName(String aName) {
+        name=aName;
     }
-
 }

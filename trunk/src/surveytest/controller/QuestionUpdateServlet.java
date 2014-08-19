@@ -39,7 +39,7 @@ public class QuestionUpdateServlet extends HttpServlet {
         if (!StringUtils.isEmpty(action)) {
             if (action.equals(bundle.getString("updateLabel"))) {		
                 String note=RequestUtils.getAlphaInput(request,"note",bundle.getString("nameLabel"),true);
-                question.setNote(note);
+                question.setText(note);
                 updateAction(request,response);
             } else if (action.equals(bundle.getString("deleteLabel"))) {		
                 deleteAction(request,response);
@@ -71,16 +71,13 @@ public class QuestionUpdateServlet extends HttpServlet {
     */
     private void deleteAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
-        if (question.getReviewCount()>0) {
-            RequestUtils.addEditUsingKey(request,"questionesWithReviewsCantBeDeletedEditMessage");
-        }
+      
         if (!RequestUtils.hasEdits(request)) {
             QuestionDelete.execute(question);
         }
-        // If no edits, forward to store.
+        // If no edits, forward to ?
         if (!RequestUtils.hasEdits(request)) {
-            request.setAttribute("storeId",question.getStoreId());
-            RequestUtils.forwardTo(request,response,ControllerConstants.STORE_REDIRECT);
+
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_UPDATE);
         }
@@ -92,10 +89,12 @@ public class QuestionUpdateServlet extends HttpServlet {
     private void setUpData(HttpServletRequest request) {
 
         // Check if signed in
+        /*
         boolean isSignedIn=request.getUserPrincipal().getName()!=null;
         if (!isSignedIn) {
             throw new SecurityException("User principal not found");
         }
+        */
 
         // Get question
         Long questionId=RequestUtils.getNumericInput(request,"questionId","questionId",true);
@@ -105,7 +104,7 @@ public class QuestionUpdateServlet extends HttpServlet {
             throw new RuntimeException("Question not found: " + questionId);
         }
 
-        question.setUser(request.getUserPrincipal().getName());
+        //question.setUser(request.getUserPrincipal().getName());
         request.setAttribute(RequestUtils.QUESTION, question);
     }
 }

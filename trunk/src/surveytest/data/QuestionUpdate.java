@@ -33,12 +33,12 @@ public class QuestionUpdate {
 
             if (question!=null){
 
-                if (aQuestion.getNote()!=null) {
-                    question.setNote(aQuestion.getNote());
+                if (aQuestion.getText()!=null) {
+                    question.setText(aQuestion.getText());
                 }
 
-                question.setLastUpdateTime(new Date());
-                question.setUser(aQuestion.getUser());
+                // question.setLastUpdateTime(new Date());
+                // question.setUser(aQuestion.getUser());
 
                 // History
                 QuestionHistory questionHistory=new QuestionHistory(question);
