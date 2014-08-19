@@ -26,9 +26,7 @@ public class QuestionAdd {
         try {
             pm=PMF.get().getPersistenceManager();
 
-            aQuestion.setLastUpdateTime(new Date());
-            aQuestion.setYesVote(0l);
-            aQuestion.setReviewCount(0l);
+            //aQuestion.setLastUpdateTime(new Date());
 
             // Save
             pm.makePersistent(aQuestion);

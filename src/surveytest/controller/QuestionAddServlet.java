@@ -22,9 +22,9 @@ public class QuestionAddServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
 
-        // Default note
+        // Default
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
-        question.setNote("");
+        question.setText("");
         RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_ADD);
     }
 
@@ -42,7 +42,7 @@ public class QuestionAddServlet extends HttpServlet {
             if (action.equals(bundle.getString("addLabel"))) {		
                 // Fields
                 String note=RequestUtils.getAlphaInput(request,"note",bundle.getString("noteLabel"),true);
-                question.setNote(note);
+                question.setText(note);
                 if (!RequestUtils.hasEdits(request)) {
                     question=QuestionAdd.execute(question);
                 }
