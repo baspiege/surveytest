@@ -4,6 +4,6 @@
 <fmt:bundle basename="Text">
 <footer>
 <jsp:useBean id="currentDate" class="java.util.Date" scope="page" />
-<fmt:message key="copyrightLabel"/> <fmt:formatDate pattern="yyyy" value="${currentDate}"/> Brian Spiegel
+<fmt:message key="copyrightLabel"/> <fmt:formatDate pattern="yyyy" value="${currentDate}"/> Some Entity
 </footer>
 </fmt:bundle>
