@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app  version="2.5">
     <welcome-file-list>
-        <welcome-file>question</welcome-file>
+        <welcome-file>surveys</welcome-file>
     </welcome-file-list>
+    
+    <servlet>
+      <servlet-name>surveys</servlet-name>
+      <servlet-class>surveytest.controller.SurveysServlet</servlet-class>
+    </servlet>
     
     <!-- Question Actions -->
     <servlet>
