@@ -25,9 +25,12 @@
 <a href="/addSurvey"><fmt:message key="addLabel"/></a> 
 
 <%-- Data --%>
-<progress id="waitingForData" title="<fmt:message key="waitingForDataLabel"/>"><fmt:message key="waitingForDataLabel"/></progress>
-<div class="data" id="data"></div>
-<progress id="moreIndicator" style="display:none" title="<fmt:message key="loadingMoreLabel"/>"><fmt:message key="loadingMoreLabel"/></progress>
+<ul>
+<c:forEach var="survey" items="${surveys}">
+  <li><c:out value="${survey.name}"/></li>
+</c:forEach>
+</ul>
+
 </section>
 
 <jsp:include page="/WEB-INF/pages/components/footer.jsp"/>

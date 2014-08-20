@@ -14,7 +14,7 @@
 <%-- Fields --%>
 <form id="store" method="post" action="questionAdd" autocomplete="off">
 <table>
-<tr><td><fmt:message key="nameLabel"/>:</td><td><input type="text" name="note" value="<c:out value="${question.note}"/>" id="note" title="<fmt:message key="nameLabel"/>" maxlength="500"/></td></tr>
+<tr><td><fmt:message key="nameLabel"/>:</td><td><input type="text" name="note" value="<c:out value="${question.text}"/>" id="note" title="<fmt:message key="nameLabel"/>" maxlength="500"/></td></tr>
 </table>
 <p>
 <input class="button" type="submit" style="display:none" id="addButtonDisabled" disabled="disabled" value="<fmt:message key="addLabel"/>"/>

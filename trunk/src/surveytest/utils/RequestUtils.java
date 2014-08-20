@@ -20,8 +20,7 @@ public class RequestUtils {
 
     public static String EDITS="edits";
     public static String QUESTION="question";
-    public static String STORE="store";
-    public static String REVIEW="review";
+    public static String SURVEYS="surveys";
 
     // These are thread-safe.
     private static Pattern mNumbersPattern=Pattern.compile("[-]?[\\d]*[\\.]?[\\d]*");

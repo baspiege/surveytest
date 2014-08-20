@@ -45,7 +45,7 @@ public class QuestionUpdateServlet extends HttpServlet {
                 deleteAction(request,response);
             }
         } else {
-            RequestUtils.forwardTo(request,response,ControllerConstants.STORES_REDIRECT);
+            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEYS_REDIRECT);
         }
     }
 
