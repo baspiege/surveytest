@@ -18,6 +18,15 @@
       <url-pattern>/surveys</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+      <servlet-name>addSurvey</servlet-name>
+      <servlet-class>surveytest.controller.SurveyAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>addSurvey</servlet-name>
+      <url-pattern>/addSurvey</url-pattern>
+    </servlet-mapping>
+    
     <!-- Question Actions -->
     <!--
     <servlet>
