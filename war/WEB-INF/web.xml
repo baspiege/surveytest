@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app  version="2.5">
+
     <welcome-file-list>
         <welcome-file>surveys</welcome-file>
     </welcome-file-list>
@@ -10,6 +11,7 @@
     </servlet>
     
     <!-- Question Actions -->
+    <!--
     <servlet>
       <servlet-name>question</servlet-name>
       <servlet-class>surveytest.controller.QuestionServlet</servlet-class>
@@ -34,6 +36,7 @@
       <servlet-name>questionUpdate</servlet-name>
       <url-pattern>/questionUpdate</url-pattern>
     </servlet-mapping>
+    -->
        
     <error-page>
       <exception-type>java.lang.Exception</exception-type>
