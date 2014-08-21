@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<web-app  version="2.5">
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd">
+ 
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
 
     <welcome-file-list>
         <welcome-file>surveys</welcome-file>
@@ -9,6 +13,10 @@
       <servlet-name>surveys</servlet-name>
       <servlet-class>surveytest.controller.SurveysServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+      <servlet-name>surveys</servlet-name>
+      <url-pattern>/surveys</url-pattern>
+    </servlet-mapping>
     
     <!-- Question Actions -->
     <!--
@@ -40,7 +48,7 @@
        
     <error-page>
       <exception-type>java.lang.Exception</exception-type>
-      <location>/WEB-INF/redirects/error.jsp</location>
+      <location>/redirects/error.jsp</location>
     </error-page>
     
 </web-app>

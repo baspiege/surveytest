@@ -20,6 +20,7 @@ public class SurveysServlet extends HttpServlet {
     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
+        System.err.println("SurveysServlet 1");
         RequestUtils.forwardTo(request,response,ControllerConstants.SURVEYS);
     }
 
