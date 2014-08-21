@@ -12,6 +12,8 @@ public class ControllerConstants {
 
     // Surveys page
     public static String SURVEYS="/pages/surveys.jsp";    
+    public static String SURVEY="/pages/survey.jsp";
+    public static String SURVEY_ADD="/pages/surveyAdd.jsp";
     
     // Question pages
     public static String QUESTION="/pages/question.jsp";
