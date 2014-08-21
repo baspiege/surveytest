@@ -13,7 +13,7 @@
 <%-- Fields --%>
 <form id="question" method="post" action="surveyAdd" autocomplete="off">
 <table>
-<tr><td><fmt:message key="nameLabel"/>:</td><td><input type="text" name="note" value="<c:out value="${survey.name}"/>" id="note" title="<fmt:message key="nameLabel"/>" maxlength="500"/></td></tr>
+<tr><td><fmt:message key="nameLabel"/>:</td><td><input type="text" name="name" value="<c:out value="${survey.name}"/>" id="name" title="<fmt:message key="nameLabel"/>" maxlength="500"/></td></tr>
 </table>
 <p>
 <input class="button" type="submit" style="display:none" id="addButtonDisabled" disabled="disabled" value="<fmt:message key="addLabel"/>"/>

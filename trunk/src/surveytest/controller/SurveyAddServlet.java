@@ -34,7 +34,7 @@ public class SurveyAddServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
         String action=RequestUtils.getAlphaInput(request,"action","Action",true);
-        ResourceBundle bundle = ResourceBundle.getBundle("Name");
+        ResourceBundle bundle = ResourceBundle.getBundle("Text");
         Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
 
         // Process based on action
