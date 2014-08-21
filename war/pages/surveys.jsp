@@ -21,8 +21,8 @@
 
 <section>
 
-<span id="addSurvey"></span> 
-<a href="/addSurvey"><fmt:message key="addLabel"/></a> 
+<span id="surveyAdd"></span> 
+<a href="/surveyAdd"><fmt:message key="addLabel"/></a> 
 
 <%-- Data --%>
 <ul>
