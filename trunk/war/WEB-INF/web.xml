@@ -19,12 +19,12 @@
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>addSurvey</servlet-name>
+      <servlet-name>surveyAdd</servlet-name>
       <servlet-class>surveytest.controller.SurveyAddServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-      <servlet-name>addSurvey</servlet-name>
-      <url-pattern>/addSurvey</url-pattern>
+      <servlet-name>surveyAdd</servlet-name>
+      <url-pattern>/surveyAdd</url-pattern>
     </servlet-mapping>
     
     <!-- Question Actions -->
