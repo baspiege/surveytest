@@ -30,15 +30,15 @@ public class QuestionesGetAll {
             Query query=null;
             try {
                 query = pm.newQuery(Question.class);
-                query.setFilter("surveyId==surveyIdParam");
-                query.declareParameters("long surveyIdParam");
+                //query.setFilter("surveyId==surveyIdParam");
+                //query.declareParameters("long surveyIdParam");
 
                 // Sorting
                 // if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
                 //    query.setOrdering("noteLowerCase ASC");
                 //}
 
-                query.setRange(aStart, aStart+10);
+                //query.setRange(aStart, aStart+10);
 
                 results = (List<Question>) query.execute(aStoreId);
 
