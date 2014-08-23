@@ -11,11 +11,11 @@ import javax.jdo.annotations.PrimaryKey;
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
 
 /**
- * Question.
+ * Language.
  *
  * @author Brian Spiegel
  */
-public class Question implements Serializable {
+public class Language implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,13 +24,13 @@ public class Question implements Serializable {
     private Key key;
 
     @Persistent
-    private String text;
+    private String name;	
 
     /**
      * Constructor.
      *
      */
-    public Question()
+    public Language()
     {
     }
 
@@ -38,11 +38,11 @@ public class Question implements Serializable {
         return key;
     }
     
-    public String getText() {
-        return text;
+    public String getName() {
+        return name;
     }
 
-    public void setText(String aText) {
-        text=aText;
+    public void setName(String aName) {
+        name=aName;
     }
 }
