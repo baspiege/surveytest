@@ -51,8 +51,9 @@ public class SurveyAddServlet extends HttpServlet {
 
         // If no edits, forward to survey.
         if (!RequestUtils.hasEdits(request)) {
-            request.setAttribute("surveyId",survey.getKey().getId());
-            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
+            //request.setAttribute("surveyId",survey.getKey().getId());
+            //RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
+            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEYS_REDIRECT);
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_ADD);
         }
