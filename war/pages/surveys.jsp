@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page isELIgnored="false" %>
-<jsp:include page="/pages/components/htmlStartAppCache.jsp" />
+<jsp:include page="/pages/components/htmlStartNoCache.jsp" />
 <title id="title"></title>
 <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 </head>
@@ -36,5 +36,5 @@
 <jsp:include page="/pages/components/footer.jsp"/>
 </fmt:bundle>
 </body>
-<script type="text/javascript" src="/js/question.js" ></script>
+<script type="text/javascript" src="/js/surveys.js" ></script>
 </html>

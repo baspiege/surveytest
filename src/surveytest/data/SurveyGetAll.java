@@ -1,6 +1,6 @@
 package surveytest.data;
 
-import surveytest.data.model.Question;
+import surveytest.data.model.Survey;
 import surveytest.utils.NumberUtils;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,39 +8,37 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 /**
- * Get questions.
+ * Get surveys.
  *
  * @author Brian Spiegel
  */
-public class QuestionGetAll {
+public class SurveyGetAll {
 
     /**
-     * Get question.
+     * Get surveys.
      *
-     * @param aStoreId
      * @param aStart starting position
      * @param aSortBy sort by
      * @since 1.0
      */
-    public static List<Question> execute(Long aStoreId, Long aStart, String aSortBy) {
+    public static List<Survey> execute(Long aStart, String aSortBy) {
         PersistenceManager pm=null;
-        List<Question> results=null;
+        List<Survey> results=null;
         try {
             pm=PMF.get().getPersistenceManager();
             Query query=null;
             try {
-                query = pm.newQuery(Question.class);
-                //query.setFilter("surveyId==surveyIdParam");
-                //query.declareParameters("long surveyIdParam");
+                query = pm.newQuery(Survey.class);
 
                 // Sorting
-                // if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
-                //    query.setOrdering("noteLowerCase ASC");
-                //}
+                if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
+                    query.setOrdering("name ASC");
+                }
 
+                // TODO - Update if needed
                 //query.setRange(aStart, aStart+10);
 
-                results = (List<Question>) query.execute(aStoreId);
+                results = (List<Survey>) query.execute();
 
                 // Touch object to get data.  Size method triggers the underlying database call.
                 results.size();

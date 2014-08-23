@@ -1,6 +1,7 @@
 package surveytest.controller;
 
 import surveytest.data.model.Survey;
+import surveytest.data.SurveyGetAll;
 import surveytest.utils.RequestUtils;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +21,6 @@ public class SurveysServlet extends HttpServlet {
     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
-        System.err.println("SurveysServlet 1");
         RequestUtils.forwardTo(request,response,ControllerConstants.SURVEYS);
     }
 
@@ -35,16 +35,7 @@ public class SurveysServlet extends HttpServlet {
     * Set-up the data.
     */
     private void setUpData(HttpServletRequest request) {
-
-        List surveys=new ArrayList();
-        
-        // TODO - Get data from database.  Use test data temporarily.
-        Survey survey=new Survey();
-        survey.setName("test1");
-        
-        surveys.add(survey);
-        surveys.add(survey);
-        
+        List<Survey> surveys=new SurveyGetAll().execute(0L, null);        
         request.setAttribute(RequestUtils.SURVEYS,surveys);
     }
 }
