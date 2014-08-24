@@ -15,6 +15,9 @@ public class ControllerConstants {
     public static String SURVEY="/pages/survey.jsp";
     public static String SURVEY_ADD="/pages/surveyAdd.jsp";
     
+    // Language
+    public static String LANGUAGE_ADD="/pages/languageAdd.jsp";
+    
     // Question pages
     public static String QUESTION="/pages/question.jsp";
     public static String QUESTION_ADD="/pages/questionAdd.jsp";

@@ -22,7 +22,7 @@
 <section>
 
 <span id="surveyAdd"></span> 
-<a href="/surveyAdd"><fmt:message key="addLabel"/></a> 
+<a href="/surveyAdd"><fmt:message key="addSurveyLabel"/></a> 
 
 <%-- Data --%>
 <ul>

@@ -25,6 +25,9 @@ public class Language implements Serializable {
 
     @Persistent
     private String name;	
+    
+    @Persistent
+    private long surveyId;
 
     /**
      * Constructor.
@@ -41,8 +44,16 @@ public class Language implements Serializable {
     public String getName() {
         return name;
     }
+    
+    public long getSurveyId() {
+        return surveyId;
+    }
 
     public void setName(String aName) {
         name=aName;
+    }
+    
+    public void setSurveyId(long aSurveyId) {
+        surveyId=aSurveyId;
     }
 }

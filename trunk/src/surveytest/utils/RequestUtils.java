@@ -22,6 +22,7 @@ public class RequestUtils {
     public static String QUESTION="question";
     public static String SURVEYS="surveys";
     public static String SURVEY="survey";
+    public static String LANGUAGE="language";
 
     // These are thread-safe.
     private static Pattern mNumbersPattern=Pattern.compile("[-]?[\\d]*[\\.]?[\\d]*");
@@ -110,39 +111,6 @@ public class RequestUtils {
         } else {
             try {
                 retValue=new Long(value);
-            } catch (NumberFormatException e) {
-                retValue=null;
-                ResourceBundle bundle = ResourceBundle.getBundle("Text");
-                String editMessage=aDescription + ": " + bundle.getString("numberFieldNotValidEdit");
-                addEdit(aRequest,editMessage);
-            }
-        }
-
-        return retValue;
-    }
-
-    /**
-    * Get a numeric input and store into the request if there are no edits.
-    *
-    * @param aRequest Servlet Request to get input from
-    * @param aFieldToCheck Field to check
-    * @param aDescription Description of field for edit message
-    * @param aRequired Indicates if required
-    * @return the field if no edits
-    */
-    public static Double getNumericInputAsDouble(HttpServletRequest aRequest, String aFieldToCheck, String aDescription, boolean aRequired) {
-        Double retValue=null;
-        String value=aRequest.getParameter(aFieldToCheck);
-        if (isFieldEmpty(aRequest, value, aFieldToCheck, aDescription, aRequired)) {
-            // Do nothing
-        } else if (!mNumbersPattern.matcher(value).matches()) {
-            retValue=null;
-            ResourceBundle bundle = ResourceBundle.getBundle("Text");
-            String editMessage=aDescription + ": " + bundle.getString("numberFieldValidCharsEdit");
-            addEdit(aRequest,editMessage);
-        } else {
-            try {
-                retValue=new Double(value);
             } catch (NumberFormatException e) {
                 retValue=null;
                 ResourceBundle bundle = ResourceBundle.getBundle("Text");
