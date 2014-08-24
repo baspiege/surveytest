@@ -15,7 +15,7 @@ import javax.jdo.annotations.PrimaryKey;
  *
  * @author Brian Spiegel
  */
-public class Question implements Serializable {
+public class QuestionText implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
