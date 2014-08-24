@@ -8,7 +8,7 @@
 <title><fmt:message key="questionLabel"/></title>
 <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 </head>
-<body>
+<body onunload="">
 <jsp:include page="/pages/components/edits.jsp"/>
 <form id="question" method="post" action="questionUpdate" autocomplete="off">
 <table>

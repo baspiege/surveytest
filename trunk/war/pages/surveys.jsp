@@ -8,7 +8,7 @@
 <title id="title"><fmt:message key="surveysLabel"/></title>
 <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 </head>
-<body>
+<body onunload="">
 
 <jsp:include page="/pages/components/edits.jsp"/>
 
