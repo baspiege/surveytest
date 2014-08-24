@@ -34,7 +34,7 @@ public class LanguageAddServlet extends HttpServlet {
         setUpData(request);
         String action=RequestUtils.getAlphaInput(request,"action","Action",true);
         ResourceBundle bundle = ResourceBundle.getBundle("Text");
-        Language language=(Language)request.getAttribute(RequestUtils.Language);
+        Language language=(Language)request.getAttribute(RequestUtils.LANGUAGE);
 
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
@@ -70,7 +70,7 @@ public class LanguageAddServlet extends HttpServlet {
 
         // Check survey
         Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
-        Store survey=null;
+        Survey survey=null;
         if (surveyId!=null) {
             survey=SurveyGetSingle.getSurvey(surveyId);
             request.setAttribute(RequestUtils.SURVEY, survey);
