@@ -72,7 +72,7 @@ public class LanguageAddServlet extends HttpServlet {
         Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
         Survey survey=null;
         if (surveyId!=null) {
-            survey=SurveyGetSingle.getSurvey(surveyId);
+            survey=SurveyGetSingle.execute(surveyId);
             request.setAttribute(RequestUtils.SURVEY, survey);
         }
         if (survey==null) {
