@@ -8,7 +8,7 @@
 <title><fmt:message key="addLanguageLabel"/></title>
 <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 </head>
-<body>
+<body onunload="">
 <jsp:include page="/pages/components/edits.jsp"/>
 <%-- Fields --%>
 <form id="language" method="post" action="languageAdd" autocomplete="off">

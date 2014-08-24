@@ -11,7 +11,7 @@ import javax.jdo.annotations.PrimaryKey;
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
 
 /**
- * Question.
+ * Question text which is identified by survey Id, question Id, and language Id.
  *
  * @author Brian Spiegel
  */
@@ -28,6 +28,12 @@ public class Question implements Serializable {
     
     @Persistent
     private long surveyId;
+    
+    @Persistent
+    private long questionId;
+    
+    @Persistent
+    private long languageId;
 
     /**
      * Constructor.
@@ -49,8 +55,24 @@ public class Question implements Serializable {
         text=aText;
     }
     
+    public long getLanguageId() {
+        return langugeId;
+    }
+    
+    public long getQuestionId() {
+        return questionId;
+    }
+    
     public long getSurveyId() {
         return surveyId;
+    }
+    
+    public void setLanguageId(long aLanguageId) {
+        languageId=aLanguageId;
+    }
+    
+    public void setQuestionId(long aQuestionId) {
+        questionId=aQuestionId;
     }
     
     public void setSurveyId(long aSurveyId) {

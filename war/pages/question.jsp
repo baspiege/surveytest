@@ -7,7 +7,7 @@
 <title id="title"></title>
 <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 </head>
-<body>
+<body onunload="">
 <fmt:bundle basename="Text">
 
 <nav>
