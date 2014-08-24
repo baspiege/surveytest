@@ -23,7 +23,7 @@
 <section>
 
 <span id="languageAdd"></span> 
-<a href="/languageAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addSurveyLabel"/></a> 
+<a href="/languageAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLanguageLabel"/></a> 
 
 <%-- Data --%>
 <ul>
