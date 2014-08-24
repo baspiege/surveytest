@@ -1,34 +1,24 @@
 package surveytest.data;
 
-import surveytest.data.model.Question;
+import surveytest.data.model.Language;
 import java.util.ArrayList;
 import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 /**
- * Get questions.
- *
- * @author Brian Spiegel
+ * Get languages.
  */
-public class QuestionGetAll {
+public class LanguageGetAll {
 
-    /**
-     * Get question.
-     *
-     * @param aSurveyId
-     * @param aStart starting position
-     * @param aSortBy sort by
-     * @since 1.0
-     */
-    public static List<Question> execute(Long aSurveyId, Long aStart, String aSortBy) {
+    public static List<Language> execute(Long aSurveyId, Long aStart, String aSortBy) {
         PersistenceManager pm=null;
-        List<Question> results=null;
+        List<Language> results=null;
         try {
             pm=PMF.get().getPersistenceManager();
             Query query=null;
             try {
-                query = pm.newQuery(Question.class);
+                query = pm.newQuery(Language.class);
                 query.setFilter("surveyId==surveyIdParam");
                 query.declareParameters("long surveyIdParam");
 
@@ -39,7 +29,7 @@ public class QuestionGetAll {
 
                 //query.setRange(aStart, aStart+10);
 
-                results = (List<Question>) query.execute(aSurveyId);
+                results = (List<Language>) query.execute(aSurveyId);
 
                 // Touch object to get data.  Size method triggers the underlying database call.
                 results.size();

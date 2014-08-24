@@ -22,6 +22,14 @@
     
     <!-- Survey -->
     <servlet>
+      <servlet-name>survey</servlet-name>
+      <servlet-class>surveytest.controller.SurveyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>survey</servlet-name>
+      <url-pattern>/survey</url-pattern>
+    </servlet-mapping>
+    <servlet>
       <servlet-name>surveyAdd</servlet-name>
       <servlet-class>surveytest.controller.SurveyAddServlet</servlet-class>
     </servlet>
