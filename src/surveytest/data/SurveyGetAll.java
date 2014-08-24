@@ -1,7 +1,6 @@
 package surveytest.data;
 
 import surveytest.data.model.Survey;
-import surveytest.utils.NumberUtils;
 import java.util.ArrayList;
 import java.util.List;
 import javax.jdo.PersistenceManager;
