@@ -20,7 +20,7 @@
 <%-- Data --%>
 <ul>
 <c:forEach var="survey" items="${surveys}">
-  <li><a href="survey?surveyId=<c:out value="${survey.id}"/>"><c:out value="${survey.name}"/></a></li>
+  <li><a href="/survey?surveyId=<c:out value="${survey.key.id}"/>"><c:out value="${survey.name}"/></a></li>
 </c:forEach>
 </ul>
 
