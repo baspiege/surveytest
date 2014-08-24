@@ -24,7 +24,7 @@ public class LanguageAddServlet extends HttpServlet {
         // Default
         Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
         survey.setName("");
-        RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_ADD);
+        RequestUtils.forwardTo(request,response,ControllerConstants.LANGUAGE_ADD);
     }
 
     /**
