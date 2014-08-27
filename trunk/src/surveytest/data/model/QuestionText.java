@@ -34,12 +34,10 @@ public class QuestionText implements Serializable {
     
     @Persistent
     private long languageId;
+    
+    private Language language;
 
-    /**
-     * Constructor.
-     *
-     */
-    public Question()
+    public QuestionText()
     {
     }
 
@@ -55,8 +53,12 @@ public class QuestionText implements Serializable {
         text=aText;
     }
     
+    public Language getLanguage() {
+        return language;
+    }
+    
     public long getLanguageId() {
-        return langugeId;
+        return languageId;
     }
     
     public long getQuestionId() {
@@ -65,6 +67,10 @@ public class QuestionText implements Serializable {
     
     public long getSurveyId() {
         return surveyId;
+    }
+   
+    public void setLanguage(Language aLanguage) {
+        language=aLanguage;
     }
     
     public void setLanguageId(long aLanguageId) {

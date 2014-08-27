@@ -1,10 +1,17 @@
 package surveytest.controller;
 
+import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionAdd;
+import surveytest.data.SurveyGetSingle;
+import surveytest.data.model.Language;
 import surveytest.data.model.Question;
+import surveytest.data.model.QuestionText;
+import surveytest.data.model.Survey;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -69,9 +76,35 @@ public class QuestionAddServlet extends HttpServlet {
 //            throw new SecurityException("User principal not found");
 //        }
 
+        // Check survey
+        Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
+        Survey survey=null;
+        if (surveyId!=null) {
+            survey=SurveyGetSingle.execute(surveyId);
+            request.setAttribute(RequestUtils.SURVEY, survey);
+        }
+        if (survey==null) {
+            throw new RuntimeException("Survey not found:" + surveyId);
+        }
+        request.setAttribute(RequestUtils.SURVEY, survey);
+
         // Set question
         Question question=new Question();
+        question.setSurveyId(survey.getKey().getId());
         //question.setUser(request.getUserPrincipal().getName());
         request.setAttribute(RequestUtils.QUESTION, question);
+        
+        // Get languages
+        // TODO - Set this into store?  Get from mem cache?
+        List<Language> languages=LanguageGetAll.execute(surveyId, 0L, null);
+
+        List<QuestionText> questionTexts=new ArrayList<QuestionText>();
+        
+        for (Language language: languages) {
+            QuestionText questionText=new QuestionText();
+            questionText.setLanguage(language);
+            questionTexts.add(questionText);
+        }
+        request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
     }
 }

@@ -5,7 +5,7 @@
 <%@ page isELIgnored="false" %>
 <jsp:include page="/pages/components/htmlStartNoCache.jsp" />
 <fmt:bundle basename="Text">
-<title><fmt:message key="questionLabel"/></title>
+<title><fmt:message key="addQuestionLabel"/></title>
 <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 </head>
 <body onunload="">
@@ -13,7 +13,26 @@
 <%-- Fields --%>
 <form id="question" method="post" action="questionAdd" autocomplete="off">
 <table>
-<tr><td><fmt:message key="nameLabel"/>:</td><td><input type="text" name="note" value="<c:out value="${question.text}"/>" id="note" title="<fmt:message key="nameLabel"/>" maxlength="500"/></td></tr>
+  <tr>
+    <td>
+      <fmt:message key="descriptionLabel"/>:
+    </td>
+    <td>
+      <input type="text" name="note" value="<c:out value="${question.text}"/>" id="note" title="<fmt:message key="descriptionLabel"/>" maxlength="500"/>
+    </td>
+  </tr>
+
+  <c:forEach var="questionText" items="${questionTexts}">
+    <tr>
+      <td>
+        <c:out value="${questionText.language.name}"/>
+      </td>
+      <td>
+        <input type="text" name="note" value="<c:out value="${questionText.text}"/>" id="note" title="<fmt:message key="textLabel"/>" maxlength="500"/>      
+      </td>
+    </tr>
+  </c:forEach>
+  
 </table>
 <p>
 <input class="button" type="submit" style="display:none" id="addButtonDisabled" disabled="disabled" value="<fmt:message key="addLabel"/>"/>
