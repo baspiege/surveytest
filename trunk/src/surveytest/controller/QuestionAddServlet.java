@@ -53,6 +53,8 @@ public class QuestionAddServlet extends HttpServlet {
                 if (!RequestUtils.hasEdits(request)) {
                     question=QuestionAdd.execute(question);
                 }
+                
+                
             }
         }
 
