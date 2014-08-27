@@ -5,7 +5,6 @@
  
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
 
-
     <welcome-file-list>
         <welcome-file>surveys</welcome-file>
     </welcome-file-list>
@@ -49,32 +48,30 @@
     </servlet-mapping>
     
     <!-- Question Actions -->
-    <!--
     <servlet>
       <servlet-name>question</servlet-name>
       <servlet-class>surveytest.controller.QuestionServlet</servlet-class>
-    </servlet>
-    <servlet>
-      <servlet-name>questionAdd</servlet-name>
-      <servlet-class>surveytest.controller.QuestionAddServlet</servlet-class>
-    </servlet>
-    <servlet>
-      <servlet-name>questionUpdate</servlet-name>
-      <servlet-class>surveytest.controller.QuestionUpdateServlet</servlet-class>
     </servlet>
     <servlet-mapping>
       <servlet-name>question</servlet-name>
       <url-pattern>/question</url-pattern>
     </servlet-mapping>
+    <servlet>
+      <servlet-name>questionAdd</servlet-name>
+      <servlet-class>surveytest.controller.QuestionAddServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
       <servlet-name>questionAdd</servlet-name>
       <url-pattern>/questionAdd</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>    
+    <servlet>
+      <servlet-name>questionUpdate</servlet-name>
+      <servlet-class>surveytest.controller.QuestionUpdateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
       <servlet-name>questionUpdate</servlet-name>
       <url-pattern>/questionUpdate</url-pattern>
     </servlet-mapping>
-    -->
        
     <error-page>
       <exception-type>java.lang.Exception</exception-type>

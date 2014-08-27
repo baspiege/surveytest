@@ -24,6 +24,8 @@ public class RequestUtils {
     public static String SURVEY="survey";
     public static String LANGUAGE="language";
     public static String LANGUAGES="languages";
+    public static String QUESTION_TEXTS="questionTexts";
+    
     
     // These are thread-safe.
     private static Pattern mNumbersPattern=Pattern.compile("[-]?[\\d]*[\\.]?[\\d]*");
