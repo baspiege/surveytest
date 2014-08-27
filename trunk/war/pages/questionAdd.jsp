@@ -18,7 +18,7 @@
       <fmt:message key="descriptionLabel"/>:
     </td>
     <td>
-      <input type="text" name="note" value="<c:out value="${question.text}"/>" id="note" title="<fmt:message key="descriptionLabel"/>" maxlength="500"/>
+      <textarea name="note" title="<fmt:message key="descriptionLabel"/>" maxlength="500"/><c:out value="${question.text}"/></textarea>
     </td>
   </tr>
 
@@ -28,7 +28,7 @@
         <c:out value="${questionText.language.name}"/>
       </td>
       <td>
-        <input type="text" name="note" value="<c:out value="${questionText.text}"/>" id="note" title="<fmt:message key="textLabel"/>" maxlength="500"/>      
+        <textarea name="note" title="<fmt:message key="descriptionLabel"/>" maxlength="500"/><c:out value="${questionText.text}"/></textarea>
       </td>
     </tr>
   </c:forEach>
