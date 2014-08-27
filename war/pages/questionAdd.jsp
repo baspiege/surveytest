@@ -28,13 +28,14 @@
         <c:out value="${questionText.language.name}"/>
       </td>
       <td>
-        <textarea name="note" title="<fmt:message key="descriptionLabel"/>" maxlength="500"/><c:out value="${questionText.text}"/></textarea>
+        <textarea name="language_<c:out value="${questionText.language.key.id}"/>" title="<fmt:message key="descriptionLabel"/>" maxlength="500"/><c:out value="${questionText.text}"/></textarea>
       </td>
     </tr>
   </c:forEach>
   
 </table>
 <p>
+<input id="storeId" type="hidden" name="surveyId" value="<c:out value="${question.surveyId}"/>" />
 <input class="button" type="submit" style="display:none" id="addButtonDisabled" disabled="disabled" value="<fmt:message key="addLabel"/>"/>
 <input class="button" type="submit" style="display:inline" id="addButtonEnabled" name="action" value="<fmt:message key="addLabel"/>"/>
 </p>
