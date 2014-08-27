@@ -1,6 +1,3 @@
-#mapCanvas {width: 300px;height: 300px;float: left;}
-#infoPanel {float: left;margin-left: 10px;}
-#infoPanel div {margin-bottom: 5px;}
 
 a:link, a:visited {color:DarkBlue;text-decoration:none;}
 a.add:link, a.add:visited, a.edit:link, a.edit:visited, a.more:link, a.more:visited  {text-decoration:none; color:#909090; font-size:small;}

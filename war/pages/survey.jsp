@@ -20,9 +20,8 @@
 <jsp:include page="/pages/components/edits.jsp"/>
 
 <section>
-<span id="languageAdd"></span> 
-<a href="/languageAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLanguageLabel"/></a> 
-<h2> <fmt:message key="languagesLabel"/> </h2>
+
+<p> <fmt:message key="languagesLabel"/> <a class="add" href="/languageAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a> </p>
 <ul>
 <c:forEach var="language" items="${languages}">
   <li><c:out value="${language.name}"/></li>
@@ -31,9 +30,7 @@
 </section>
 
 <section>
-<span id="questionAdd"></span> 
-<a href="/questionAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addQuestionLabel"/></a> 
-<h2> <fmt:message key="questionsLabel"/> </h2>
+<p> <fmt:message key="questionsLabel"/> </h2> <a class="add" href="/questionAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a> </p>
 <ul>
 <c:forEach var="question" items="${questions}">
   <li><c:out value="${question.name}"/></li>

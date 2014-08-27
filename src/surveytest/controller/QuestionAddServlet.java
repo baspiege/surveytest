@@ -103,6 +103,7 @@ public class QuestionAddServlet extends HttpServlet {
         for (Language language: languages) {
             QuestionText questionText=new QuestionText();
             questionText.setLanguage(language);
+            questionText.setText("Add text...");
             questionTexts.add(questionText);
         }
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
