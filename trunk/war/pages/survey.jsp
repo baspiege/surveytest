@@ -33,7 +33,7 @@
 <p> <fmt:message key="questionsLabel"/> </h2> <a class="add" href="/questionAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a> </p>
 <ul>
 <c:forEach var="question" items="${questions}">
-  <li><c:out value="${question.name}"/></li>
+  <li><c:out value="${question.text}"/></li>
 </c:forEach>
 </ul>
 </section>
