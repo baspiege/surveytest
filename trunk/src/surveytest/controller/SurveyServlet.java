@@ -51,5 +51,9 @@ public class SurveyServlet extends HttpServlet {
         // TODO - Set this into store?  Get from mem cache?
         List<Language> languages=LanguageGetAll.execute(surveyId, 0L, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
+        
+        // Get languages
+        List<Question> questions=QuestionGetAll.execute(surveyId, 0L, null);
+        request.setAttribute(RequestUtils.QUESTIONS, questions);
     }
 }

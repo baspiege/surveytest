@@ -20,6 +20,7 @@ public class RequestUtils {
 
     public static String EDITS="edits";
     public static String QUESTION="question";
+    public static String QUESTIONS="questions";
     public static String SURVEYS="surveys";
     public static String SURVEY="survey";
     public static String LANGUAGE="language";

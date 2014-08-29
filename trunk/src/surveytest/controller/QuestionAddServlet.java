@@ -46,7 +46,7 @@ public class QuestionAddServlet extends HttpServlet {
         Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
         List<Language> languages=(List<Language>)request.getAttribute(RequestUtils.LANGUAGES);
-                
+
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
             if (action.equals(bundle.getString("addLabel"))) {		
@@ -61,16 +61,17 @@ public class QuestionAddServlet extends HttpServlet {
                     String questionTextLanguage=RequestUtils.getAlphaInput(request,questionTextLanguageId,bundle.getString("languageLabel"),true);
                     QuestionText questionText=new QuestionText();
                     questionText.setSurveyId(survey.getKey().getId());
-                    questionText.setQuestionId(question.getKey().getId());
                     questionText.setLanguageId(language.getKey().getId());
                     questionText.setText(questionTextLanguage);
                     questionTexts.add(questionText);
-                }                
-                
+                }
+
                 if (!RequestUtils.hasEdits(request)) {
                     question=QuestionAdd.execute(question);
-                    
+
                     for (QuestionText questionText: questionTexts) {
+                        // Question Id is only available after Question has been saved above
+                        questionText.setQuestionId(question.getKey().getId());
                         QuestionTextAdd.execute(questionText);
                     }
                 }
@@ -114,14 +115,14 @@ public class QuestionAddServlet extends HttpServlet {
         question.setSurveyId(survey.getKey().getId());
         //question.setUser(request.getUserPrincipal().getName());
         request.setAttribute(RequestUtils.QUESTION, question);
-        
+
         // Get languages
         // TODO - Set this into store?  Get from mem cache?
         List<Language> languages=LanguageGetAll.execute(surveyId, 0L, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
 
         List<QuestionText> questionTexts=new ArrayList<QuestionText>();
-        
+
         for (Language language: languages) {
             QuestionText questionText=new QuestionText();
             questionText.setLanguage(language);
