@@ -28,7 +28,7 @@
         <c:out value="${questionText.language.name}"/>
       </td>
       <td>
-        <textarea name="language_<c:out value="${questionText.language.key.id}"/>" title="<fmt:message key="descriptionLabel"/>" maxlength="500"/><c:out value="${questionText.text}"/></textarea>
+        <textarea name="questionText_Language_<c:out value="${questionText.language.key.id}"/>" title="<fmt:message key="descriptionLabel"/>" maxlength="500"/><c:out value="${questionText.text}"/></textarea>
       </td>
     </tr>
   </c:forEach>

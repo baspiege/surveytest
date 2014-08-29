@@ -34,7 +34,8 @@ public class QuestionText implements Serializable {
     
     @Persistent
     private long languageId;
-    
+
+    // This does not need to be persisted.
     private Language language;
 
     public QuestionText()
