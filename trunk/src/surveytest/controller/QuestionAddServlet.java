@@ -2,6 +2,7 @@ package surveytest.controller;
 
 import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionAdd;
+import surveytest.data.QuestionTextAdd;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.model.Language;
 import surveytest.data.model.Question;
@@ -42,19 +43,37 @@ public class QuestionAddServlet extends HttpServlet {
         setUpData(request);
         String action=RequestUtils.getAlphaInput(request,"action","Action",true);
         ResourceBundle bundle = ResourceBundle.getBundle("Text");
+        Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
-
+        List<Language> languages=(List<Language>)request.getAttribute(RequestUtils.LANGUAGES);
+                
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
             if (action.equals(bundle.getString("addLabel"))) {		
                 // Fields
                 String note=RequestUtils.getAlphaInput(request,"note",bundle.getString("noteLabel"),true);
                 question.setText(note);
+
+                // Question Text
+                List<QuestionText> questionTexts=new ArrayList<QuestionText>();
+                for (Language language: languages) {
+                    String questionTextLanguageId="questionText_Language_" + language.getKey().getId();
+                    String questionTextLanguage=RequestUtils.getAlphaInput(request,questionTextLanguageId,bundle.getString("languageLabel"),true);
+                    QuestionText questionText=new QuestionText();
+                    questionText.setSurveyId(survey.getKey().getId());
+                    questionText.setQuestionId(question.getKey().getId());
+                    questionText.setLanguageId(language.getKey().getId());
+                    questionText.setText(questionTextLanguage);
+                    questionTexts.add(questionText);
+                }                
+                
                 if (!RequestUtils.hasEdits(request)) {
                     question=QuestionAdd.execute(question);
+                    
+                    for (QuestionText questionText: questionTexts) {
+                        QuestionTextAdd.execute(questionText);
+                    }
                 }
-                
-                
             }
         }
 
@@ -99,6 +118,7 @@ public class QuestionAddServlet extends HttpServlet {
         // Get languages
         // TODO - Set this into store?  Get from mem cache?
         List<Language> languages=LanguageGetAll.execute(surveyId, 0L, null);
+        request.setAttribute(RequestUtils.LANGUAGES, languages);
 
         List<QuestionText> questionTexts=new ArrayList<QuestionText>();
         
