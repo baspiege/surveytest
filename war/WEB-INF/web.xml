@@ -72,6 +72,16 @@
       <servlet-name>questionUpdate</servlet-name>
       <url-pattern>/questionUpdate</url-pattern>
     </servlet-mapping>
+    
+    <!-- Answer Actions -->
+    <servlet>
+      <servlet-name>answerSetAdd</servlet-name>
+      <servlet-class>surveytest.controller.AnswerSetAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>answerSetAdd</servlet-name>
+      <url-pattern>/answerSetAdd</url-pattern>
+    </servlet-mapping>    
        
     <error-page>
       <exception-type>java.lang.Exception</exception-type>

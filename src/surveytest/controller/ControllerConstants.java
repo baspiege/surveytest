@@ -23,4 +23,6 @@ public class ControllerConstants {
     public static String QUESTION_ADD="/pages/questionAdd.jsp";
     public static String QUESTION_UPDATE="/pages/questionUpdate.jsp";
     public static String QUESTION_VOTE="/pages/questionVote.jsp";
+    
+    // Answers
 }
