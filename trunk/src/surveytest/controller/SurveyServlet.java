@@ -1,8 +1,10 @@
 package surveytest.controller;
 
+import surveytest.data.model.AnswerSet;
 import surveytest.data.model.Language;
 import surveytest.data.model.Question;
 import surveytest.data.model.Survey;
+import surveytest.data.AnswerSetGetAll;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionGetAll;
 import surveytest.data.SurveyGetSingle;
@@ -49,12 +51,15 @@ public class SurveyServlet extends HttpServlet {
         }
         
         // Get languages
-        // TODO - Set this into store?  Get from mem cache?
         List<Language> languages=LanguageGetAll.execute(surveyId, 0L, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
         
-        // Get languages
+        // Get questions
         List<Question> questions=QuestionGetAll.execute(surveyId, 0L, null);
         request.setAttribute(RequestUtils.QUESTIONS, questions);
+        
+        // Get answers sets
+        List<AnswerSet> answerSets=AnswerSetGetAll.execute(surveyId, 0L, null);
+        request.setAttribute(RequestUtils.ANSWER_SETS, answerSets);
     }
 }

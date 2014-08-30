@@ -22,6 +22,9 @@ public class AnswerSet implements Serializable {
     private String description;
     
     @Persistent
+    private String descriptionLowerCase;
+    
+    @Persistent
     private long surveyId;
 
     /**
@@ -39,9 +42,14 @@ public class AnswerSet implements Serializable {
     public String getDescription() {
         return description;
     }
+    
+    public String getDescriptionLowerCase() {
+        return descriptionLowerCase;
+    }
 
     public void setDescription(String aDescription) {
         description=aDescription;
+        descriptionLowerCase=aDescription.toLowerCase();
     }
     
     public long getSurveyId() {
