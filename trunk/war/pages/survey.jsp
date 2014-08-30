@@ -29,13 +29,23 @@
 </ul>
 </section>
 
-<section>
-<p> <fmt:message key="questionsLabel"/> </h2> <a class="add" href="/questionAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a> </p>
-<ul>
+<section class="data">
+<fmt:message key="questionsLabel"/> <a class="add" href="/questionAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a> </p>
+<table>
+<%-- <th class="data"><fmt:message key="questionLabel"/></th><th><fmt:message key="actionLabel"/></th> --%>
+
 <c:forEach var="question" items="${questions}">
-  <li><c:out value="${question.text}"/></li>
+  <tr>
+    <td>
+        <a href="/question?questionId=<c:out value="${question.key.id}"/>"><c:out value="${question.text}"/></a>
+      
+    </td>
+<%--    <td>
+    <a href="/question?questionId=<c:out value="${question.key.id}"/>">Details</a>
+    </td>  --%>
+  </tr>
 </c:forEach>
-</ul>
+</table>
 </section>
 
 <jsp:include page="/pages/components/footer.jsp"/>

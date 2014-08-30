@@ -23,10 +23,31 @@
 <span id="questionName"></span> 
 <a href="/questionUpdate?questionId=<c:out value="${question.key.id}"/>" class="edit" style="display:none" id="questionEditLink"><fmt:message key="editLabel"/></a> 
 
-<%-- Data --%>
-<progress id="waitingForData" title="<fmt:message key="waitingForDataLabel"/>"><fmt:message key="waitingForDataLabel"/></progress>
-<div class="data" id="data"></div>
-<progress id="moreIndicator" style="display:none" title="<fmt:message key="loadingMoreLabel"/>"><fmt:message key="loadingMoreLabel"/></progress>
+<section class="data">
+
+<table>
+<tr>
+  <td>
+    <fmt:message key="descriptionLabel"/>
+  </td>
+  <td>
+    <c:out value="${question.text}"/>
+  </td>
+</tr>
+
+<c:forEach var="questionText" items="${questionTexts}">
+  <tr>
+    <td>
+      <%-- TODO - Show language --%>
+      <c:out value="${questionText.text}"/>
+    </td>
+    <td>
+      <c:out value="${questionText.text}"/>
+    </td>
+  </tr>
+</c:forEach>
+</table>
+
 </section>
 
 <jsp:include page="/pages/components/footer.jsp"/>
