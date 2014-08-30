@@ -116,16 +116,16 @@ public class QuestionAddServlet extends HttpServlet {
         request.setAttribute(RequestUtils.QUESTION, question);
 
         // Get languages
-        // TODO - Set this into store?  Get from mem cache?
         List<Language> languages=LanguageGetAll.execute(surveyId, 0L, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
 
+        // Question Texts
         List<QuestionText> questionTexts=new ArrayList<QuestionText>();
 
         for (Language language: languages) {
             QuestionText questionText=new QuestionText();
             questionText.setLanguage(language);
-            questionText.setText("Add text...");
+            questionText.setText("");
             questionTexts.add(questionText);
         }
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);

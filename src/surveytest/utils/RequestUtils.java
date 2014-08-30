@@ -19,14 +19,20 @@ import javax.servlet.http.HttpServletResponse;
 public class RequestUtils {
 
     public static String EDITS="edits";
-    public static String QUESTION="question";
-    public static String QUESTIONS="questions";
-    public static String SURVEYS="surveys";
-    public static String SURVEY="survey";
+   
+    public static String ANSWER="answer";
+    public static String ANSWER_TEXTS="answerTexts";
+    public static String ANSWER_SETS="answerSets";
+    
     public static String LANGUAGE="language";
     public static String LANGUAGES="languages";
-    public static String QUESTION_TEXTS="questionTexts";
     
+    public static String QUESTION="question";
+    public static String QUESTION_TEXTS="questionTexts";
+    public static String QUESTIONS="questions";
+    
+    public static String SURVEY="survey";
+    public static String SURVEYS="surveys";
     
     // These are thread-safe.
     private static Pattern mNumbersPattern=Pattern.compile("[-]?[\\d]*[\\.]?[\\d]*");
