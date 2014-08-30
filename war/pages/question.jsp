@@ -38,8 +38,7 @@
 <c:forEach var="questionText" items="${questionTexts}">
   <tr>
     <td>
-      <%-- TODO - Show language --%>
-      <c:out value="${questionText.text}"/>
+      <c:out value="${questionText.language.name}"/>
     </td>
     <td>
       <c:out value="${questionText.text}"/>

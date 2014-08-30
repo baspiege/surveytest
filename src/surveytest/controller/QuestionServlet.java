@@ -1,12 +1,16 @@
 package surveytest.controller;
 
+import surveytest.data.model.Language;
 import surveytest.data.model.Question;
 import surveytest.data.model.QuestionText;
+import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionGetSingle;
 import surveytest.data.QuestionTextGetAll;
 import surveytest.utils.RequestUtils;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -49,6 +53,20 @@ public class QuestionServlet extends HttpServlet {
         
         List<QuestionText> questionTexts=QuestionTextGetAll.execute(questionId, 0L, null);
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
+        
+        List<Language> languages=LanguageGetAll.execute(question.getSurveyId(), 0L, null);
+        request.setAttribute(RequestUtils.LANGUAGES, languages);
 
+        Map languagesMap=new HashMap();
+        for (Language language: languages) {
+            languagesMap.put(language.getKey().getId(), language);
+        }
+        
+        for (QuestionText questionText: questionTexts) {
+            if (languagesMap.containsKey(questionText.getLanguageId())) {
+                Language language=(Language)languagesMap.get(questionText.getLanguageId());
+                questionText.setLanguage(language);
+            }
+        }
     }
 }
