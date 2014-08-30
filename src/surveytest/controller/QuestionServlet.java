@@ -1,8 +1,12 @@
 package surveytest.controller;
 
 import surveytest.data.model.Question;
+import surveytest.data.model.QuestionText;
+import surveytest.data.QuestionGetSingle;
+import surveytest.data.QuestionTextGetAll;
 import surveytest.utils.RequestUtils;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,13 +39,16 @@ public class QuestionServlet extends HttpServlet {
 
         // Get question
         Long questionId=RequestUtils.getNumericInput(request,"questionId","questionId",true);
-        Question question=null;
+        Question question=QuestionGetSingle.execute(questionId);
 
         if (question==null) {
             throw new RuntimeException("Question not found: " + questionId);
         } else {
             request.setAttribute(RequestUtils.QUESTION,question);
         }
+        
+        List<QuestionText> questionTexts=QuestionTextGetAll.execute(questionId, 0L, null);
+        request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
 
     }
 }
