@@ -47,7 +47,6 @@ public class SurveyServlet extends HttpServlet {
         if (survey==null) {
             throw new RuntimeException("Survey not found:" + surveyId);
         }
-        request.setAttribute(RequestUtils.SURVEY, survey);
         
         // Get languages
         // TODO - Set this into store?  Get from mem cache?
