@@ -1,0 +1,88 @@
+package surveytest.data.model;
+
+import com.google.appengine.api.datastore.Key;
+import java.io.Serializable;
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
+
+/**
+ * Answer text which is identified by survey Id, answer set Id, and language Id.
+ *
+ * @author Brian Spiegel
+ */
+public class AnswerText implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    private Key key;
+
+    @Persistent
+    private String text;
+    
+    @Persistent
+    private long surveyId;
+    
+    @Persistent
+    private long answerSetId;
+    
+    @Persistent
+    private long languageId;
+
+    // This does not need to be persisted.
+    private Language language;
+
+    public AnswerText()
+    {
+    }
+
+    public Key getKey() {
+        return key;
+    }
+    
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String aText) {
+        text=aText;
+    }
+    
+    public Language getLanguage() {
+        return language;
+    }
+    
+    public long getLanguageId() {
+        return languageId;
+    }
+    
+    public long getAnswerSetId() {
+        return answerSetId;
+    }
+    
+    public long getSurveyId() {
+        return surveyId;
+    }
+   
+    public void setLanguage(Language aLanguage) {
+        language=aLanguage;
+    }
+    
+    public void setLanguageId(long aLanguageId) {
+        languageId=aLanguageId;
+    }
+    
+    public void setAnswerSetId(long aAnswerSetId) {
+        answerSetId=aAnswerSetId;
+    }
+    
+    public void setSurveyId(long aSurveyId) {
+        surveyId=aSurveyId;
+    }
+}
