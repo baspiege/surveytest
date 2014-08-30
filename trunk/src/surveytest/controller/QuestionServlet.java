@@ -3,9 +3,11 @@ package surveytest.controller;
 import surveytest.data.model.Language;
 import surveytest.data.model.Question;
 import surveytest.data.model.QuestionText;
+import surveytest.data.model.Survey;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionGetSingle;
 import surveytest.data.QuestionTextGetAll;
+import surveytest.data.SurveyGetSingle;
 import surveytest.utils.RequestUtils;
 import java.io.IOException;
 import java.util.HashMap;
@@ -53,6 +55,9 @@ public class QuestionServlet extends HttpServlet {
         
         List<QuestionText> questionTexts=QuestionTextGetAll.execute(questionId, 0L, null);
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
+        
+        Survey survey=SurveyGetSingle.execute(question.getSurveyId());
+        request.setAttribute(RequestUtils.SURVEY, survey);
         
         List<Language> languages=LanguageGetAll.execute(question.getSurveyId(), 0L, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);

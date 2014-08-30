@@ -108,7 +108,6 @@ public class QuestionAddServlet extends HttpServlet {
         if (survey==null) {
             throw new RuntimeException("Survey not found:" + surveyId);
         }
-        request.setAttribute(RequestUtils.SURVEY, survey);
 
         // Set question
         Question question=new Question();

@@ -13,6 +13,7 @@
 <nav>
 <ul id="navlist">
 <li><a href="/surveys"><fmt:message key="mainLabel"/></a></li>
+<li><a href="/survey?surveyId=<c:out value="${survey.key.id}"/>"><c:out value="${survey.name}"/></a></li>
 </ul>
 </nav>
 
