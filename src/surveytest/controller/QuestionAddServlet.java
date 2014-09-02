@@ -51,14 +51,14 @@ public class QuestionAddServlet extends HttpServlet {
         if (!StringUtils.isEmpty(action)) {
             if (action.equals(bundle.getString("addLabel"))) {		
                 // Fields
-                String note=RequestUtils.getAlphaInput(request,"note",bundle.getString("noteLabel"),true);
-                question.setText(note);
+                String description=RequestUtils.getAlphaInput(request,"description",bundle.getString("descriptionLabel"),true);
+                question.setText(description);
 
                 // Question Text
                 List<QuestionText> questionTexts=new ArrayList<QuestionText>();
                 for (Language language: languages) {
                     String questionTextLanguageId="questionText_Language_" + language.getKey().getId();
-                    String questionTextLanguage=RequestUtils.getAlphaInput(request,questionTextLanguageId,bundle.getString("languageLabel"),true);
+                    String questionTextLanguage=RequestUtils.getAlphaInput(request,questionTextLanguageId,language.getName(),true);
                     QuestionText questionText=new QuestionText();
                     questionText.setSurveyId(survey.getKey().getId());
                     questionText.setLanguageId(language.getKey().getId());

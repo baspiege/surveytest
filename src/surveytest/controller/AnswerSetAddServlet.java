@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class QuestionAddServlet extends HttpServlet {
+public class AnswerSetAddServlet extends HttpServlet {
 
     /**
     * Display page.
@@ -24,8 +24,8 @@ public class QuestionAddServlet extends HttpServlet {
         setUpData(request);
 
         // Default
-        Question question=(Question)request.getAttribute(RequestUtils.ANSWER_SET);
-        question.setText("");
+        AnswerSet answerSet=(AnswerSet)request.getAttribute(RequestUtils.ANSWER_SET);
+        answerSet.setDescription("");
         RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_SET_ADD);
     }
 
@@ -37,34 +37,29 @@ public class QuestionAddServlet extends HttpServlet {
         String action=RequestUtils.getAlphaInput(request,"action","Action",true);
         ResourceBundle bundle = ResourceBundle.getBundle("Text");
         Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
-        Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
-        List<Language> languages=(List<Language>)request.getAttribute(RequestUtils.LANGUAGES);
+        AnswerSet answerSet=(AnswerSet)request.getAttribute(RequestUtils.ANSWER_SET);
 
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
             if (action.equals(bundle.getString("addLabel"))) {		
                 // Fields
-                String note=RequestUtils.getAlphaInput(request,"note",bundle.getString("noteLabel"),true);
-                question.setText(note);
+                String description=RequestUtils.getAlphaInput(request,"description",bundle.getString("descriptionLabel"),true);
+                answerSet.setDescription(description);
 
                 if (!RequestUtils.hasEdits(request)) {
-                    question=QuestionAdd.execute(question);
+                    answerSet=AnswerSetAdd.execute(answerSet);
                 }
             }
         }
 
-        // If no edits, forward to question.
         if (!RequestUtils.hasEdits(request)) {
-            request.setAttribute("surveyId",question.getKey().getId());
-            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
+            request.setAttribute("answerSetId", answerSet.getKey().getId());
+            RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_SET_REDIRECT);
         } else {
-            RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_ADD);
+            RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_SET_ADD);
         }
     }
 
-    /**
-    * Set-up the data.
-    */
     private void setUpData(HttpServletRequest request) {
 
         // Check if signed in
@@ -89,6 +84,5 @@ public class QuestionAddServlet extends HttpServlet {
         answerSet.setSurveyId(survey.getKey().getId());
         //question.setUser(request.getUserPrincipal().getName());
         request.setAttribute(RequestUtils.ANSWER_SET, answerSet);
-
     }
 }

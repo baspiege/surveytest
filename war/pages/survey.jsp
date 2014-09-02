@@ -13,7 +13,7 @@
 <nav>
   <ul id="navlist">
     <li><a href="/surveys"><fmt:message key="mainLabel"/></a></li>
-    <li id="offline" style="display:none"><fmt:message key="offlineLabel"/></li>
+    <li><c:out value="${survey.name}"/></li>
   </ul>
 </nav>
 
@@ -42,7 +42,7 @@
 </section>
 
 <section class="data">
-<fmt:message key="answersLabel"/> <a class="add" href="/answerAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a>
+<fmt:message key="answerSetsLabel"/> <a class="add" href="/answerSetAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a>
 <table>
   <c:forEach var="answerSet" items="${answerSets}">
     <tr>
