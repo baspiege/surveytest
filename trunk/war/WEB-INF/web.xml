@@ -91,6 +91,16 @@
       <url-pattern>/answerSet</url-pattern>
     </servlet-mapping>
     
+    <!-- Answer Actions -->
+    <servlet>
+      <servlet-name>answerAdd</servlet-name>
+      <servlet-class>surveytest.controller.AnswerAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>answerAdd</servlet-name>
+      <url-pattern>/answerAdd</url-pattern>
+    </servlet-mapping>    
+    
     <error-page>
       <exception-type>java.lang.Exception</exception-type>
       <location>/redirects/error.jsp</location>

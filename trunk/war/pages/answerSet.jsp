@@ -32,10 +32,15 @@
     <fmt:message key="descriptionLabel"/>
   </td>
   <td>
-    <c:out value="${answerSet.text}"/>
+    <c:out value="${answerSet.description}"/>
   </td>
 </tr>
+</table>
+</section>
 
+<section class="data">
+<fmt:message key="answersLabel"/> <a class="add" href="/answerAdd?answerSetId=<c:out value="${answerSet.key.id}"/>"><fmt:message key="addLabel"/></a>
+<table>
 <c:forEach var="answer" items="${answers}">
   <tr>
     <td>
