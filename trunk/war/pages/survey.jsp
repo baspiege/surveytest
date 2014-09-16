@@ -47,7 +47,7 @@
   <c:forEach var="answerSet" items="${answerSets}">
     <tr>
       <td>
-        <a href="/answerSet?answerSetId=<c:out value="${answerKey.key.id}"/>"><c:out value="${answerSet.description}"/></a>
+        <a href="/answerSet?answerSetId=<c:out value="${answerSet.key.id}"/>"><c:out value="${answerSet.description}"/></a>
       </td>
     </tr>
   </c:forEach>

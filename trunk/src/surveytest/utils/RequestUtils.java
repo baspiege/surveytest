@@ -24,7 +24,8 @@ public class RequestUtils {
     public static String ANSWER_SET="answerSet";
     public static String ANSWER_SETS="answerSets";
     public static String ANSWER_TEXTS="answerTexts";
-        
+    public static String ANSWERS="answers";
+    
     public static String LANGUAGE="language";
     public static String LANGUAGES="languages";
     
