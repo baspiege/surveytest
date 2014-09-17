@@ -33,6 +33,9 @@ public class AnswerText implements Serializable {
     private long answerSetId;
     
     @Persistent
+    private long answerId;
+    
+    @Persistent
     private long languageId;
 
     // This does not need to be persisted.
@@ -62,6 +65,10 @@ public class AnswerText implements Serializable {
         return languageId;
     }
     
+    public long getAnswerId() {
+        return answerId;
+    }
+    
     public long getAnswerSetId() {
         return answerSetId;
     }
@@ -76,6 +83,10 @@ public class AnswerText implements Serializable {
     
     public void setLanguageId(long aLanguageId) {
         languageId=aLanguageId;
+    }
+    
+    public void setAnswerId(long aAnswerId) {
+        answerId=aAnswerId;
     }
     
     public void setAnswerSetId(long aAnswerSetId) {
