@@ -2,10 +2,12 @@ package surveytest.controller;
 
 import surveytest.data.LanguageGetAll;
 import surveytest.data.AnswerAdd;
+import surveytest.data.AnswerSetGetSingle;
 import surveytest.data.AnswerTextAdd;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.model.Language;
 import surveytest.data.model.Answer;
+import surveytest.data.model.AnswerSet;
 import surveytest.data.model.AnswerText;
 import surveytest.data.model.Survey;
 import surveytest.utils.RequestUtils;
@@ -52,13 +54,13 @@ public class AnswerAddServlet extends HttpServlet {
                 String description=RequestUtils.getAlphaInput(request,"description",bundle.getString("descriptionLabel"),true);
                 answer.setText(description);
 
-                // Question Text
+                // Text
                 List<AnswerText> answerTexts=new ArrayList<AnswerText>();
                 for (Language language: languages) {
-                    String AnswerTextLanguageId="answerText_Language_" + language.getKey().getId();
+                    String answerTextLanguageId="answerText_Language_" + language.getKey().getId();
                     String answerTextLanguage=RequestUtils.getAlphaInput(request,answerTextLanguageId,language.getName(),true);
                     AnswerText answerText=new AnswerText();
-                    answerText.setSurveyId(survey.getKey().getId());
+                    answerText.setAnswerId(answer.getKey().getId());
                     answerText.setLanguageId(language.getKey().getId());
                     answerText.setText(answerTextLanguage);
                     answerTexts.add(answerText);
@@ -79,9 +81,9 @@ public class AnswerAddServlet extends HttpServlet {
         // If no edits, forward to answer.
         if (!RequestUtils.hasEdits(request)) {
             request.setAttribute("answerId",answer.getKey().getId());
-            RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_REDIRECT);
+            RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_REDIRECT);
         } else {
-            RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_ADD);
+            RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_ADD);
         }
     }
 
@@ -101,7 +103,7 @@ public class AnswerAddServlet extends HttpServlet {
         AnswerSet answerSet=null;
         if (answerSetId!=null) {
             answerSet=AnswerSetGetSingle.execute(answerSetId);
-            request.setAttribute(RequestUtils.ANSER_SET, answerSet);
+            request.setAttribute(RequestUtils.ANSWER_SET, answerSet);
         }
         if (answerSet==null) {
             throw new RuntimeException("Answer Set not found:" + answerSetId);
@@ -114,7 +116,7 @@ public class AnswerAddServlet extends HttpServlet {
         request.setAttribute(RequestUtils.ANSWER, answer);
 
         // Get languages
-        List<Language> languages=LanguageGetAll.execute(surveyId, 0L, null);
+        List<Language> languages=LanguageGetAll.execute(answer.getSurveyId(), 0L, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
 
         // Answer Texts
