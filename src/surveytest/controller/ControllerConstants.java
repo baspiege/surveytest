@@ -29,5 +29,6 @@ public class ControllerConstants {
     public static String ANSWER_SET="/pages/answerSet.jsp";
     public static String ANSWER_SET_ADD="/pages/answerSetAdd.jsp";
     
+    public static String ANSWER="/pages/answer.jsp";
     public static String ANSWER_ADD="/pages/answerAdd.jsp";
 }
