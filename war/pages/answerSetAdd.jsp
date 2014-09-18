@@ -23,7 +23,7 @@
   </tr>
 </table>
 <p>
-<input id="storeId" type="hidden" name="surveyId" value="<c:out value="${answerSet.surveyId}"/>" />
+<input id="surveyId" type="hidden" name="surveyId" value="<c:out value="${answerSet.surveyId}"/>" />
 <input class="button" type="submit" style="display:none" id="addButtonDisabled" disabled="disabled" value="<fmt:message key="addLabel"/>"/>
 <input class="button" type="submit" style="display:inline" id="addButtonEnabled" name="action" value="<fmt:message key="addLabel"/>"/>
 </p>

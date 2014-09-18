@@ -41,7 +41,6 @@ public class AnswerSetServlet extends HttpServlet {
         // Get AnswerSet
         Long answerSetId=RequestUtils.getNumericInput(request,"answerSetId","answerSetId",true);
         AnswerSet answerSet=AnswerSetGetSingle.execute(answerSetId);
-
         if (answerSet==null) {
             throw new RuntimeException("AnswerSet not found: " + answerSetId);
         } else {

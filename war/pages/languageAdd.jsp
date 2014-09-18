@@ -16,7 +16,7 @@
 <tr><td><fmt:message key="nameLabel"/>:</td><td><input type="text" name="name" value="<c:out value="${language.name}"/>" id="name" title="<fmt:message key="nameLabel"/>" maxlength="500"/></td></tr>
 </table>
 <p>
-<input id="storeId" type="hidden" name="surveyId" value="<c:out value="${language.surveyId}"/>" />
+<input id="surveyId" type="hidden" name="surveyId" value="<c:out value="${language.surveyId}"/>" />
 <input class="button" type="submit" style="display:none" id="addButtonDisabled" disabled="disabled" value="<fmt:message key="addLabel"/>"/>
 <input class="button" type="submit" style="display:inline" id="addButtonEnabled" name="action" value="<fmt:message key="addLabel"/>"/>
 </p>
