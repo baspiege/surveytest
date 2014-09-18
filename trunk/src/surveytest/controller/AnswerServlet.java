@@ -2,10 +2,12 @@ package surveytest.controller;
 
 import surveytest.data.model.Language;
 import surveytest.data.model.Answer;
+import surveytest.data.model.AnswerSet;
 import surveytest.data.model.AnswerText;
 import surveytest.data.model.Survey;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.AnswerGetSingle;
+import surveytest.data.AnswerSetGetSingle;
 import surveytest.data.AnswerTextGetAll;
 import surveytest.data.SurveyGetSingle;
 import surveytest.utils.RequestUtils;
@@ -52,6 +54,9 @@ public class AnswerServlet extends HttpServlet {
         } else {
             request.setAttribute(RequestUtils.ANSWER,answer);
         }
+        
+        AnswerSet answerSet=AnswerSetGetSingle.execute(answer.getAnswerSetId());
+        request.setAttribute(RequestUtils.ANSWER_SET, answerSet);
         
         List<AnswerText> answerTexts=AnswerTextGetAll.execute(answerId, 0L, null);
         request.setAttribute(RequestUtils.ANSWER_TEXTS, answerTexts);

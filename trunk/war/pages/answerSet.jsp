@@ -15,7 +15,6 @@
 <li><a href="/surveys"><fmt:message key="mainLabel"/></a></li>
 <li><a href="/survey?surveyId=<c:out value="${survey.key.id}"/>"><c:out value="${survey.name}"/></a></li>
 <li><c:out value="${answerSet.description}"/></li>
-
 </ul>
 </nav>
 
@@ -47,7 +46,7 @@
 <ul>
 <c:forEach var="answer" items="${answers}">
   <li>
-    <c:out value="${answer.text}"/>
+    <a href="/answer?answerId=<c:out value="${answer.key.id}"/>"><c:out value="${answer.text}"/></a>
   </li>
 </c:forEach>
 </ul>
