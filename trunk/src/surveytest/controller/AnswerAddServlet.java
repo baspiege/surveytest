@@ -60,7 +60,6 @@ public class AnswerAddServlet extends HttpServlet {
                     String answerTextLanguageId="answerText_Language_" + language.getKey().getId();
                     String answerTextLanguage=RequestUtils.getAlphaInput(request,answerTextLanguageId,language.getName(),true);
                     AnswerText answerText=new AnswerText();
-                    answerText.setAnswerId(answer.getKey().getId());
                     answerText.setLanguageId(language.getKey().getId());
                     answerText.setText(answerTextLanguage);
                     answerTexts.add(answerText);

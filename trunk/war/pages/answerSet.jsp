@@ -14,6 +14,8 @@
 <ul id="navlist">
 <li><a href="/surveys"><fmt:message key="mainLabel"/></a></li>
 <li><a href="/survey?surveyId=<c:out value="${survey.key.id}"/>"><c:out value="${survey.name}"/></a></li>
+<li><c:out value="${answerSet.description}"/></li>
+
 </ul>
 </nav>
 
@@ -24,8 +26,8 @@
 <span id="anserSetName"></span> 
 <a href="/answerSetUpdate?answerSetId=<c:out value="${answerSet.key.id}"/>" class="edit" style="display:none" id="answerSetEditLink"><fmt:message key="editLabel"/></a> 
 
+<%--
 <section class="data">
-
 <table>
 <tr>
   <td>
@@ -37,9 +39,20 @@
 </tr>
 </table>
 </section>
+--%>
 
 <section class="data">
 <fmt:message key="answersLabel"/> <a class="add" href="/answerAdd?answerSetId=<c:out value="${answerSet.key.id}"/>"><fmt:message key="addLabel"/></a>
+
+<ul>
+<c:forEach var="answer" items="${answers}">
+  <li>
+    <c:out value="${answer.text}"/>
+  </li>
+</c:forEach>
+</ul>
+
+<%--
 <table>
 <c:forEach var="answer" items="${answers}">
   <tr>
@@ -49,6 +62,7 @@
   </tr>
 </c:forEach>
 </table>
+--%>
 
 </section>
 

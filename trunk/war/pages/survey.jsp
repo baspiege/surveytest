@@ -30,6 +30,15 @@
 
 <section class="data">
 <fmt:message key="questionsLabel"/> <a class="add" href="/questionAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a>
+<ul>
+  <c:forEach var="question" items="${questions}">
+    <li>
+      <a href="/question?questionId=<c:out value="${question.key.id}"/>"><c:out value="${question.text}"/></a>        
+    </li>
+  </c:forEach>
+</ul>
+
+<%--
 <table>
   <c:forEach var="question" items="${questions}">
     <tr>
@@ -39,10 +48,22 @@
     </tr>
   </c:forEach>
 </table>
+--%>
+
 </section>
 
 <section class="data">
 <fmt:message key="answerSetsLabel"/> <a class="add" href="/answerSetAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a>
+
+<ul>
+  <c:forEach var="answerSet" items="${answerSets}">
+    <li>
+      <a href="/answerSet?answerSetId=<c:out value="${answerSet.key.id}"/>"><c:out value="${answerSet.description}"/></a>
+    </li>
+  </c:forEach>
+</ul>
+
+<%--
 <table>
   <c:forEach var="answerSet" items="${answerSets}">
     <tr>
@@ -52,6 +73,8 @@
     </tr>
   </c:forEach>
 </table>
+--%>
+
 </section>
 
 <jsp:include page="/pages/components/footer.jsp"/>
