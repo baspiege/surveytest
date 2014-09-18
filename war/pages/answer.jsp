@@ -30,7 +30,7 @@
 <table>
 <tr>
   <td>
-    <fmt:message key="descriptionLabel"/>
+    <fmt:message key="answerLabel"/>
   </td>
   <td>
     <c:out value="${answer.text}"/>
