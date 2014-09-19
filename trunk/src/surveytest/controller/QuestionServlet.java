@@ -62,6 +62,10 @@ public class QuestionServlet extends HttpServlet {
         request.setAttribute(RequestUtils.SURVEY, survey);
         
         AnswerSet answerSet=AnswerSetGetSingle.execute(question.getAnswerSetId());
+        if (answerSet==null) {
+            answerSet=new AnswerSet();
+            answerSet.setDescription("");
+        }
         request.setAttribute(RequestUtils.ANSWER_SET, answerSet);
         
         List<Language> languages=LanguageGetAll.execute(question.getSurveyId(), 0L, null);
