@@ -27,25 +27,36 @@
 <section class="data">
 
 <table>
-<tr>
-  <td>
-    <fmt:message key="questionLabel"/>
-  </td>
-  <td>
-    <c:out value="${question.text}"/>
-  </td>
-</tr>
-
-<c:forEach var="questionText" items="${questionTexts}">
   <tr>
     <td>
-      <c:out value="${questionText.language.name}"/>
+      <fmt:message key="questionLabel"/>
     </td>
     <td>
-      <c:out value="${questionText.text}"/>
+      <c:out value="${question.text}"/>
     </td>
   </tr>
-</c:forEach>
+
+  <c:forEach var="questionText" items="${questionTexts}">
+    <tr>
+      <td>
+        <c:out value="${questionText.language.name}"/>
+      </td>
+      <td>
+        <c:out value="${questionText.text}"/>
+      </td>
+    </tr>
+  </c:forEach>
+
+  <%-- Answer Set --%>
+  <tr>
+    <td>
+      <fmt:message key="answerSetLabel"/>
+    </td>
+    <td>
+      <c:out value="${answerSet.description}"/>
+    </td>
+  </tr>
+
 </table>
 
 </section>

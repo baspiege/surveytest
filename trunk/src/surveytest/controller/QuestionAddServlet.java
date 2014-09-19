@@ -1,9 +1,11 @@
 package surveytest.controller;
 
+import surveytest.data.AnswerSetGetAll;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionAdd;
 import surveytest.data.QuestionTextAdd;
 import surveytest.data.SurveyGetSingle;
+import surveytest.data.model.AnswerSet;
 import surveytest.data.model.Language;
 import surveytest.data.model.Question;
 import surveytest.data.model.QuestionText;
@@ -53,7 +55,10 @@ public class QuestionAddServlet extends HttpServlet {
                 // Fields
                 String description=RequestUtils.getAlphaInput(request,"description",bundle.getString("descriptionLabel"),true);
                 question.setText(description);
-
+                
+                Long answerSetId=RequestUtils.getNumericInput(request,"answerSetId",bundle.getString("answerSetLabel"),true);
+                question.setAnswerSetId(answerSetId);
+                
                 // Question Text
                 List<QuestionText> questionTexts=new ArrayList<QuestionText>();
                 for (Language language: languages) {
@@ -121,7 +126,6 @@ public class QuestionAddServlet extends HttpServlet {
 
         // Question Texts
         List<QuestionText> questionTexts=new ArrayList<QuestionText>();
-
         for (Language language: languages) {
             QuestionText questionText=new QuestionText();
             questionText.setLanguage(language);
@@ -129,5 +133,9 @@ public class QuestionAddServlet extends HttpServlet {
             questionTexts.add(questionText);
         }
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
+        
+        // Get answers sets
+        List<AnswerSet> answerSets=AnswerSetGetAll.execute(surveyId, 0L, null);
+        request.setAttribute(RequestUtils.ANSWER_SETS, answerSets);
     }
 }

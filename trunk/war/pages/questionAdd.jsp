@@ -15,13 +15,14 @@
 <table>
   <tr>
     <td>
-      <fmt:message key="descriptionLabel"/>:
+      <fmt:message key="descriptionLabel"/>
     </td>
     <td>
       <textarea name="description" title="<fmt:message key="descriptionLabel"/>" maxlength="500"/><c:out value="${question.text}"/></textarea>
     </td>
   </tr>
 
+  <%-- Question Texts --%>
   <c:forEach var="questionText" items="${questionTexts}">
     <tr>
       <td>
@@ -32,6 +33,20 @@
       </td>
     </tr>
   </c:forEach>
+
+  <%-- Answer Set --%>
+  <tr>
+    <td>
+      <fmt:message key="answerSetLabel"/>
+    </td>
+    <td>
+      <select name="answerSetId">
+        <c:forEach var="answerSet" items="${answerSets}">
+          <option value="${answerSet.key.id}"><c:out value="${answerSet.description}"/></option>
+        </c:forEach>
+      <select>
+    </td>
+  </tr>
   
 </table>
 <p>

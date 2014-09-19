@@ -15,7 +15,7 @@
 <table>
   <tr>
     <td>
-      <fmt:message key="descriptionLabel"/>:
+      <fmt:message key="descriptionLabel"/>
     </td>
     <td>
       <textarea name="description" title="<fmt:message key="descriptionLabel"/>" maxlength="500"/><c:out value="${answer.text}"/></textarea>

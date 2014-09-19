@@ -28,6 +28,9 @@ public class Question implements Serializable {
     
     @Persistent
     private long surveyId;
+    
+    @Persistent
+    private long answerSetId;
 
     /**
      * Constructor.
@@ -56,4 +59,12 @@ public class Question implements Serializable {
     public void setSurveyId(long aSurveyId) {
         surveyId=aSurveyId;
     }
+    
+    public long getAnswerSetId() {
+        return answerSetId;
+    }
+    
+    public void setAnswerSetId(long aAnswerSetId) {
+        answerSetId=aAnswerSetId;
+    }  
 }

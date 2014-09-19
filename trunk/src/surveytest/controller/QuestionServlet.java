@@ -1,9 +1,11 @@
 package surveytest.controller;
 
+import surveytest.data.model.AnswerSet;
 import surveytest.data.model.Language;
 import surveytest.data.model.Question;
 import surveytest.data.model.QuestionText;
 import surveytest.data.model.Survey;
+import surveytest.data.AnswerSetGetSingle;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionGetSingle;
 import surveytest.data.QuestionTextGetAll;
@@ -58,6 +60,9 @@ public class QuestionServlet extends HttpServlet {
         
         Survey survey=SurveyGetSingle.execute(question.getSurveyId());
         request.setAttribute(RequestUtils.SURVEY, survey);
+        
+        AnswerSet answerSet=AnswerSetGetSingle.execute(question.getAnswerSetId());
+        request.setAttribute(RequestUtils.ANSWER_SET, answerSet);
         
         List<Language> languages=LanguageGetAll.execute(question.getSurveyId(), 0L, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
