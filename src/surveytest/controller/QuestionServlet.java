@@ -61,7 +61,10 @@ public class QuestionServlet extends HttpServlet {
         Survey survey=SurveyGetSingle.execute(question.getSurveyId());
         request.setAttribute(RequestUtils.SURVEY, survey);
         
-        AnswerSet answerSet=AnswerSetGetSingle.execute(question.getAnswerSetId());
+        AnswerSet answerSet=null;
+        if (question.getAnswerSetId()!=0) {        
+            answerSet=AnswerSetGetSingle.execute(question.getAnswerSetId());
+        }
         if (answerSet==null) {
             answerSet=new AnswerSet();
             answerSet.setDescription("");
