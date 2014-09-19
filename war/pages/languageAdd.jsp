@@ -13,7 +13,7 @@
 <%-- Fields --%>
 <form id="language" method="post" action="languageAdd" autocomplete="off">
 <table>
-<tr><td><fmt:message key="nameLabel"/>:</td><td><input type="text" name="name" value="<c:out value="${language.name}"/>" id="name" title="<fmt:message key="nameLabel"/>" maxlength="500"/></td></tr>
+<tr><td><fmt:message key="nameLabel"/></td><td><input type="text" name="name" value="<c:out value="${language.name}"/>" id="name" title="<fmt:message key="nameLabel"/>" maxlength="500"/></td></tr>
 </table>
 <p>
 <input id="surveyId" type="hidden" name="surveyId" value="<c:out value="${language.surveyId}"/>" />
