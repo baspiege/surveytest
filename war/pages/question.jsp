@@ -53,7 +53,7 @@
       <fmt:message key="answerSetLabel"/>
     </td>
     <td>
-      <c:out value="${answerSet.description}"/>
+      <a href="/answerSet?answerSetId=<c:out value="${answerSet.key.id}"/>"><c:out value="${answerSet.description}"/></a>
     </td>
   </tr>
 
