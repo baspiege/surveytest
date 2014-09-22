@@ -7,6 +7,7 @@ import surveytest.data.model.Language;
 import surveytest.data.model.Question;
 import surveytest.data.model.QuestionText;
 import surveytest.data.model.Survey;
+import surveytest.data.AnswerGetAll;
 import surveytest.data.AnswerSetGetAll;
 import surveytest.data.AnswerTextGetAll;
 import surveytest.data.LanguageGetAll;
@@ -31,7 +32,7 @@ public class SurveyResponseServlet extends HttpServlet {
     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
-        RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY);
+        RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_RESPONSE);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -72,6 +73,10 @@ public class SurveyResponseServlet extends HttpServlet {
         List<AnswerSet> answerSets=AnswerSetGetAll.execute(surveyId, 0L, null);
         request.setAttribute(RequestUtils.ANSWER_SETS, answerSets);
         
+        // Get answers
+        List<Answer> answers=AnswerGetAll.executeBySurveyId(surveyId, 0L, null);
+        request.setAttribute(RequestUtils.ANSWERS, answers);
+                
         // Get answer texts
         List<AnswerText> answerTexts=AnswerTextGetAll.executeBySurveyId(surveyId, 0L, null);
         request.setAttribute(RequestUtils.ANSWER_TEXTS, answerTexts);

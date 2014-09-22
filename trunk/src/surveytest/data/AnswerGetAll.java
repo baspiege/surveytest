@@ -42,4 +42,39 @@ public class AnswerGetAll {
         }
         return results;
     }
+    
+    public static List<Answer>  executeBySurveyId(Long aSurveyId, Long aStart, String aSortBy) {
+        PersistenceManager pm=null;
+        List<Answer> results=null;
+        try {
+            pm=PMF.get().getPersistenceManager();
+            Query query=null;
+            try {
+                query = pm.newQuery(Answer.class);
+                query.setFilter("surveyId==surveyIdParam");
+                query.declareParameters("long surveyIdParam");
+
+                // Sorting
+                //if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
+                //    query.setOrdering("descriptionLowerCase ASC");
+                //}
+
+                //query.setRange(aStart, aStart+10);
+
+                results = (List<Answer>) query.execute(aSurveyId);
+
+                // Touch object to get data.  Size method triggers the underlying database call.
+                results.size();
+            } finally {
+                if (query!=null) {
+                    query.closeAll();
+                }
+            }
+        } finally {
+            if (pm!=null) {
+                pm.close();
+            }
+        }
+        return results;
+    }   
 }
