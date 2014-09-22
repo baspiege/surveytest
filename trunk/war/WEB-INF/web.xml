@@ -99,8 +99,7 @@
     <servlet-mapping>
       <servlet-name>answerAdd</servlet-name>
       <url-pattern>/answerAdd</url-pattern>
-    </servlet-mapping>
-    
+    </servlet-mapping>    
     <servlet>
       <servlet-name>answer</servlet-name>
       <servlet-class>surveytest.controller.AnswerServlet</servlet-class>
@@ -109,6 +108,16 @@
       <servlet-name>answer</servlet-name>
       <url-pattern>/answer</url-pattern>
     </servlet-mapping>
+    
+    <!-- Answer Actions -->
+    <servlet>
+      <servlet-name>surveyResponse</servlet-name>
+      <servlet-class>surveytest.controller.SurveyResponseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>surveyResponse</servlet-name>
+      <url-pattern>/surveyResponse</url-pattern>
+    </servlet-mapping>    
     
     <error-page>
       <exception-type>java.lang.Exception</exception-type>

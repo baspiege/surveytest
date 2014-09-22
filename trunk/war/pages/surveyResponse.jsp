@@ -12,18 +12,14 @@
 
 <nav>
   <ul id="navlist">
-    <li><a href="/surveys"><fmt:message key="mainLabel"/></a></li>
     <li><c:out value="${survey.name}"/></li>
-    <li><a href="/surveyResponse?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="previewLabel"/></a></li>
   </ul>
 </nav>
 
 <jsp:include page="/pages/components/edits.jsp"/>
 
-
-
 <section>
-<p> <fmt:message key="languagesLabel"/> <a class="add" href="/languageAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a> </p>
+<p> <fmt:message key="languagesLabel"/> </p>
 <ul>
   <c:forEach var="language" items="${languages}">
     <li><c:out value="${language.name}"/></li>
@@ -33,52 +29,23 @@
 
 <section class="data">
 <fmt:message key="questionsLabel"/> <a class="add" href="/questionAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a>
-<ul>
-  <c:forEach var="question" items="${questions}">
-    <li>
-      <a href="/question?questionId=<c:out value="${question.key.id}"/>"><c:out value="${question.text}"/></a>        
-    </li>
-  </c:forEach>
-</ul>
 
-<%--
 <table>
   <c:forEach var="question" items="${questions}">
     <tr>
       <td>
         <a href="/question?questionId=<c:out value="${question.key.id}"/>"><c:out value="${question.text}"/></a>        
       </td>
-    </tr>
-  </c:forEach>
-</table>
---%>
-
-</section>
-
-<section class="data">
-<fmt:message key="answerSetsLabel"/> <a class="add" href="/answerSetAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a>
-
-<ul>
-  <c:forEach var="answerSet" items="${answerSets}">
-    <li>
-      <a href="/answerSet?answerSetId=<c:out value="${answerSet.key.id}"/>"><c:out value="${answerSet.description}"/></a>
-    </li>
-  </c:forEach>
-</ul>
-
-<%--
-<table>
-  <c:forEach var="answerSet" items="${answerSets}">
-    <tr>
       <td>
-        <a href="/answerSet?answerSetId=<c:out value="${answerSet.key.id}"/>"><c:out value="${answerSet.description}"/></a>
+        <c:out value="${question.answerSet.description}"/>
       </td>
     </tr>
   </c:forEach>
 </table>
---%>
+
 
 </section>
+
 
 <jsp:include page="/pages/components/footer.jsp"/>
 
