@@ -25,10 +25,14 @@ public class ControllerConstants {
     public static String QUESTION_ADD="/pages/questionAdd.jsp";
     public static String QUESTION_UPDATE="/pages/questionUpdate.jsp";
     
-    // Answers
+    // Answer Sets
     public static String ANSWER_SET="/pages/answerSet.jsp";
     public static String ANSWER_SET_ADD="/pages/answerSetAdd.jsp";
     
+    // Answers
     public static String ANSWER="/pages/answer.jsp";
     public static String ANSWER_ADD="/pages/answerAdd.jsp";
+    
+    // Survey Response
+    public static String SURVEY_RESPONSE="/pages/surveyResponse.jsp";
 }
