@@ -18,6 +18,8 @@
 
 <jsp:include page="/pages/components/edits.jsp"/>
 
+<form id="surveyReponse" method="post" action="surveyResponse" autocomplete="off">
+
 <section>
 <p> <fmt:message key="languagesLabel"/> </p>
 <ul>
@@ -28,7 +30,7 @@
 </section>
 
 <section class="data">
-<fmt:message key="questionsLabel"/> <a class="add" href="/questionAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a>
+<fmt:message key="questionsLabel"/>
 
 <table>
   <c:forEach var="question" items="${questions}">
@@ -45,6 +47,12 @@
 
 
 </section>
+
+<br/>
+<input class="button" type="submit" style="display:none" id="addButtonDisabled" disabled="disabled" value="<fmt:message key="submitLabel"/>"/>
+<input class="button" type="submit" style="display:inline" id="addButtonEnabled" name="action" value="<fmt:message key="submitLabel"/>"/>
+
+</form>
 
 
 <jsp:include page="/pages/components/footer.jsp"/>
