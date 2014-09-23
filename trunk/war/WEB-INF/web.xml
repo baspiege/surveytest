@@ -109,7 +109,16 @@
       <url-pattern>/answer</url-pattern>
     </servlet-mapping>
     
-    <!-- Answer Actions -->
+    <!-- Survey Actions -->
+    <servlet>
+      <servlet-name>surveyLanguage</servlet-name>
+      <servlet-class>surveytest.controller.SurveyLanguageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>surveyLanguage</servlet-name>
+      <url-pattern>/surveyLanguage</url-pattern>
+    </servlet-mapping>        
+    
     <servlet>
       <servlet-name>surveyResponse</servlet-name>
       <servlet-class>surveytest.controller.SurveyResponseServlet</servlet-class>

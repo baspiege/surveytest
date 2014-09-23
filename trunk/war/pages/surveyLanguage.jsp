@@ -18,34 +18,18 @@
 
 <jsp:include page="/pages/components/edits.jsp"/>
 
-<form id="surveyReponse" method="post" action="surveyResponse" autocomplete="off">
+<form id="surveyLanguage" method="post" action="surveyLanguage" autocomplete="off">
 
 <section>
 <p> <fmt:message key="languagesLabel"/> </p>
 <ul>
   <c:forEach var="language" items="${languages}">
-    <li><c:out value="${language.name}"/></li>
+    <li>
+      <input type="radio" name="language" id="language_<c:out value="${language.key.id}"/>" value="<c:out value="${language.key.id}"/>">
+      <label for="language_<c:out value="${language.key.id}"/>"> <c:out value="${language.name}"/> </label> 
+    </li>
   </c:forEach>
 </ul>
-</section>
-
-<section class="data">
-<fmt:message key="questionsLabel"/>
-
-<table>
-  <c:forEach var="question" items="${questions}">
-    <tr>
-      <td>
-        <a href="/question?questionId=<c:out value="${question.key.id}"/>"><c:out value="${question.text}"/></a>
-      </td>
-      <td>
-        <c:out value="${question.answerSet.description}"/>
-      </td>
-    </tr>
-  </c:forEach>
-</table>
-
-
 </section>
 
 <br/>
@@ -54,10 +38,9 @@
 
 </form>
 
-
 <jsp:include page="/pages/components/footer.jsp"/>
 
 </body>
 </fmt:bundle>
-<script type="text/javascript" src="/js/surveys.js" ></script>
+<script type="text/javascript" src="/js/surveyLanguage.js" ></script>
 </html>
