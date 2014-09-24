@@ -24,7 +24,7 @@ public class SurveyLanguageServlet extends HttpServlet {
     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
-        RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_RESPONSE);
+        RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_LANGUAGE);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,7 +32,8 @@ public class SurveyLanguageServlet extends HttpServlet {
         setUpData(request);
         String action=RequestUtils.getAlphaInput(request,"action","Action",true);
         ResourceBundle bundle = ResourceBundle.getBundle("Text");
-        Language language=(Language)request.getAttribute(RequestUtils.LANGUAGE);
+        Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
+        Language language=null;
 
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
@@ -40,11 +41,27 @@ public class SurveyLanguageServlet extends HttpServlet {
 
                 // Fields
                 Long languageId=RequestUtils.getNumericInput(request,"language",bundle.getString("languageLabel"),true);
+            
+                if (!RequestUtils.hasEdits(request)) {
+            
+                    // Check if valid language
+                    List<Language> languages=(List<Language>)request.getAttribute(RequestUtils.LANGUAGES);
+                    boolean found=false;
+                    for (Language languageValid: languages) {
+                        if (languageValid.getKey().getId()==languageId) {
+                            found=true;
+                            language=languageValid;
+                        }
+                    }
+                    if (!found) {
+                        RequestUtils.addEdit(request,bundle.getString("languageNotFoundMessage"));
+                    }
+                }
             }
         }
-
+        
         // If no edits, forward to survey response with survey and language id.
-        if (!RequestUtils.hasEdits(request)) {
+        if (!RequestUtils.hasEdits(request) && language!=null) {
             request.setAttribute("surveyId",language.getSurveyId());
             request.setAttribute("languageId",language.getKey().getId());
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_RESPONSE_REDIRECT);
@@ -78,6 +95,5 @@ public class SurveyLanguageServlet extends HttpServlet {
         for (Language language: languages) {
             languagesMap.put(language.getKey().getId(), language);
         }
-         
     }
 }
