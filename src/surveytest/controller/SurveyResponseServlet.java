@@ -11,6 +11,7 @@ import surveytest.data.AnswerGetAll;
 import surveytest.data.AnswerSetGetAll;
 import surveytest.data.AnswerTextGetAll;
 import surveytest.data.LanguageGetAll;
+import surveytest.data.LanguageGetSingle;
 import surveytest.data.QuestionGetAll;
 import surveytest.data.QuestionTextGetAll;
 import surveytest.data.SurveyGetSingle;
@@ -57,6 +58,16 @@ public class SurveyResponseServlet extends HttpServlet {
             throw new RuntimeException("Survey not found:" + surveyId);
         }
         
+        Long languageId=RequestUtils.getNumericInput(request,"languageId","languageId",true);
+        Language selectedLanguage=null;
+        if (languageId!=null) {
+            selectedLanguage=LanguageGetSingle.execute(languageId);
+            request.setAttribute(RequestUtils.LANGUAGE, selectedLanguage);
+        }
+        if (selectedLanguage==null) {
+            throw new RuntimeException("Language not found:" + languageId);
+        }
+                
         // Get languages
         List<Language> languages=LanguageGetAll.execute(surveyId, 0L, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
@@ -106,6 +117,11 @@ public class SurveyResponseServlet extends HttpServlet {
             if (languagesMap.containsKey(questionText.getLanguageId())) {
                 Language language=(Language)languagesMap.get(questionText.getLanguageId());
                 questionText.setLanguage(language);
+            }
+            for (Question question: questions) {
+                if (question.getKey().getId()==questionText.getQuestionId()) {
+                    question.getQuestionTextMap().put(questionText.getLanguageId(),questionText);
+                }
             }
         }
         

@@ -24,7 +24,7 @@
 <ul class="noListMarkers">
   <c:forEach var="language" items="${languages}">
     <li>
-      <input type="radio" name="language" id="language_<c:out value="${language.key.id}"/>" value="<c:out value="${language.key.id}"/>">
+      <input type="radio" name="languageId" id="language_<c:out value="${language.key.id}"/>" value="<c:out value="${language.key.id}"/>">
       <label for="language_<c:out value="${language.key.id}"/>"> <c:out value="${language.name}"/> </label> 
     </li>
   </c:forEach>

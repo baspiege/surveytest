@@ -40,7 +40,7 @@ public class SurveyLanguageServlet extends HttpServlet {
             if (action.equals(bundle.getString("submitLabel"))) {		
 
                 // Fields
-                Long languageId=RequestUtils.getNumericInput(request,"language",bundle.getString("languageLabel"),true);
+                Long languageId=RequestUtils.getNumericInput(request,"languageId",bundle.getString("languageLabel"),true);
             
                 if (!RequestUtils.hasEdits(request)) {
             
