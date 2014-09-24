@@ -20,23 +20,13 @@
 
 <form id="surveyReponse" method="post" action="surveyResponse" autocomplete="off">
 
-<section>
-<p> <fmt:message key="languagesLabel"/> </p>
-<ul>
-  <c:forEach var="language" items="${languages}">
-    <li><c:out value="${language.name}"/></li>
-  </c:forEach>
-</ul>
-</section>
-
 <section class="data">
-<fmt:message key="questionsLabel"/>
 
 <table>
   <c:forEach var="question" items="${questions}">
     <tr>
       <td>
-        <a href="/question?questionId=<c:out value="${question.key.id}"/>"><c:out value="${question.text}"/></a>
+        <a href="/question?questionId=<c:out value="${question.key.id}"/>"><c:out value="${question.questionTextMap[languageId].description}"/></a>
       </td>
       <td>
         <c:out value="${question.answerSet.description}"/>
