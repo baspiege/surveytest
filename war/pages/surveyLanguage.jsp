@@ -21,8 +21,7 @@
 <form id="surveyLanguage" method="post" action="surveyLanguage" autocomplete="off">
 
 <section>
-<p> <fmt:message key="languagesLabel"/> </p>
-<ul>
+<ul class="noListMarkers">
   <c:forEach var="language" items="${languages}">
     <li>
       <input type="radio" name="language" id="language_<c:out value="${language.key.id}"/>" value="<c:out value="${language.key.id}"/>">
@@ -33,6 +32,7 @@
 </section>
 
 <br/>
+<input id="surveyId" type="hidden" name="surveyId" value="<c:out value="${survey.key.id}"/>" />
 <input class="button" type="submit" style="display:none" id="addButtonDisabled" disabled="disabled" value="<fmt:message key="submitLabel"/>"/>
 <input class="button" type="submit" style="display:inline" id="addButtonEnabled" name="action" value="<fmt:message key="submitLabel"/>"/>
 
