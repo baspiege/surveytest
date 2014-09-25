@@ -22,7 +22,7 @@ public class SurveyGetSingle {
     }
 
     /**
-     * @return a survey null if not found
+     * @return a survey or null if not found
      */
     public static Survey getSurvey(PersistenceManager aPm, long aSurveyId) {
         return aPm.getObjectById(Survey.class, aSurveyId);

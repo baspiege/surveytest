@@ -8,8 +8,6 @@ import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
 import java.util.ResourceBundle;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -89,11 +87,5 @@ public class SurveyLanguageServlet extends HttpServlet {
         // Get languages
         List<Language> languages=LanguageGetAll.execute(surveyId, 0L, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
-                
-        // Language map
-        Map languagesMap=new HashMap();
-        for (Language language: languages) {
-            languagesMap.put(language.getKey().getId(), language);
-        }
     }
 }
