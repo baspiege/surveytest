@@ -133,7 +133,7 @@ public class SurveyResponseServlet extends HttpServlet {
             }
             if (answerMap.containsKey(answerText.getAnswerId())) {
                 Answer answer=(Answer)answerMap.get(answerText.getAnswerId());
-                answer.getAnswerTextMap().put(answerText.getAnswerId(),answerText);
+                answer.getAnswerTextMap().put(answerText.getLanguageId(),answerText);
             }
         }
         
