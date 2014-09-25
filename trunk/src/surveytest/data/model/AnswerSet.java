@@ -2,8 +2,8 @@ package surveytest.data.model;
 
 import com.google.appengine.api.datastore.Key;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.NotPersistent;
@@ -31,7 +31,7 @@ public class AnswerSet implements Serializable {
     private long surveyId;
     
     @NotPersistent
-    private Map<Long,Answer> answerMap=new HashMap<Long,Answer>();
+    private List<Answer> answers=new ArrayList<Answer>();
 
     /**
      * Constructor.
@@ -66,11 +66,11 @@ public class AnswerSet implements Serializable {
         surveyId=aSurveyId;
     }
     
-    public Map<Long,Answer> getAnswerMap() {
-        return answerMap;
+    public List<Answer> getAnswers() {
+        return answers;
     }
     
-    public void setAnswerMap(Map<Long,Answer> aAnswerMap) {
-        answerMap=aAnswerMap;
+    public void setAnswer(List<Answer> aAnswers) {
+        answers=aAnswers;
     } 
 }

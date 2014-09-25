@@ -26,10 +26,12 @@
   <c:forEach var="question" items="${questions}">
     <tr>
       <td>
-        <a href="/question?questionId=<c:out value="${question.key.id}"/>"><c:out value="${question.questionTextMap[language.key.id].text}"/></a>
+        <c:out value="${question.questionTextMap[language.key.id].text}"/>
       </td>
       <td>
-        <c:out value="${question.answerSet.description}"/>
+        <c:forEach var="answer" items="${question.answerSet.answerMap}">
+          <c:out value="${answer.answerTextMap[language.key.id].text}"/>
+        </c:forEach>
       </td>
     </tr>
   </c:forEach>
