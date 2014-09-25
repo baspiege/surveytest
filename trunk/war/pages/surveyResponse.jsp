@@ -29,7 +29,7 @@
         <c:out value="${question.questionTextMap[language.key.id].text}"/>
       </td>
       <td>
-        <c:forEach var="answer" items="${question.answerSet.answerMap}">
+        <c:forEach var="answer" items="${question.answerSet.answers}">
           <c:out value="${answer.answerTextMap[language.key.id].text}"/>
         </c:forEach>
       </td>
