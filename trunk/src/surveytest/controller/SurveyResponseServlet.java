@@ -57,7 +57,8 @@ public class SurveyResponseServlet extends HttpServlet {
         if (survey==null) {
             throw new RuntimeException("Survey not found:" + surveyId);
         }
-        
+
+        // Language
         Long languageId=RequestUtils.getNumericInput(request,"languageId","languageId",true);
         Language selectedLanguage=null;
         if (languageId!=null) {
@@ -96,6 +97,12 @@ public class SurveyResponseServlet extends HttpServlet {
         Map answerSetMap=new HashMap();
         for (AnswerSet answerSet: answerSets) {
             answerSetMap.put(answerSet.getKey().getId(), answerSet);
+        }            
+        
+        // Answer map       
+        Map answerMap=new HashMap();
+        for (Answer answer: answers) {
+            answerMap.put(answer.getKey().getId(), answer);
         }                
         
         // Language map
@@ -103,25 +110,34 @@ public class SurveyResponseServlet extends HttpServlet {
         for (Language language: languages) {
             languagesMap.put(language.getKey().getId(), language);
         }
+        
+        // Question map
+        Map questionMap=new HashMap();
+        for (Question question: questions) {
+            questionMap.put(question.getKey().getId(), question);
+        }
                 
-        // Link answer text to language
+        // Link answer text to language and answer
         for (AnswerText answerText: answerTexts) {
             if (languagesMap.containsKey(answerText.getLanguageId())) {
                 Language language=(Language)languagesMap.get(answerText.getLanguageId());
                 answerText.setLanguage(language);
             }
+            if (answerMap.containsKey(answerText.getAnswerId())) {
+                Answer answer=(Answer)answerMap.get(answerText.getAnswerId());
+                answer.getAnswerTextMap().put(answerText.getAnswerId(),answerText);
+            }
         }
         
-        // Link question text to language
+        // Link question text to language and question
         for (QuestionText questionText: questionTexts) {
             if (languagesMap.containsKey(questionText.getLanguageId())) {
                 Language language=(Language)languagesMap.get(questionText.getLanguageId());
-                questionText.setLanguage(language);
+                questionText.setLanguage((Language)languagesMap.get(questionText.getLanguageId()));
             }
-            for (Question question: questions) {
-                if (question.getKey().getId()==questionText.getQuestionId()) {
-                    question.getQuestionTextMap().put(questionText.getLanguageId(),questionText);
-                }
+            if (questionMap.containsKey(questionText.getQuestionId())) {
+                Question question=(Question)questionMap.get(questionText.getQuestionId());
+                question.getQuestionTextMap().put(questionText.getLanguageId(),questionText);
             }
         }
         

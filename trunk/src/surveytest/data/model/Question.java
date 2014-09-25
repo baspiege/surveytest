@@ -89,7 +89,7 @@ public class Question implements Serializable {
         return questionTextMap;
     }
     
-    public void setAnswerSet(Map<Long,QuestionText> aQuestionTextMap) {
+    public void setQuestionTextMap(Map<Long,QuestionText> aQuestionTextMap) {
         questionTextMap=aQuestionTextMap;
     } 
 }

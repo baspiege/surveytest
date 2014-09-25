@@ -60,7 +60,9 @@ public class AnswerAddServlet extends HttpServlet {
                     String answerTextLanguageId="answerText_Language_" + language.getKey().getId();
                     String answerTextLanguage=RequestUtils.getAlphaInput(request,answerTextLanguageId,language.getName(),true);
                     AnswerText answerText=new AnswerText();
+                    answerText.setAnswerSetId(answerSet.getKey().getId());
                     answerText.setLanguageId(language.getKey().getId());
+                    answerText.setSurveyId(answer.getSurveyId());
                     answerText.setText(answerTextLanguage);
                     answerTexts.add(answerText);
                 }
@@ -120,7 +122,6 @@ public class AnswerAddServlet extends HttpServlet {
 
         // Answer Texts
         List<AnswerText> answerTexts=new ArrayList<AnswerText>();
-
         for (Language language: languages) {
             AnswerText answerText=new AnswerText();
             answerText.setLanguage(language);
