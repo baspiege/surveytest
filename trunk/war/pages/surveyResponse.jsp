@@ -29,9 +29,16 @@
         <c:out value="${question.questionTextMap[language.key.id].text}"/>
       </td>
       <td>
-        <c:forEach var="answer" items="${question.answerSet.answers}">
-          <c:out value="${answer.answerTextMap[language.key.id].text}"/>
-        </c:forEach>
+        <ul class="noListMarkers">
+          <c:forEach var="answer" items="${question.answerSet.answers}">
+            <li>
+              <input type="radio" name="answerId" id="answer_<c:out value="${answer.key.id}"/>" value="<c:out value="${answer.key.id}"/>">
+              <label for="answer_<c:out value="${answer.key.id}"/>"> <c:out value="${answer.answerTextMap[language.key.id].text}"/> </label> 
+            </li>
+            
+          </c:forEach>
+      </ul>
+
       </td>
     </tr>
   </c:forEach>
