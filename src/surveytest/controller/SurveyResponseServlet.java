@@ -116,6 +116,14 @@ public class SurveyResponseServlet extends HttpServlet {
         for (Question question: questions) {
             questionMap.put(question.getKey().getId(), question);
         }
+        
+        // Link answer to answer set
+        for (Answer answer: answers) {
+            if (answerSetMap.containsKey(answer.getAnswerSetId())) {
+                AnswerSet answerSet=(AnswerSet)answerSetMap.get(answer.getAnswerSetId());
+                answerSet.getAnswers().add(answer);
+            }
+        }
                 
         // Link answer text to language and answer
         for (AnswerText answerText: answerTexts) {
