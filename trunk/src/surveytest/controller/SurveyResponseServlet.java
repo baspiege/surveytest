@@ -110,9 +110,9 @@ public class SurveyResponseServlet extends HttpServlet {
 
         // If no edits, forward to success page.
         if (!RequestUtils.hasEdits(request)) {
-            //request.setAttribute("surveyId",survey.getKey().getId());
-            //RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
-            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_SUBMITTED_REDIRECT);
+            request.setAttribute("surveyId",surveyResponse.getSurveyId());
+            request.setAttribute("languageId",surveyResponse.getLanguageId());
+            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_CONFIRMATION_REDIRECT);
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_RESPONSE);
         }

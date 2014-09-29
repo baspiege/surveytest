@@ -12,7 +12,7 @@ public class ControllerConstants {
     public static String ANSWER_SET_REDIRECT="/redirects/answerSet.jsp";
     public static String ANSWER_REDIRECT="/redirects/answer.jsp";
     public static String SURVEY_RESPONSE_REDIRECT="/redirects/surveyResponse.jsp";
-    public static String SURVEY_SUBMITTED_REDIRECT="/redirects/surveySubmitted.jsp";
+    public static String SURVEY_CONFIRMATION_REDIRECT="/redirects/surveyConfirmation.jsp";
     
     // Surveys page
     public static String SURVEYS="/pages/surveys.jsp";    
@@ -38,4 +38,5 @@ public class ControllerConstants {
     // Survey Response
     public static String SURVEY_RESPONSE="/pages/surveyResponse.jsp";
     public static String SURVEY_LANGUAGE="/pages/surveyLanguage.jsp";
+    public static String SURVEY_CONFIRMATION="/pages/surveyConfirmation.jsp";
 }

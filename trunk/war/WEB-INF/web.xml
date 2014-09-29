@@ -128,6 +128,15 @@
       <url-pattern>/surveyResponse</url-pattern>
     </servlet-mapping>    
     
+    <servlet>
+      <servlet-name>surveyConfirmation</servlet-name>
+      <servlet-class>surveytest.controller.SurveyConfirmationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>surveyConfirmation</servlet-name>
+      <url-pattern>/surveyConfirmation</url-pattern>
+    </servlet-mapping>    
+    
     <error-page>
       <exception-type>java.lang.Exception</exception-type>
       <location>/redirects/error.jsp</location>
