@@ -15,6 +15,7 @@ footer { font-size:small; clear:both;margin-top:1.5em; }
 #navlist {margin:0;padding:0;}
 #navlist li {display: inline; list-style-type: none; padding-right: 20px;}
 
+.noListMarkers {margin:0;padding:0;}
 .noListMarkers li {list-style-type: none;}
 
 .center { text-align: center; }
