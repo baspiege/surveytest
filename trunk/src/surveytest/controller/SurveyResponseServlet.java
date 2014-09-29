@@ -7,6 +7,7 @@ import surveytest.data.model.Language;
 import surveytest.data.model.Question;
 import surveytest.data.model.QuestionText;
 import surveytest.data.model.Survey;
+import surveytest.data.model.SurveyResponse;
 import surveytest.data.AnswerGetAll;
 import surveytest.data.AnswerSetGetAll;
 import surveytest.data.AnswerTextGetAll;
@@ -15,12 +16,15 @@ import surveytest.data.LanguageGetSingle;
 import surveytest.data.QuestionGetAll;
 import surveytest.data.QuestionTextGetAll;
 import surveytest.data.SurveyGetSingle;
+import surveytest.data.SurveyResponseAdd;
 import surveytest.utils.RequestUtils;
+import surveytest.utils.StringUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +42,36 @@ public class SurveyResponseServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // TODO - Process
+        setUpData(request);
+        
+        ResourceBundle bundle = ResourceBundle.getBundle("Text");
+        String action=RequestUtils.getAlphaInput(request,"action","Action",true);
+   
+        Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
+        SurveyResponse surveyResponse=(SurveyResponse)request.getAttribute(RequestUtils.SURVEY_RESPONSE);
+
+        // Process based on action
+        if (!StringUtils.isEmpty(action)) {
+            if (action.equals(bundle.getString("submitLabel"))) {		
+            
+                // Fields
+                
+                // TODO get all parameters starting with question_
+                
+                if (!RequestUtils.hasEdits(request)) {
+                    surveyResponse=SurveyResponseAdd.execute(surveyResponse);
+                }
+            }
+        }
+
+        // If no edits, forward to success page.
+        if (!RequestUtils.hasEdits(request)) {
+            //request.setAttribute("surveyId",survey.getKey().getId());
+            //RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
+            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_SUBMITTED_REDIRECT);
+        } else {
+            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_RESPONSE);
+        }
     
     }
 
@@ -46,13 +79,17 @@ public class SurveyResponseServlet extends HttpServlet {
     * Set-up the data.
     */
     private void setUpData(HttpServletRequest request) {
-
+    
+        SurveyResponse surveyResponse=new SurveyResponse();
+        request.setAttribute(RequestUtils.SURVEY_RESPONSE, surveyResponse);
+            
         // Check survey
         Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
         Survey survey=null;
         if (surveyId!=null) {
             survey=SurveyGetSingle.execute(surveyId);
             request.setAttribute(RequestUtils.SURVEY, survey);
+            surveyResponse.setSurveyId(surveyId);
         }
         if (survey==null) {
             throw new RuntimeException("Survey not found:" + surveyId);
@@ -64,11 +101,12 @@ public class SurveyResponseServlet extends HttpServlet {
         if (languageId!=null) {
             selectedLanguage=LanguageGetSingle.execute(languageId);
             request.setAttribute(RequestUtils.LANGUAGE, selectedLanguage);
+            surveyResponse.setLanguageId(languageId);
         }
         if (selectedLanguage==null) {
             throw new RuntimeException("Language not found:" + languageId);
         }
-                
+ 
         // Get languages
         List<Language> languages=LanguageGetAll.execute(surveyId, 0L, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
