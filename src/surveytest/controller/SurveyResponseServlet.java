@@ -5,6 +5,7 @@ import surveytest.data.model.AnswerSet;
 import surveytest.data.model.AnswerText;
 import surveytest.data.model.Language;
 import surveytest.data.model.Question;
+import surveytest.data.model.QuestionResponse;
 import surveytest.data.model.QuestionText;
 import surveytest.data.model.Survey;
 import surveytest.data.model.SurveyResponse;
@@ -14,6 +15,7 @@ import surveytest.data.AnswerTextGetAll;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.LanguageGetSingle;
 import surveytest.data.QuestionGetAll;
+import surveytest.data.QuestionResponseAdd;
 import surveytest.data.QuestionTextGetAll;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.SurveyResponseAdd;
@@ -47,19 +49,61 @@ public class SurveyResponseServlet extends HttpServlet {
         ResourceBundle bundle = ResourceBundle.getBundle("Text");
         String action=RequestUtils.getAlphaInput(request,"action","Action",true);
    
-        Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
         SurveyResponse surveyResponse=(SurveyResponse)request.getAttribute(RequestUtils.SURVEY_RESPONSE);
+        
+        List<Question> questions=(List<Question>)request.getAttribute(RequestUtils.QUESTIONS);
+        List<Answer> answers=(List<Answer>)request.getAttribute(RequestUtils.ANSWERS);
+        
+       // Answer map       
+        Map answerMap=new HashMap();
+        for (Answer answer: answers) {
+            answerMap.put(answer.getKey().getId(), answer);
+        }                
+                
+        // Question map
+        Map questionMap=new HashMap();
+        for (Question question: questions) {
+            questionMap.put(question.getKey().getId(), question);
+        }
 
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
             if (action.equals(bundle.getString("submitLabel"))) {		
             
+                List<QuestionResponse> questionResponses=new ArrayList<QuestionResponse>();
+            
                 // Fields
-                
-                // TODO get all parameters starting with question_
+                Map<String,String[]> parameterMap=request.getParameterMap();                
+                for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
+                    String parameter = entry.getKey();
+                    String[] values = entry.getValue();
+                    
+                    if (parameter.startsWith("question_")) {
+                        String[] parameterParts=parameter.split("_");
+                        long questionId=new Long(parameterParts[1]);
+                        long answerId=new Long(values[0]);
+                        
+                        Question question=(Question)questionMap.get(questionId);
+                        Answer answer=(Answer)answerMap.get(answerId);
+                        
+                        QuestionResponse questionResponse=new QuestionResponse();
+                        questionResponse.setQuestionId(questionId);
+                        questionResponse.setQuestionText(question.getText());
+                        questionResponse.setAnswerId(answerId);
+                        questionResponse.setAnswerText(answer.getText());
+                        questionResponse.setSurveyId(surveyResponse.getSurveyId());
+                        questionResponses.add(questionResponse);
+                    }
+                }
                 
                 if (!RequestUtils.hasEdits(request)) {
                     surveyResponse=SurveyResponseAdd.execute(surveyResponse);
+                    
+                    // Save all the question responses
+                    for (QuestionResponse questionResponse: questionResponses) {
+                        questionResponse.setSurveyResponseId(surveyResponse.getKey().getId());
+                        QuestionResponseAdd.execute(questionResponse);
+                    }
                 }
             }
         }
