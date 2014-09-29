@@ -1,7 +1,6 @@
 package surveytest.data;
 
 import surveytest.data.model.Survey;
-//import surveytest.data.model.QuestionHistory;
 import java.util.Date;
 import javax.jdo.PersistenceManager;
 

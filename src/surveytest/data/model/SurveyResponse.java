@@ -2,6 +2,7 @@ package surveytest.data.model;
 
 import com.google.appengine.api.datastore.Key;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -29,6 +30,9 @@ public class SurveyResponse implements Serializable {
     
     @Persistent
     private long languageId;
+    
+    @Persistent
+    private Date lastUpdateTime;	
 
     public SurveyResponse()
     {
@@ -52,5 +56,13 @@ public class SurveyResponse implements Serializable {
     
     public void setLanguageId(long aLanguageId) {
         languageId=aLanguageId;
+    }
+    
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date aLastUpdateTime) {
+        lastUpdateTime=aLastUpdateTime;
     }
 }

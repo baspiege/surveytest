@@ -45,15 +45,15 @@
   </c:forEach>
 </table>
 
-
 </section>
 
 <br/>
+<input id="surveyId" type="hidden" name="surveyId" value="<c:out value="${survey.key.id}"/>" />
+<input id="languageId" type="hidden" name="languageId" value="<c:out value="${language.key.id}"/>" />
 <input class="button" type="submit" style="display:none" id="addButtonDisabled" disabled="disabled" value="<fmt:message key="submitLabel"/>"/>
 <input class="button" type="submit" style="display:inline" id="addButtonEnabled" name="action" value="<fmt:message key="submitLabel"/>"/>
 
 </form>
-
 
 <jsp:include page="/pages/components/footer.jsp"/>
 
