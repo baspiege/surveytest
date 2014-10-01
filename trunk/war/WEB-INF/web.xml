@@ -136,6 +136,15 @@
       <servlet-name>surveyConfirmation</servlet-name>
       <url-pattern>/surveyConfirmation</url-pattern>
     </servlet-mapping>    
+
+    <servlet>
+      <servlet-name>surveyResponses</servlet-name>
+      <servlet-class>surveytest.controller.SurveyResponsesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>surveyResponses</servlet-name>
+      <url-pattern>/surveyResponses</url-pattern>
+    </servlet-mapping>    
     
     <error-page>
       <exception-type>java.lang.Exception</exception-type>
