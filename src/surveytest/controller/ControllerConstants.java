@@ -39,4 +39,8 @@ public class ControllerConstants {
     public static String SURVEY_RESPONSE="/pages/surveyResponse.jsp";
     public static String SURVEY_LANGUAGE="/pages/surveyLanguage.jsp";
     public static String SURVEY_CONFIRMATION="/pages/surveyConfirmation.jsp";
+    
+    // Reports
+    public static String SURVEY_RESPONSES="/pages/surveyResponses.jsp";
+
 }

@@ -14,11 +14,18 @@
   <ul id="navlist">
     <li><a href="/surveys"><fmt:message key="mainLabel"/></a></li>
     <li><c:out value="${survey.name}"/></li>
-    <li><a href="/surveyLanguage?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="previewLabel"/></a></li>
   </ul>
 </nav>
 
 <jsp:include page="/pages/components/edits.jsp"/>
+
+<section>
+<p> <fmt:message key="actionsLabel"/> </p>
+<ul>
+    <li><a href="/surveyLanguage?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="previewLabel"/></a></li>
+    <li><a href="/surveyResponses?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="surveyResponsesLabel"/></a></li>
+</ul>
+</section>
 
 <section>
 <p> <fmt:message key="languagesLabel"/> <a class="add" href="/languageAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a> </p>
