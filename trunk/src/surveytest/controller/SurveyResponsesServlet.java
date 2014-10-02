@@ -5,6 +5,7 @@ import surveytest.data.model.QuestionResponse;
 import surveytest.data.model.Survey;
 import surveytest.data.model.SurveyResponse;
 import surveytest.data.LanguageGetAll;
+import surveytest.data.QuestionResponseGetAll;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.SurveyResponseGetAll;
 import surveytest.utils.RequestUtils;
@@ -63,5 +64,32 @@ public class SurveyResponsesServlet extends HttpServlet {
         for (Language language: languages) {
             languagesMap.put(language.getKey().getId(), language);
         }
+        
+        // Get question responses
+        List<QuestionResponse> questionResponses=QuestionResponseGetAll.execute(surveyId);
+        surveyResponse.setQuestionResponses(questionResponses);
+        
+        // Create list of all question ids
+        // If survey doesn't have one, put N/A
+        
+        String SEPARATOR="\",\";
+        
+        StringBuilder report=new StringBuilder();
+        for (QuestionResponse questionResponse: questionResponses) {
+
+            // TODO - Add survey response identifier, language text, question id, answer id
+        
+            // Language
+            report.append(questionResponse.getLanguageId() + SEPARATOR);
+            
+            report.append(escapeField(questionResponse.getQuestionText()) + SEPARATOR);
+            report.append(escapeField(questionResponse.getAnswerText()) + "\"\n");
+        } 
+        
+        request.setAttribute(RequestUtils.SURVEY_RESPONSE_REPORT,report.toString());
+    }
+    
+    private String escapeField(String aString) {
+        return aString.replace("\"","\"\");
     }
 }
