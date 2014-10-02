@@ -19,11 +19,7 @@
 
 <jsp:include page="/pages/components/edits.jsp"/>
 
-<pre>
-  <c:forEach var="surveyResponse" items="${surveyResponses}">
-    <c:out value="${surveyResponse.questionText}"/>,<c:out value="${surveyResponse.answerText}"/>
-  </c:forEach>
-</pre>
+<pre><c:out value="${surveyResponseReport}"/></pre>
 
 <jsp:include page="/pages/components/footer.jsp"/>
 

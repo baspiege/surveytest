@@ -39,6 +39,8 @@ public class RequestUtils {
     public static String SURVEY_RESPONSE="surveyResponse";
     public static String SURVEY_RESPONSES="surveyResponses";
     
+    public static String SURVEY_RESPONSE_REPORT="surveyResponseReport";
+    
     // These are thread-safe.
     private static Pattern mNumbersPattern=Pattern.compile("[-]?[\\d]*[\\.]?[\\d]*");
 

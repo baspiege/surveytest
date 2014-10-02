@@ -3,6 +3,8 @@ package surveytest.data.model;
 import com.google.appengine.api.datastore.Key;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -34,6 +36,9 @@ public class SurveyResponse implements Serializable {
     @Persistent
     private Date lastUpdateTime;	
 
+    @NotPersistent
+    private List<QuestionResponse> questionResponses=new ArrayList<QuestionResponse>();    
+    
     public SurveyResponse()
     {
     }
@@ -65,4 +70,12 @@ public class SurveyResponse implements Serializable {
     public void setLastUpdateTime(Date aLastUpdateTime) {
         lastUpdateTime=aLastUpdateTime;
     }
+    
+    public List<QuestionResponse> getQuestionResponses() {
+        return questionResponses;
+    }
+    
+    public void setQuestionResponses(List<QuestionResponse> aQuestionResponses) {
+        questionResponses=aQuestionResponses;
+    } 
 }
