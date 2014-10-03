@@ -48,7 +48,6 @@ public class SurveyResponsesServlet extends HttpServlet {
         if (surveyId!=null) {
             survey=SurveyGetSingle.execute(surveyId);
             request.setAttribute(RequestUtils.SURVEY, survey);
-            surveyResponse.setSurveyId(surveyId);
         }
         if (survey==null) {
             throw new RuntimeException("Survey not found:" + surveyId);
@@ -87,7 +86,7 @@ public class SurveyResponsesServlet extends HttpServlet {
         StringBuilder report=new StringBuilder();
         for (QuestionResponse questionResponse: questionResponses) {
         
-            SurveyResponse surveyResponse=(SurveyResponse)surveyResponsesMap.get(questionResponse.getSurveyId());
+            SurveyResponse surveyResponse=(SurveyResponse)surveyResponsesMap.get(questionResponse.getSurveyResponseId());
             Language language=(Language)languagesMap.get(surveyResponse.getLanguageId());
             
             // Survey Id
