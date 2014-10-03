@@ -67,7 +67,7 @@ public class QuestionResponse implements Serializable {
         questionText=aQuestionText;
     }
     
-    public long getResponseSurveyId() {
+    public long getSurveyResponseId() {
         return surveyResponseId;
     }
     
