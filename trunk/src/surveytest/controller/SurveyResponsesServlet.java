@@ -16,12 +16,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class SurveyResponsesServlet extends HttpServlet {
+
+    public static final String SEPARATOR="\",\"";
+    public static final String NOT_AVAILABLE="N/A";
+    public static final String END_LINE="\"\n";
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
@@ -36,10 +41,7 @@ public class SurveyResponsesServlet extends HttpServlet {
     * Set-up the data.
     */
     private void setUpData(HttpServletRequest request) {
-    
-        SurveyResponse surveyResponse=new SurveyResponse();
-        request.setAttribute(RequestUtils.SURVEY_RESPONSE, surveyResponse);
-            
+                
         // Check survey
         Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
         Survey survey=null;
@@ -58,6 +60,9 @@ public class SurveyResponsesServlet extends HttpServlet {
 
         List<SurveyResponse> surveyResponses=SurveyResponseGetAll.execute(surveyId);
         request.setAttribute(RequestUtils.SURVEY_RESPONSES, surveyResponses);
+
+        // Get question responses
+        List<QuestionResponse> questionResponses=QuestionResponseGetAll.execute(surveyId);
         
         // Language map
         Map languagesMap=new HashMap();
@@ -65,31 +70,54 @@ public class SurveyResponsesServlet extends HttpServlet {
             languagesMap.put(language.getKey().getId(), language);
         }
         
-        // Get question responses
-        List<QuestionResponse> questionResponses=QuestionResponseGetAll.execute(surveyId);
-        surveyResponse.setQuestionResponses(questionResponses);
+        // Survey responses map
+        Map surveyResponsesMap=new HashMap();
+        for (SurveyResponse surveyResponse: surveyResponses) {
+            surveyResponsesMap.put(surveyResponse.getKey().getId(), surveyResponse);
+        }
         
-        // Create list of all question ids
-        // If survey doesn't have one, put N/A
-        
-        String SEPARATOR="\",\";
+        // Create a set of all question ids in case one of the survery
+        // responses doesn't have the question.  N/A will be put in place.
+        // This way, the columns will line up.
+        TreeSet<Long> questionIds=new TreeSet<Long>();
+        for (QuestionResponse questionResponse: questionResponses) {
+            questionIds.add(questionResponse.getQuestionId());
+        }
         
         StringBuilder report=new StringBuilder();
         for (QuestionResponse questionResponse: questionResponses) {
-
-            // TODO - Add survey response identifier, language text, question id, answer id
         
-            // Language
-            report.append(questionResponse.getLanguageId() + SEPARATOR);
+            SurveyResponse surveyResponse=(SurveyResponse)surveyResponsesMap.get(questionResponse.getSurveyId());
+            Language language=(Language)languagesMap.get(surveyResponse.getLanguageId());
             
-            report.append(escapeField(questionResponse.getQuestionText()) + SEPARATOR);
-            report.append(escapeField(questionResponse.getAnswerText()) + "\"\n");
+            // Survey Id
+            report.append(surveyResponse.getKey().getId() + SEPARATOR);
+            
+            // Language
+            report.append(surveyResponse.getLanguageId() + SEPARATOR);
+            report.append(language.getName() + SEPARATOR);            
+           
+            for (Long questionId: questionIds) {
+            
+                if (questionIds.contains(questionResponse.getQuestionId())) {
+                    report.append(questionResponse.getQuestionId() + SEPARATOR);
+                    report.append(escapeField(questionResponse.getQuestionText()) + SEPARATOR);
+                    report.append(questionResponse.getAnswerId() + SEPARATOR);
+                    report.append(escapeField(questionResponse.getAnswerText()) + END_LINE);
+                }
+                else {
+                    report.append(NOT_AVAILABLE + SEPARATOR);
+                    report.append(NOT_AVAILABLE + SEPARATOR);
+                    report.append(NOT_AVAILABLE + SEPARATOR);
+                    report.append(NOT_AVAILABLE + END_LINE);
+                }
+            }
         } 
         
         request.setAttribute(RequestUtils.SURVEY_RESPONSE_REPORT,report.toString());
     }
     
     private String escapeField(String aString) {
-        return aString.replace("\"","\"\");
+        return aString.replace("\"","\"\"");
     }
 }
