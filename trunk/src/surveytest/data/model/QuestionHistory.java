@@ -10,11 +10,6 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
 
-/**
- * Question history.
- *
- * @author Brian Spiegel
- */
 public class QuestionHistory implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,17 +24,9 @@ public class QuestionHistory implements Serializable {
     @Persistent
     private String text;
 
-    /**
-     * Constructor.
-     *
-     */
     public QuestionHistory() {
     }
 
-    /**
-     * Constructor.
-     *
-     */
     public QuestionHistory(Question aQuestion) {
         setQuestionId(aQuestion.getKey().getId());
         setText(aQuestion.getText());

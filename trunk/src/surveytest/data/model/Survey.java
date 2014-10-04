@@ -10,11 +10,6 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
 
-/**
- * Survey.
- *
- * @author Brian Spiegel
- */
 public class Survey implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,12 +21,7 @@ public class Survey implements Serializable {
     @Persistent
     private String name;	
 
-    /**
-     * Constructor.
-     *
-     */
-    public Survey()
-    {
+    public Survey() {
     }
 
     public Key getKey() {

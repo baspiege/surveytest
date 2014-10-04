@@ -13,8 +13,6 @@ import javax.jdo.annotations.PrimaryKey;
 
 /**
  * Question text which is identified by survey Id, question Id, and language Id.
- *
- * @author Brian Spiegel
  */
 public class QuestionText implements Serializable {
 

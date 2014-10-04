@@ -33,10 +33,6 @@ public class Answer implements Serializable {
     @NotPersistent
     private Map<Long,AnswerText> answerTextMap=new HashMap<Long,AnswerText>();
 
-    /**
-     * Constructor.
-     *
-     */
     public Answer()
     {
     }

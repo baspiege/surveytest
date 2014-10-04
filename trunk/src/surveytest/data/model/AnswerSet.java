@@ -33,10 +33,6 @@ public class AnswerSet implements Serializable {
     @NotPersistent
     private List<Answer> answers=new ArrayList<Answer>();
 
-    /**
-     * Constructor.
-     *
-     */
     public AnswerSet()
     {
     }
