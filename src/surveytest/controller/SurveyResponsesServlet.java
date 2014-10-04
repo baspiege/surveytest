@@ -24,9 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 public class SurveyResponsesServlet extends HttpServlet {
 
     public static final String DOUBLE_QUOTE="\"";
-    public static final String SEPARATOR="\",\"";
+    public static final String SEPARATOR=",";
     public static final String NOT_AVAILABLE="N/A";
-    public static final String END_LINE="\"\n";
+    public static final String END_LINE="\n";
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
@@ -93,14 +93,15 @@ public class SurveyResponsesServlet extends HttpServlet {
 
         // Header
         report.append(escapeField("Survey Response Id") + SEPARATOR);
-        report.append(escapeField("Language Id") + SEPARATOR);
+        //report.append(escapeField("Language Id") + SEPARATOR);
         report.append(escapeField("Language") + SEPARATOR);
         for (Long questionId: questionIds) {
-            report.append(escapeField("Question Id") + SEPARATOR);
+            //report.append(escapeField("Question Id") + SEPARATOR);
             report.append(escapeField("Question Text") + SEPARATOR);
-            report.append(escapeField("Answer Id ") + SEPARATOR);
+            //report.append(escapeField("Answer Id ") + SEPARATOR);
             report.append(escapeField("Answer Text") + SEPARATOR);
         }
+        report.append(END_LINE);
                     
         for (SurveyResponse surveyResponse: surveyResponses) {
         
@@ -108,32 +109,34 @@ public class SurveyResponsesServlet extends HttpServlet {
             
             Map questionResponsesMap=new HashMap();
             for (QuestionResponse questionResponse: surveyResponse.getQuestionResponses()) {
-                questionResponsesMap.put(questionResponse.getKey().getId(), questionResponse);
+                questionResponsesMap.put(questionResponse.getQuestionId(), questionResponse);
             }
             
             // Survey Id
             report.append(surveyResponse.getKey().getId() + SEPARATOR);
             
             // Language
-            report.append(surveyResponse.getLanguageId() + SEPARATOR);
+            //report.append(surveyResponse.getLanguageId() + SEPARATOR);
             report.append(language.getName() + SEPARATOR);            
            
             // The questions and answers
             for (Long questionId: questionIds) {
                 if (questionResponsesMap.containsKey(questionId)) {
                     QuestionResponse questionResponse=(QuestionResponse)questionResponsesMap.get(questionId);
-                    report.append(questionResponse.getQuestionId() + SEPARATOR);
+                    //report.append(questionResponse.getQuestionId() + SEPARATOR);
                     report.append(escapeField(questionResponse.getQuestionText()) + SEPARATOR);
-                    report.append(questionResponse.getAnswerId() + SEPARATOR);
-                    report.append(escapeField(questionResponse.getAnswerText()) + END_LINE);
+                    //report.append(questionResponse.getAnswerId() + SEPARATOR);
+                    report.append(escapeField(questionResponse.getAnswerText()) + SEPARATOR);
                 }
                 else {
+                    //report.append(NOT_AVAILABLE + SEPARATOR);
                     report.append(NOT_AVAILABLE + SEPARATOR);
+                    //report.append(NOT_AVAILABLE + SEPARATOR);
                     report.append(NOT_AVAILABLE + SEPARATOR);
-                    report.append(NOT_AVAILABLE + SEPARATOR);
-                    report.append(NOT_AVAILABLE + END_LINE);
                 }
             }
+            
+            report.append(END_LINE);
         } 
         
         request.setAttribute(RequestUtils.SURVEY_RESPONSE_REPORT,report.toString());
