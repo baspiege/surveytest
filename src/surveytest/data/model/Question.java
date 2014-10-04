@@ -13,11 +13,6 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
 
-/**
- * Question.
- *
- * @author Brian Spiegel
- */
 public class Question implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,10 +36,6 @@ public class Question implements Serializable {
     @NotPersistent
     private AnswerSet answerSet;
 
-    /**
-     * Constructor.
-     *
-     */
     public Question()
     {
     }

@@ -10,11 +10,6 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
 
-/**
- * Language.
- *
- * @author Brian Spiegel
- */
 public class Language implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,15 +19,26 @@ public class Language implements Serializable {
     private Key key;
 
     @Persistent
-    private String name;	
+    private String name;
+    
+    @Persistent
+    private String introText;
+    
+    @Persistent
+    private String confirmationText;
+    
+    @Persistent
+    private String identifierText;
+    
+    @Persistent
+    private String submitButtonText;
     
     @Persistent
     private long surveyId;
+    
+    @Persistent
+    private String surveyName;
 
-    /**
-     * Constructor.
-     *
-     */
     public Language()
     {
     }
@@ -55,5 +61,45 @@ public class Language implements Serializable {
     
     public void setSurveyId(long aSurveyId) {
         surveyId=aSurveyId;
+    }
+    
+    public String getIntroText() {
+        return introText;
+    }
+    
+    public void setIntroText(String aIntroText) {
+        introText=aIntroText;
+    }
+    
+    public String getConfirmationText() {
+        return confirmationText;
+    }
+    
+    public void setConfirmationText(String aConfirmationText) {
+        confirmationText=aConfirmationText;
+    }
+    
+    public String getIdentifierText() {
+        return identifierText;
+    }
+    
+    public void setIdentifierText(String aIdentifierText) {
+        identifierText=aIdentifierText;
+    }
+    
+    public String getSubmitButtonText() {
+        return submitButtonText;
+    }
+    
+    public void setSubmitButtonText(String aSubmitButtonText) {
+        submitButtonText=aSubmitButtonText;
+    }
+    
+    public String getSurveyName() {
+        return surveyName;
+    }
+    
+    public void setSurveyName(String aSurveyName) {
+        surveyName=aSurveyName;
     }
 }

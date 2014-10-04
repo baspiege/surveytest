@@ -16,9 +16,6 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
 
-/**
- * Survey response.
- */
 public class SurveyResponse implements Serializable {
 
     private static final long serialVersionUID = 1L;
