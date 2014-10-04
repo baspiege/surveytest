@@ -11,7 +11,6 @@ import surveytest.data.SurveyResponseGetAll;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class SurveyResponsesServlet extends HttpServlet {
 
+    public static final String DOUBLE_QUOTE="\"";
     public static final String SEPARATOR="\",\"";
     public static final String NOT_AVAILABLE="N/A";
     public static final String END_LINE="\"\n";
@@ -53,14 +53,12 @@ public class SurveyResponsesServlet extends HttpServlet {
             throw new RuntimeException("Survey not found:" + surveyId);
         }
  
-        // Get languages
         List<Language> languages=LanguageGetAll.execute(surveyId, 0L, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
 
         List<SurveyResponse> surveyResponses=SurveyResponseGetAll.execute(surveyId);
         request.setAttribute(RequestUtils.SURVEY_RESPONSES, surveyResponses);
 
-        // Get question responses
         List<QuestionResponse> questionResponses=QuestionResponseGetAll.execute(surveyId);
         
         // Language map
@@ -75,6 +73,14 @@ public class SurveyResponsesServlet extends HttpServlet {
             surveyResponsesMap.put(surveyResponse.getKey().getId(), surveyResponse);
         }
         
+        // Add question responses to survey responses
+        for (QuestionResponse questionResponse: questionResponses) {
+            if (surveyResponsesMap.containsKey(questionResponse.getSurveyResponseId())) {
+                SurveyResponse surveyResponse=(SurveyResponse)surveyResponsesMap.get(questionResponse.getSurveyResponseId());
+                surveyResponse.getQuestionResponses().add(questionResponse);
+            }
+        }
+        
         // Create a set of all question ids in case one of the survery
         // responses doesn't have the question.  N/A will be put in place.
         // This way, the columns will line up.
@@ -84,10 +90,26 @@ public class SurveyResponsesServlet extends HttpServlet {
         }
         
         StringBuilder report=new StringBuilder();
-        for (QuestionResponse questionResponse: questionResponses) {
+
+        // Header
+        report.append(escapeField("Survey Response Id") + SEPARATOR);
+        report.append(escapeField("Language Id") + SEPARATOR);
+        report.append(escapeField("Language") + SEPARATOR);
+        for (Long questionId: questionIds) {
+            report.append(escapeField("Question Id") + SEPARATOR);
+            report.append(escapeField("Question Text") + SEPARATOR);
+            report.append(escapeField("Answer Id ") + SEPARATOR);
+            report.append(escapeField("Answer Text") + SEPARATOR);
+        }
+                    
+        for (SurveyResponse surveyResponse: surveyResponses) {
         
-            SurveyResponse surveyResponse=(SurveyResponse)surveyResponsesMap.get(questionResponse.getSurveyResponseId());
             Language language=(Language)languagesMap.get(surveyResponse.getLanguageId());
+            
+            Map questionResponsesMap=new HashMap();
+            for (QuestionResponse questionResponse: surveyResponse.getQuestionResponses()) {
+                questionResponsesMap.put(questionResponse.getKey().getId(), questionResponse);
+            }
             
             // Survey Id
             report.append(surveyResponse.getKey().getId() + SEPARATOR);
@@ -96,9 +118,10 @@ public class SurveyResponsesServlet extends HttpServlet {
             report.append(surveyResponse.getLanguageId() + SEPARATOR);
             report.append(language.getName() + SEPARATOR);            
            
+            // The questions and answers
             for (Long questionId: questionIds) {
-            
-                if (questionIds.contains(questionResponse.getQuestionId())) {
+                if (questionResponsesMap.containsKey(questionId)) {
+                    QuestionResponse questionResponse=(QuestionResponse)questionResponsesMap.get(questionId);
                     report.append(questionResponse.getQuestionId() + SEPARATOR);
                     report.append(escapeField(questionResponse.getQuestionText()) + SEPARATOR);
                     report.append(questionResponse.getAnswerId() + SEPARATOR);
@@ -117,6 +140,6 @@ public class SurveyResponsesServlet extends HttpServlet {
     }
     
     private String escapeField(String aString) {
-        return aString.replace("\"","\"\"");
+        return DOUBLE_QUOTE + aString.replace(DOUBLE_QUOTE, DOUBLE_QUOTE + DOUBLE_QUOTE) + DOUBLE_QUOTE;
     }
 }
