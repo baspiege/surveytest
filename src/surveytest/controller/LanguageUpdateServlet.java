@@ -59,8 +59,11 @@ public class LanguageUpdateServlet extends HttpServlet {
                 }
             } else if (action.equals(bundle.getString("deleteLabel"))) {		
                 List<QuestionText> questionTexts=QuestionTextGetAll.executeByLanguageId(language.getKey().getId());
+                
+                // TODO - How can language be deleted?  Remove all questions first?  Or delete question text as well.
+                // Or set language to inactive?
                 if (!questionTexts.isEmpty()) {
-                    RequestUtils.addEditUsingKey(request,"languagesCantBeDeletedWithQuestionsMessage");
+                    RequestUtils.addEditUsingKey(request,"languageCantBeDeletedWithQuestionsMessage");
                 }
                 if (!RequestUtils.hasEdits(request)) {
                     LanguageDelete.execute(language);

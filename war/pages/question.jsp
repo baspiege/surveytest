@@ -19,13 +19,8 @@
 
 <jsp:include page="/pages/components/edits.jsp"/>
 
-<section>
-
-<span id="questionName"></span> 
-<a href="/questionUpdate?questionId=<c:out value="${question.key.id}"/>" class="edit" style="display:none" id="questionEditLink"><fmt:message key="editLabel"/></a> 
-
 <section class="data">
-
+<a href="/questionUpdate?questionId=<c:out value="${question.key.id}"/>" class="edit" id="questionEditLink"><fmt:message key="editLabel"/></a> 
 <table>
   <tr>
     <td>
