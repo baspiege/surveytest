@@ -1,4 +1,3 @@
-<%-- This JSP has the HTML for answer page. --%>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -14,38 +13,50 @@
 <ul id="navlist">
 <li><a href="/surveys"><fmt:message key="mainLabel"/></a></li>
 <li><a href="/survey?surveyId=<c:out value="${survey.key.id}"/>"><c:out value="${survey.name}"/></a></li>
-<li><a href="/answerSet?answerSetId=<c:out value="${answerSet.key.id}"/>"><c:out value="${answerSet.description}"/></a></li>
 </ul>
 </nav>
 
 <jsp:include page="/pages/components/edits.jsp"/>
 
-<section>
-
-<a href="/answerUpdate?answerId=<c:out value="${answer.key.id}"/>" class="edit" id="answerEditLink"><fmt:message key="editLabel"/></a> 
-
 <section class="data">
-
+<a href="/languageUpdate?languageId=<c:out value="${language.key.id}"/>" class="edit" id="languageEditLink"><fmt:message key="editLabel"/></a> 
 <table>
-<tr>
-  <td>
-    <fmt:message key="answerLabel"/>
-  </td>
-  <td>
-    <c:out value="${answer.text}"/>
-  </td>
-</tr>
-
-<c:forEach var="answerText" items="${answerTexts}">
   <tr>
     <td>
-      <c:out value="${answerText.language.name}"/>
+      <fmt:message key="languageLabel"/>
     </td>
     <td>
-      <c:out value="${answerText.text}"/>
+      <c:out value="${language.name}"/>
     </td>
   </tr>
-</c:forEach>
+
+  <tr>
+    <td>
+      <fmt:message key="introTextLabel"/>
+    </td>
+    <td>
+      <c:out value="${language.introText}"/>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <fmt:message key="confirmationTextLabel"/>
+    </td>
+    <td>
+      <c:out value="${language.confirmationText}"/>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <fmt:message key="submitButtonTextLabel"/>
+    </td>
+    <td>
+      <c:out value="${language.submitButtonText}"/>
+    </td>
+  </tr>
+
 </table>
 
 </section>

@@ -13,7 +13,22 @@
 <%-- Fields --%>
 <form id="language" method="post" action="languageAdd" autocomplete="off">
 <table>
-<tr><td><fmt:message key="nameLabel"/></td><td><input type="text" name="name" value="<c:out value="${language.name}"/>" id="name" title="<fmt:message key="nameLabel"/>" maxlength="500"/></td></tr>
+  <tr>
+    <td><fmt:message key="nameLabel"/></td>
+    <td><input type="text" name="name" value="<c:out value="${language.name}"/>" id="name" title="<fmt:message key="nameLabel"/>" maxlength="500"/></td>
+  </tr>
+  <tr>
+    <td><fmt:message key="introTextLabel"/></td>
+    <td><input type="text" name="introText" value="<c:out value="${language.introText}"/>" id="introText" title="<fmt:message key="introTextLabel"/>" maxlength="500"/></td>
+  </tr>
+  <tr>
+    <td><fmt:message key="confirmationTextLabel"/></td>
+    <td><input type="text" name="confirmationText" value="<c:out value="${language.confirmationText}"/>" id="confirmationText" title="<fmt:message key="confirmationTextLabel"/>" maxlength="500"/></td>
+  </tr>
+  <tr>
+    <td><fmt:message key="submitButtonTextLabel"/></td>
+    <td><input type="text" name="submitButtonText" value="<c:out value="${language.submitButtonText}"/>" id="submitButtonText" title="<fmt:message key="submitButtonTextLabel"/>" maxlength="500"/></td>
+  </tr>
 </table>
 <p>
 <input id="surveyId" type="hidden" name="surveyId" value="<c:out value="${language.surveyId}"/>" />

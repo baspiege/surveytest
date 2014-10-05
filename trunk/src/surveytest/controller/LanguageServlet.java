@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class QuestionServlet extends HttpServlet {
+public class LanguageServlet extends HttpServlet {
 
     /**
     * Display page.
@@ -48,7 +48,7 @@ public class QuestionServlet extends HttpServlet {
         request.setAttribute(RequestUtils.SURVEY, survey);
        
         if (survey==null) {
-            throw new RuntimeException("Survey not found:" + surveyId);
+            throw new RuntimeException("Survey not found:" + language.getSurveyId());
         }
     }
 }

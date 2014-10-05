@@ -37,9 +37,16 @@ public class LanguageAddServlet extends HttpServlet {
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
             if (action.equals(bundle.getString("addLabel"))) {		
-                // Fields
+                // Fields                
                 String name=RequestUtils.getAlphaInput(request,"name",bundle.getString("nameLabel"),true);
+                String introText=RequestUtils.getAlphaInput(request,"introText",bundle.getString("introTextLabel"),true);
+                String confirmationText=RequestUtils.getAlphaInput(request,"confirmationText",bundle.getString("confirmationTextLabel"),true);
+                String submitButtonText=RequestUtils.getAlphaInput(request,"submitButtonText",bundle.getString("submitButtonTextLabel"),true);
                 language.setName(name);
+                language.setIntroText(introText);
+                language.setConfirmationText(confirmationText);
+                language.setSubmitButtonText(submitButtonText);
+                
                 if (!RequestUtils.hasEdits(request)) {
                     language=LanguageAdd.execute(language);
                 }

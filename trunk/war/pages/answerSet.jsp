@@ -22,8 +22,7 @@
 
 <section>
 
-<span id="anserSetName"></span> 
-<a href="/answerSetUpdate?answerSetId=<c:out value="${answerSet.key.id}"/>" class="edit" style="display:none" id="answerSetEditLink"><fmt:message key="editLabel"/></a> 
+<a href="/answerSetUpdate?answerSetId=<c:out value="${answerSet.key.id}"/>" class="edit" id="answerSetEditLink"><fmt:message key="editLabel"/></a> 
 
 <%--
 <section class="data">
