@@ -14,7 +14,7 @@ public class LanguageUpdate {
             pm=PMF.get().getPersistenceManager();
             
             // Get managed instance.  aLanguage might be transient.
-            language=LanguageGetSingle.execute(aLanguage.getKey().getId());
+            language=LanguageGetSingle.getLanguage(pm, aLanguage.getKey().getId());
             
             if (language!=null) {
                 language.setName(aLanguage.getName());
