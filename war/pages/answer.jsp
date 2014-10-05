@@ -54,5 +54,4 @@
 <jsp:include page="/pages/components/footer.jsp"/>
 </fmt:bundle>
 </body>
-<script type="text/javascript" src="/js/answer.js" ></script>
 </html>
