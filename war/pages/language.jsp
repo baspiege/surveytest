@@ -32,6 +32,24 @@
 
   <tr>
     <td>
+      <fmt:message key="surveyNameLabel"/>
+    </td>
+    <td>
+      <c:out value="${language.surveyName}"/>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <fmt:message key="identifierTextLabel"/>
+    </td>
+    <td>
+      <c:out value="${language.identifierText}"/>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
       <fmt:message key="introTextLabel"/>
     </td>
     <td>
