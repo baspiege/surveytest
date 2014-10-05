@@ -55,7 +55,7 @@ public class QuestionServlet extends HttpServlet {
             request.setAttribute(RequestUtils.QUESTION,question);
         }
         
-        List<QuestionText> questionTexts=QuestionTextGetAll.execute(questionId, 0L, null);
+        List<QuestionText> questionTexts=QuestionTextGetAll.execute(questionId);
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
         
         Survey survey=SurveyGetSingle.execute(question.getSurveyId());

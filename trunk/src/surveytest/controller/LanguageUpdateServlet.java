@@ -58,15 +58,8 @@ public class LanguageUpdateServlet extends HttpServlet {
                     language=LanguageUpdate.execute(language);
                 }
             } else if (action.equals(bundle.getString("deleteLabel"))) {		
-                List<QuestionText> questionTexts=QuestionTextGetAll.executeBySurveyId(language.getSurveyId(), 0L, null);
-                boolean languageUsed=false;
-                for (QuestionText questionText: questionTexts) {
-                    if (questionText.getLanguageId()==language.getKey().getId()){
-                        languageUsed=true;
-                        break;
-                    }
-                }
-                if (languageUsed) {
+                List<QuestionText> questionTexts=QuestionTextGetAll.executeByLanguageId(language.getKey().getId());
+                if (!questionTexts.isEmpty()) {
                     RequestUtils.addEditUsingKey(request,"languagesCantBeDeletedWithQuestionsMessage");
                 }
                 if (!RequestUtils.hasEdits(request)) {

@@ -160,7 +160,7 @@ public class SurveyResponseServlet extends HttpServlet {
         request.setAttribute(RequestUtils.QUESTIONS, questions);
         
         // Get question texts
-        List<QuestionText> questionTexts=QuestionTextGetAll.executeBySurveyId(surveyId, 0L, null);
+        List<QuestionText> questionTexts=QuestionTextGetAll.executeBySurveyId(surveyId);
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
                 
         // Get answers sets
