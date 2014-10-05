@@ -1,6 +1,7 @@
 package surveytest.controller;
 
-import surveytest.data.LanguageAdd;
+import surveytest.data.LanguageGetSingle;
+import surveytest.data.LanguageUpdate;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.model.Language;
 import surveytest.data.model.Survey;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LanguageAddServlet extends HttpServlet {
+public class LanguageUpdateServlet extends HttpServlet {
 
     /**
     * Display page.
@@ -21,8 +22,7 @@ public class LanguageAddServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
 
-        // Default
-        RequestUtils.forwardTo(request,response,ControllerConstants.LANGUAGE_ADD);
+        RequestUtils.forwardTo(request,response,ControllerConstants.LANGUAGE_UPDATE);
     }
 
     /**
@@ -36,12 +36,18 @@ public class LanguageAddServlet extends HttpServlet {
 
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
-            if (action.equals(bundle.getString("addLabel"))) {		
+            if (action.equals(bundle.getString("updateLabel"))) {		
                 // Fields
                 String name=RequestUtils.getAlphaInput(request,"name",bundle.getString("nameLabel"),true);
+                String introText=RequestUtils.getAlphaInput(request,"introText",bundle.getString("introTextLabel"),true);
+                String confirmationText=RequestUtils.getAlphaInput(request,"confirmationText",bundle.getString("confirmationTextLabel"),true);
+                String submitButtonText=RequestUtils.getAlphaInput(request,"submitButtonText",bundle.getString("submitButtonTextLabel"),true);
                 language.setName(name);
+                language.setIntroText(introText);
+                language.setConfirmationText(confirmationText);
+                language.setSubmitButtonText(submitButtonText);
                 if (!RequestUtils.hasEdits(request)) {
-                    language=LanguageAdd.execute(language);
+                    language=LanguageUpdate.execute(language);
                 }
             }
         }
@@ -51,7 +57,7 @@ public class LanguageAddServlet extends HttpServlet {
             request.setAttribute("surveyId",language.getSurveyId());
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
         } else {
-            RequestUtils.forwardTo(request,response,ControllerConstants.LANGUAGE_ADD);
+            RequestUtils.forwardTo(request,response,ControllerConstants.LANGUAGE_UPDATE);
         }
     }
 
@@ -77,10 +83,15 @@ public class LanguageAddServlet extends HttpServlet {
             throw new RuntimeException("Survey not found:" + surveyId);
         }
         
-        // Set language
-        Language language=new Language();
-        language.setSurveyId(surveyId);
-        //language.setUser(request.getUserPrincipal().getName());
-        request.setAttribute(RequestUtils.LANGUAGE, language);
+        // Language
+        Long languageId=RequestUtils.getNumericInput(request,"languageId","languageId",true);
+        Language language=null;
+        if (languageId!=null) {
+            language=LanguageGetSingle.execute(languageId);
+            request.setAttribute(RequestUtils.LANGUAGE, language);
+        }
+        if (language==null) {
+            throw new RuntimeException("Language not found:" + languageId);
+        }
     }
 }

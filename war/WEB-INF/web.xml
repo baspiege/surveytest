@@ -47,6 +47,15 @@
       <url-pattern>/languageAdd</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+      <servlet-name>languageUpdate</servlet-name>
+      <servlet-class>surveytest.controller.LanguageUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>languageUpdate</servlet-name>
+      <url-pattern>/languageUpdate</url-pattern>
+    </servlet-mapping>
+    
     <!-- Question Actions -->
     <servlet>
       <servlet-name>question</servlet-name>
