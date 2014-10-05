@@ -17,6 +17,14 @@
     <td><input type="text" name="name" value="<c:out value="${language.name}"/>" id="name" title="<fmt:message key="nameLabel"/>" maxlength="500"/></td>
   </tr>
   <tr>
+    <td><fmt:message key="surveyNameLabel"/></td>
+    <td><input type="text" name="surveyName" value="<c:out value="${language.surveyName}"/>" id="surveyName" title="<fmt:message key="surveyNameLabel"/>" maxlength="500"/></td>
+  </tr>
+  <tr>
+    <td><fmt:message key="identifierTextLabel"/></td>
+    <td><input type="text" name="identifierText" value="<c:out value="${language.identifierText}"/>" id="identifierText" title="<fmt:message key="identifierTextLabel"/>" maxlength="500"/></td>
+  </tr>
+  <tr>
     <td><fmt:message key="introTextLabel"/></td>
     <td><input type="text" name="introText" value="<c:out value="${language.introText}"/>" id="introText" title="<fmt:message key="introTextLabel"/>" maxlength="500"/></td>
   </tr>

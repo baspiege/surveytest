@@ -42,10 +42,14 @@ public class LanguageAddServlet extends HttpServlet {
                 String introText=RequestUtils.getAlphaInput(request,"introText",bundle.getString("introTextLabel"),true);
                 String confirmationText=RequestUtils.getAlphaInput(request,"confirmationText",bundle.getString("confirmationTextLabel"),true);
                 String submitButtonText=RequestUtils.getAlphaInput(request,"submitButtonText",bundle.getString("submitButtonTextLabel"),true);
+                String surveyName=RequestUtils.getAlphaInput(request,"surveyName",bundle.getString("surveyNameLabel"),true);
+                String identifierText=RequestUtils.getAlphaInput(request,"identifierText",bundle.getString("identifierTextLabel"),true);
                 language.setName(name);
                 language.setIntroText(introText);
                 language.setConfirmationText(confirmationText);
                 language.setSubmitButtonText(submitButtonText);
+                language.setSurveyName(surveyName);
+                language.setIdentifierText(identifierText);
                 
                 if (!RequestUtils.hasEdits(request)) {
                     language=LanguageAdd.execute(language);

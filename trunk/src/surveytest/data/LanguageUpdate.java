@@ -20,6 +20,8 @@ public class LanguageUpdate {
                 language.setIntroText(aLanguage.getIntroText());
                 language.setConfirmationText(aLanguage.getConfirmationText());
                 language.setSubmitButtonText(aLanguage.getSubmitButtonText());
+                language.setSurveyName(aLanguage.getSurveyName());
+                language.setIdentifierText(aLanguage.getIdentifierText());
                 language.setLastUpdateTime(new Date());
             }
 
