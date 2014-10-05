@@ -71,17 +71,6 @@ public class LanguageUpdateServlet extends HttpServlet {
 //        if (!isSignedIn) {
 //            throw new SecurityException("User principal not found");
 //        }
-
-        // Check survey
-        Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
-        Survey survey=null;
-        if (surveyId!=null) {
-            survey=SurveyGetSingle.execute(surveyId);
-            request.setAttribute(RequestUtils.SURVEY, survey);
-        }
-        if (survey==null) {
-            throw new RuntimeException("Survey not found:" + surveyId);
-        }
         
         // Language
         Long languageId=RequestUtils.getNumericInput(request,"languageId","languageId",true);

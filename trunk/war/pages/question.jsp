@@ -1,4 +1,3 @@
-<%-- This JSP has the HTML for question page. --%>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -21,39 +20,35 @@
 
 <section>
 
-<span id="questionName"></span> 
-<a href="/questionUpdate?questionId=<c:out value="${question.key.id}"/>" class="edit" style="display:none" id="questionEditLink"><fmt:message key="editLabel"/></a> 
+<a href="/languageUpdate?languageId=<c:out value="${language.key.id}"/>" class="edit" style="display:none" id="languageEditLink"><fmt:message key="editLabel"/></a> 
 
 <section class="data">
 
 <table>
   <tr>
     <td>
-      <fmt:message key="questionLabel"/>
+      <fmt:message key="languageLabel"/>
     </td>
     <td>
-      <c:out value="${question.text}"/>
+      <c:out value="${language.name}"/>
     </td>
   </tr>
 
-  <c:forEach var="questionText" items="${questionTexts}">
-    <tr>
-      <td>
-        <c:out value="${questionText.language.name}"/>
-      </td>
-      <td>
-        <c:out value="${questionText.text}"/>
-      </td>
-    </tr>
-  </c:forEach>
-
-  <%-- Answer Set --%>
   <tr>
     <td>
-      <fmt:message key="answerSetLabel"/>
+      <fmt:message key="introTextLabel"/>
     </td>
     <td>
-      <a href="/answerSet?answerSetId=<c:out value="${answerSet.key.id}"/>"><c:out value="${answerSet.description}"/></a>
+      <c:out value="${language.introText}"/>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <fmt:message key="confirmationTextLabel"/>
+    </td>
+    <td>
+      <c:out value="${language.confirmationText}"/>
     </td>
   </tr>
 
@@ -64,5 +59,4 @@
 <jsp:include page="/pages/components/footer.jsp"/>
 </fmt:bundle>
 </body>
-<script type="text/javascript" src="/js/question.js" ></script>
 </html>

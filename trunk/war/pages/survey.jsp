@@ -31,7 +31,9 @@
 <p> <fmt:message key="languagesLabel"/> <a class="add" href="/languageAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a> </p>
 <ul>
   <c:forEach var="language" items="${languages}">
-    <li><c:out value="${language.name}"/></li>
+    <li>
+      <a href="/language?languageId=<c:out value="${language.key.id}"/>"><c:out value="${language.name}"/></a>        
+    </li>
   </c:forEach>
 </ul>
 </section>
@@ -89,5 +91,4 @@
 
 </body>
 </fmt:bundle>
-<script type="text/javascript" src="/js/surveys.js" ></script>
 </html>

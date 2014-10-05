@@ -25,5 +25,4 @@
 
 </body>
 </fmt:bundle>
-<script type="text/javascript" src="/js/surveys.js" ></script>
 </html>

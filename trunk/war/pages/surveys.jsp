@@ -29,5 +29,4 @@
 <jsp:include page="/pages/components/footer.jsp"/>
 </body>
 </fmt:bundle>
-<script type="text/javascript" src="/js/surveys.js" ></script>
 </html>

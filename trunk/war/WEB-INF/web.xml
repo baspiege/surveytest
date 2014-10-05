@@ -39,6 +39,14 @@
 
     <!-- Language -->
     <servlet>
+      <servlet-name>language</servlet-name>
+      <servlet-class>surveytest.controller.LanguageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>language</servlet-name>
+      <url-pattern>/language</url-pattern>
+    </servlet-mapping>
+    <servlet>
       <servlet-name>languageAdd</servlet-name>
       <servlet-class>surveytest.controller.LanguageAddServlet</servlet-class>
     </servlet>
@@ -46,7 +54,6 @@
       <servlet-name>languageAdd</servlet-name>
       <url-pattern>/languageAdd</url-pattern>
     </servlet-mapping>
-    
     <servlet>
       <servlet-name>languageUpdate</servlet-name>
       <servlet-class>surveytest.controller.LanguageUpdateServlet</servlet-class>
