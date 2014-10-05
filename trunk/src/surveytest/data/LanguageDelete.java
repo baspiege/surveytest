@@ -14,7 +14,7 @@ public class LanguageDelete {
             pm=PMF.get().getPersistenceManager();
 
             // Get managed instance.  aLanguage might be transient.
-            Languagae language=LanguageGetSingle.execute(aLanguage.getKey().getId());
+            Language language=LanguageGetSingle.execute(aLanguage.getKey().getId());
             
             pm.deletePersistent(language);
         } finally {
