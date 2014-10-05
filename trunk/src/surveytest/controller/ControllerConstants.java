@@ -21,6 +21,7 @@ public class ControllerConstants {
     
     // Language
     public static String LANGUAGE_ADD="/pages/languageAdd.jsp";
+    public static String LANGUAGE_UPDATE="/pages/languageUpdate.jsp";
     
     // Question pages
     public static String QUESTION="/pages/question.jsp";
