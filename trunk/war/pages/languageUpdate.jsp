@@ -41,6 +41,7 @@
 <input id="languageId" type="hidden" name="languageId" value="<c:out value="${language.key.id}"/>" />
 <input class="button" type="submit" style="display:none" id="updateButtonDisabled" disabled="disabled" value="<fmt:message key="updateLabel"/>"/>
 <input class="button" type="submit" style="display:inline" id="updateButtonEnabled" name="action" value="<fmt:message key="updateLabel"/>"/>
+<input class="button" type="submit" style="display:inline" id="deleteButtonEnabled" name="action" value="<fmt:message key="deleteLabel"/>"/>
 </p>
 </form>
 <jsp:include page="/pages/components/footer.jsp"/>

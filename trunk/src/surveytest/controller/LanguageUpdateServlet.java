@@ -1,13 +1,17 @@
 package surveytest.controller;
 
 import surveytest.data.LanguageGetSingle;
+import surveytest.data.LanguageDelete;
 import surveytest.data.LanguageUpdate;
+import surveytest.data.QuestionTextGetAll;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.model.Language;
+import surveytest.data.model.QuestionText;
 import surveytest.data.model.Survey;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -53,6 +57,21 @@ public class LanguageUpdateServlet extends HttpServlet {
                 if (!RequestUtils.hasEdits(request)) {
                     language=LanguageUpdate.execute(language);
                 }
+            } else if (action.equals(bundle.getString("deleteLabel"))) {		
+                List<QuestionText> questionTexts=QuestionTextGetAll.executeBySurveyId(language.getSurveyId(), 0L, null);
+                boolean languageUsed=false;
+                for (QuestionText questionText: questionTexts) {
+                    if (questionText.getLanguageId()==language.getKey().getId()){
+                        languageUsed=true;
+                        break;
+                    }
+                }
+                if (languageUsed) {
+                    RequestUtils.addEditUsingKey(request,"languagesCantBeDeletedWithQuestionsMessage");
+                }
+                if (!RequestUtils.hasEdits(request)) {
+                    LanguageDelete.execute(language);
+                }         
             }
         }
 
