@@ -91,14 +91,6 @@
     
     <!-- Answer Set Actions -->
     <servlet>
-      <servlet-name>answerSetAdd</servlet-name>
-      <servlet-class>surveytest.controller.AnswerSetAddServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-      <servlet-name>answerSetAdd</servlet-name>
-      <url-pattern>/answerSetAdd</url-pattern>
-    </servlet-mapping>    
-    <servlet>
       <servlet-name>answerSet</servlet-name>
       <servlet-class>surveytest.controller.AnswerSetServlet</servlet-class>
     </servlet>
@@ -106,8 +98,24 @@
       <servlet-name>answerSet</servlet-name>
       <url-pattern>/answerSet</url-pattern>
     </servlet-mapping>
+    <servlet>
+      <servlet-name>answerSetAdd</servlet-name>
+      <servlet-class>surveytest.controller.AnswerSetAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>answerSetAdd</servlet-name>
+      <url-pattern>/answerSetAdd</url-pattern>
+    </servlet-mapping>    
     
     <!-- Answer Actions -->
+    <servlet>
+      <servlet-name>answer</servlet-name>
+      <servlet-class>surveytest.controller.AnswerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>answer</servlet-name>
+      <url-pattern>/answer</url-pattern>
+    </servlet-mapping>
     <servlet>
       <servlet-name>answerAdd</servlet-name>
       <servlet-class>surveytest.controller.AnswerAddServlet</servlet-class>
@@ -117,13 +125,13 @@
       <url-pattern>/answerAdd</url-pattern>
     </servlet-mapping>    
     <servlet>
-      <servlet-name>answer</servlet-name>
-      <servlet-class>surveytest.controller.AnswerServlet</servlet-class>
+      <servlet-name>answerUpdate</servlet-name>
+      <servlet-class>surveytest.controller.AnswerUpdateServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-      <servlet-name>answer</servlet-name>
-      <url-pattern>/answer</url-pattern>
-    </servlet-mapping>
+      <servlet-name>answerUpdate</servlet-name>
+      <url-pattern>/answerUpdate</url-pattern>
+    </servlet-mapping>    
     
     <!-- Survey Actions -->
     <servlet>
@@ -153,6 +161,7 @@
       <url-pattern>/surveyConfirmation</url-pattern>
     </servlet-mapping>    
 
+    <!-- Reports -->
     <servlet>
       <servlet-name>surveyResponses</servlet-name>
       <servlet-class>surveytest.controller.SurveyResponsesServlet</servlet-class>
