@@ -49,14 +49,7 @@ public class QuestionUpdateServlet extends HttpServlet {
         Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
         String action=RequestUtils.getAlphaInput(request,"action","Action",true);
         ResourceBundle bundle = ResourceBundle.getBundle("Text");       
-        
-        // Language map
-        List<Language> languages=(List<Language>)request.getAttribute(RequestUtils.LANGUAGES);
-        Map languagesMap=new HashMap();
-        for (Language language: languages) {
-            languagesMap.put(language.getKey().getId(), language);
-        }
-        
+                
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
             if (action.equals(bundle.getString("updateLabel"))) {		
@@ -70,11 +63,8 @@ public class QuestionUpdateServlet extends HttpServlet {
                 // Question Text
                 List<QuestionText> questionTexts=(List<QuestionText>)request.getAttribute(RequestUtils.QUESTION_TEXTS);
                 for (QuestionText questionText: questionTexts) {
-                    Language language=(Language)languagesMap.get(questionText.getLanguageId());
                     String questionTextLanguageId="questionText_Language_" + questionText.getLanguageId();
-                    String questionTextLanguage=RequestUtils.getAlphaInput(request,questionTextLanguageId,language.getName(),true);
-                    questionText.setSurveyId(survey.getKey().getId());
-                    questionText.setLanguageId(language.getKey().getId());
+                    String questionTextLanguage=RequestUtils.getAlphaInput(request,questionTextLanguageId,questionText.getLanguage().getName(),true);
                     questionText.setText(questionTextLanguage);
                 }
                 
@@ -175,6 +165,7 @@ public class QuestionUpdateServlet extends HttpServlet {
         for (Language language: languages) {
             QuestionText questionText=new QuestionText();
             questionText.setLanguage(language);
+            questionText.setLanguageId(language.getKey().getId());
             questionText.setText("");
             questionTexts.add(questionText);
         }
