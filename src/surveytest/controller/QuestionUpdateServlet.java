@@ -7,6 +7,7 @@ import surveytest.data.QuestionGetSingle;
 import surveytest.data.QuestionUpdate;
 import surveytest.data.QuestionTextAdd;
 import surveytest.data.QuestionTextDelete;
+import surveytest.data.QuestionTextGetAll;
 import surveytest.data.QuestionTextUpdate;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.model.AnswerSet;
@@ -123,6 +124,7 @@ public class QuestionUpdateServlet extends HttpServlet {
         }
         
         if (!RequestUtils.hasEdits(request)) {
+            request.setAttribute("questionId",question.getSurveyId());
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_UPDATE);
@@ -157,15 +159,27 @@ public class QuestionUpdateServlet extends HttpServlet {
         // Get languages
         List<Language> languages=LanguageGetAll.execute(survey.getKey().getId(), 0L, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
-
+                
         // Question Texts
-        List<QuestionText> questionTexts=new ArrayList<QuestionText>();
+        List<QuestionText> questionTexts=QuestionTextGetAll.execute(questionId);
+        request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
+
+        Map questionTextMap=new HashMap();
+        for (QuestionText questionText: questionTexts) {
+            questionTextMap.put(questionText.getLanguageId(), questionText);
+        }
+        
         for (Language language: languages) {
-            QuestionText questionText=new QuestionText();
-            questionText.setLanguage(language);
-            questionText.setLanguageId(language.getKey().getId());
-            questionText.setText("");
-            questionTexts.add(questionText);
+            if (!questionTextMap.containsKey(language.getKey().getId())) {
+                QuestionText questionText=new QuestionText();
+                questionText.setLanguage(language);
+                questionText.setLanguageId(language.getKey().getId());
+                questionText.setText("");
+                questionTexts.add(questionText);
+            } else { 
+                QuestionText questionText=(QuestionText)questionTextMap.get(language.getKey().getId());
+                questionText.setLanguage(language);
+            }
         }
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
         
