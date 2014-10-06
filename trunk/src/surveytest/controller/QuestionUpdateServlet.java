@@ -3,6 +3,7 @@ package surveytest.controller;
 import surveytest.data.AnswerSetGetAll;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionDelete;
+import surveytest.data.QuestionGetSingle;
 import surveytest.data.QuestionUpdate;
 import surveytest.data.QuestionTextAdd;
 import surveytest.data.QuestionTextDelete;
@@ -139,25 +140,22 @@ public class QuestionUpdateServlet extends HttpServlet {
 //            throw new SecurityException("User principal not found");
 //        }
 
-        // Check survey
-        Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
-        Survey survey=null;
-        if (surveyId!=null) {
-            survey=SurveyGetSingle.execute(surveyId);
-            request.setAttribute(RequestUtils.SURVEY, survey);
-        }
-        if (survey==null) {
-            throw new RuntimeException("Survey not found:" + surveyId);
-        }
+        // Get question
+        Long questionId=RequestUtils.getNumericInput(request,"questionId","questionId",true);
+        Question question=QuestionGetSingle.execute(questionId);
 
-        // Set question
-        Question question=new Question();
-        question.setSurveyId(survey.getKey().getId());
-        //question.setUser(request.getUserPrincipal().getName());
-        request.setAttribute(RequestUtils.QUESTION, question);
+        if (question==null) {
+            throw new RuntimeException("Question not found: " + questionId);
+        } else {
+            request.setAttribute(RequestUtils.QUESTION,question);
+        }
+        
+        // Survey
+        Survey survey=SurveyGetSingle.execute(question.getSurveyId());
+        request.setAttribute(RequestUtils.SURVEY, survey);
 
         // Get languages
-        List<Language> languages=LanguageGetAll.execute(surveyId, 0L, null);
+        List<Language> languages=LanguageGetAll.execute(survey.getKey().getId(), 0L, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
 
         // Question Texts
@@ -172,7 +170,7 @@ public class QuestionUpdateServlet extends HttpServlet {
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
         
         // Get answers sets
-        List<AnswerSet> answerSets=AnswerSetGetAll.execute(surveyId, 0L, null);
+        List<AnswerSet> answerSets=AnswerSetGetAll.execute(survey.getKey().getId(), 0L, null);
         request.setAttribute(RequestUtils.ANSWER_SETS, answerSets);
     }
 }
