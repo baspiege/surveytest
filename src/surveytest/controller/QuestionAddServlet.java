@@ -126,6 +126,7 @@ public class QuestionAddServlet extends HttpServlet {
         List<QuestionText> questionTexts=new ArrayList<QuestionText>();
         for (Language language: languages) {
             QuestionText questionText=new QuestionText();
+            questionText.setSurveyId(survey.getKey().getId());
             questionText.setLanguage(language);
             questionText.setLanguageId(language.getKey().getId());
             questionText.setText("");
