@@ -50,12 +50,6 @@ public class QuestionAddServlet extends HttpServlet {
         Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
         List<Language> languages=(List<Language>)request.getAttribute(RequestUtils.LANGUAGES);
-
-        // Language map
-        Map languagesMap=new HashMap();
-        for (Language language: languages) {
-            languagesMap.put(language.getKey().getId(), language);
-        }        
         
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
@@ -70,11 +64,8 @@ public class QuestionAddServlet extends HttpServlet {
                 // Question Text
                 List<QuestionText> questionTexts=(List<QuestionText>)request.getAttribute(RequestUtils.QUESTION_TEXTS);
                 for (QuestionText questionText: questionTexts) {
-                    Language language=(Language)languagesMap.get(questionText.getLanguageId());
                     String questionTextLanguageId="questionText_Language_" + questionText.getLanguageId();
-                    String questionTextLanguage=RequestUtils.getAlphaInput(request,questionTextLanguageId,language.getName(),true);
-                    questionText.setSurveyId(survey.getKey().getId());
-                    questionText.setLanguageId(language.getKey().getId());
+                    String questionTextLanguage=RequestUtils.getAlphaInput(request,questionTextLanguageId, questionText.getLanguage().getName(),true);
                     questionText.setText(questionTextLanguage);
                 }
 
@@ -136,6 +127,7 @@ public class QuestionAddServlet extends HttpServlet {
         for (Language language: languages) {
             QuestionText questionText=new QuestionText();
             questionText.setLanguage(language);
+            questionText.setLanguageId(language.getKey().getId());
             questionText.setText("");
             questionTexts.add(questionText);
         }
