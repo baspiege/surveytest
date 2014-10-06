@@ -4,6 +4,7 @@ import surveytest.data.AnswerSetGetAll;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionDelete;
 import surveytest.data.QuestionUpdate;
+import surveytest.data.QuestionTextAdd;
 import surveytest.data.QuestionTextDelete;
 import surveytest.data.QuestionTextUpdate;
 import surveytest.data.SurveyGetSingle;
@@ -16,7 +17,9 @@ import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,9 +46,17 @@ public class QuestionUpdateServlet extends HttpServlet {
         setUpData(request);
 
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
+        Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
         String action=RequestUtils.getAlphaInput(request,"action","Action",true);
-        ResourceBundle bundle = ResourceBundle.getBundle("Text");
-
+        ResourceBundle bundle = ResourceBundle.getBundle("Text");       
+        
+        // Language map
+        List<Language> languages=(List<Language>)request.getAttribute(RequestUtils.LANGUAGES);
+        Map languagesMap=new HashMap();
+        for (Language language: languages) {
+            languagesMap.put(language.getKey().getId(), language);
+        }
+        
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
             if (action.equals(bundle.getString("updateLabel"))) {		
@@ -57,17 +68,16 @@ public class QuestionUpdateServlet extends HttpServlet {
                 question.setAnswerSetId(answerSetId);
                 
                 // Question Text
-                List<QuestionText> questionTexts=new ArrayList<QuestionText>();
-                for (Language language: languages) {
-                    String questionTextLanguageId="questionText_Language_" + language.getKey().getId();
+                List<QuestionText> questionTexts=(List<QuestionText>)request.getAttribute(RequestUtils.QUESTION_TEXTS);
+                for (QuestionText questionText: questionTexts) {
+                    Language language=(Language)languagesMap.get(questionText.getLanguageId());
+                    String questionTextLanguageId="questionText_Language_" + questionText.getLanguageId();
                     String questionTextLanguage=RequestUtils.getAlphaInput(request,questionTextLanguageId,language.getName(),true);
-                    QuestionText questionText=new QuestionText();
                     questionText.setSurveyId(survey.getKey().getId());
                     questionText.setLanguageId(language.getKey().getId());
                     questionText.setText(questionTextLanguage);
-                    questionTexts.add(questionText);
                 }
-
+                
                 updateAction(request,response);
             } else if (action.equals(bundle.getString("deleteLabel"))) {		
                 deleteAction(request,response);
@@ -83,20 +93,18 @@ public class QuestionUpdateServlet extends HttpServlet {
     private void updateAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
-        QuestionText questionText=(Question)request.getAttribute(RequestUtils.QUESTION_TEXT);
+        List<QuestionText> questionTexts=(List<QuestionText>)request.getAttribute(RequestUtils.QUESTION_TEXTS);
         
         if (!RequestUtils.hasEdits(request)) {
             question=QuestionUpdate.execute(question);
-
-            // Delete old question texts
-            for (QuestionText questionText: questionTexts) {
-                QuestionTextDelete.execute(questionText);
-            }
             
-            // Add new question texts
             for (QuestionText questionText: questionTexts) {
-                questionText.setQuestionId(question.getKey().getId());
-                QuestionTextAdd.execute(questionText);
+                if (questionText.getQuestionId()>0) {
+                    QuestionTextUpdate.execute(questionText);
+                } else {
+                    questionText.setQuestionId(question.getKey().getId());
+                    QuestionTextAdd.execute(questionText);                
+                }
             }
         }
         // If no edits, forward to question.
@@ -113,7 +121,7 @@ public class QuestionUpdateServlet extends HttpServlet {
     */
     private void deleteAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
-        QuestionText questionTexts=(Question)request.getAttribute(RequestUtils.QUESTION_TEXT);
+        List<QuestionText> questionTexts=(List<QuestionText>)request.getAttribute(RequestUtils.QUESTION_TEXTS);
       
         if (!RequestUtils.hasEdits(request)) {
             QuestionDelete.execute(question);
