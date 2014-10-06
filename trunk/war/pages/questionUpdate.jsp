@@ -49,7 +49,7 @@
   
 </table>
 <p>
-<input id="surveyId" type="hidden" name="surveyId" value="<c:out value="${question.surveyId}"/>" />
+<input id="questionId" type="hidden" name="questionId" value="<c:out value="${question.key.id}"/>" />
 <input class="button" type="submit" style="display:none" id="updateButtonDisabled" disabled="disabled" value="<fmt:message key="updateLabel"/>"/>
 <input class="button" type="submit" style="display:inline" id="updateButtonEnabled" name="action" value="<fmt:message key="updateLabel"/>"/>
 <input class="button" type="submit" style="display:inline" id="deleteButtonEnabled" name="action" value="<fmt:message key="deleteLabel"/>"/>
