@@ -14,7 +14,6 @@
 <ul id="navlist">
 <li><a href="/surveys"><fmt:message key="mainLabel"/></a></li>
 <li><a href="/survey?surveyId=<c:out value="${survey.key.id}"/>"><c:out value="${survey.name}"/></a></li>
-<li><c:out value="${answerSet.description}"/></li>
 </ul>
 </nav>
 
@@ -25,7 +24,7 @@
 <table>
 <tr>
   <td>
-    <fmt:message key="descriptionLabel"/>
+    <fmt:message key="answerSetLabel"/>
   </td>
   <td>
     <c:out value="${answerSet.description}"/>
