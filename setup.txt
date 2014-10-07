@@ -1,0 +1,37 @@
+
+******************
+Initial set-up
+******************
+
+1. Download GAE SDK 1.9.9 and extract to:
+C:\dev\appengine-java-sdk-1.9.9
+
+2. Download Java 7.
+
+3. Download code from Google Code hosting to C:\dev\surveyTest
+
+See https://code.google.com/p/surveytest/source/checkout
+
+4. Update Java version in files in C:\dev\surveyTest\bin\ as needed.
+
+******************
+Local development
+******************
+
+1. To build, run:
+C:\dev\surveyTest\bin\compile.cmd
+
+2. To start the site, run:
+C:\dev\surveyTest\bin\run.bat
+
+3. To test, use URL:
+http://127.0.0.1:8080/
+
+
+******************
+Future enhancements
+******************
+
+1. Use Ant to build - https://cloud.google.com/appengine/docs/java/tools/ant
+
+2. Use Eclipse tools to build.
