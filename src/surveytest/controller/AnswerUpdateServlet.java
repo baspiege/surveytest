@@ -121,8 +121,8 @@ public class AnswerUpdateServlet extends HttpServlet {
         }
         
         if (!RequestUtils.hasEdits(request)) {
-            request.setAttribute("surveyId",answer.getSurveyId());
-            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
+            request.setAttribute("answerSetId",answer.getAnswerSetId());
+            RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_SET_REDIRECT);
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_UPDATE);
         }

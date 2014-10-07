@@ -1,7 +1,6 @@
 TODO
 
 Next:
-* Delete, edit: answer  (do controller)
 * Delete, edit: survey (can't if there are languages, answer sets, or questions)
 * Delete, edit: answer set (can't if there are answers)
 

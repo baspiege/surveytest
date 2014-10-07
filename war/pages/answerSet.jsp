@@ -20,12 +20,8 @@
 
 <jsp:include page="/pages/components/edits.jsp"/>
 
-<section>
-
-<a href="/answerSetUpdate?answerSetId=<c:out value="${answerSet.key.id}"/>" class="edit" id="answerSetEditLink"><fmt:message key="editLabel"/></a> 
-
-<%--
 <section class="data">
+<a href="/answerSetUpdate?answerSetId=<c:out value="${answerSet.key.id}"/>" class="edit" id="answerSetEditLink"><fmt:message key="editLabel"/></a> 
 <table>
 <tr>
   <td>
@@ -37,7 +33,6 @@
 </tr>
 </table>
 </section>
---%>
 
 <section class="data">
 <fmt:message key="answersLabel"/> <a class="add" href="/answerAdd?answerSetId=<c:out value="${answerSet.key.id}"/>"><fmt:message key="addLabel"/></a>
