@@ -1,0 +1,25 @@
+TODO
+
+Next:
+* Delete, edit: answer  (do controller)
+* Delete, edit: survey (can't if there are languages, answer sets, or questions)
+* Delete, edit: answer set (can't if there are answers)
+
+Taking survey
+* Capture survey identifier when survey starts (phone number)
+* Add checks to make sure all questions answered
+* Show reward
+
+Ordering/Sorting
+* Order questions, answers
+* Sort items on survey page
+* Sort surveys on surveys page
+
+Admins
+* Restrict survey creation to admins
+* Add history for question, answer, answer set, language, survey (not needed)
+* Add 'update by' and 'last updated time'
+* Delete language (delete question text and answer text?)
+
+Other
+* Clean up code
