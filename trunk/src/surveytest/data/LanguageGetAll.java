@@ -11,7 +11,7 @@ import javax.jdo.Query;
  */
 public class LanguageGetAll {
 
-    public static List<Language> execute(Long aSurveyId, Long aStart, String aSortBy) {
+    public static List<Language> execute(Long aSurveyId, String aSortBy) {
         PersistenceManager pm=null;
         List<Language> results=null;
         try {
@@ -26,8 +26,6 @@ public class LanguageGetAll {
                 // if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
                 //    query.setOrdering("noteLowerCase ASC");
                 //}
-
-                //query.setRange(aStart, aStart+10);
 
                 results = (List<Language>) query.execute(aSurveyId);
 

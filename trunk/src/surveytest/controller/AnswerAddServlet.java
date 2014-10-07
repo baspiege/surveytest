@@ -117,7 +117,7 @@ public class AnswerAddServlet extends HttpServlet {
         request.setAttribute(RequestUtils.ANSWER, answer);
 
         // Get languages
-        List<Language> languages=LanguageGetAll.execute(answer.getSurveyId(), 0L, null);
+        List<Language> languages=LanguageGetAll.execute(answer.getSurveyId(), null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
 
         // Answer Texts

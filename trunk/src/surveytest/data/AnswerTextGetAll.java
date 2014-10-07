@@ -9,7 +9,7 @@ import javax.jdo.Query;
 
 public class AnswerTextGetAll {
 
-    public static List<AnswerText> execute(Long aAnswerId, Long aStart, String aSortBy) {
+    public static List<AnswerText> execute(Long aAnswerId, String aSortBy) {
         PersistenceManager pm=null;
         List<AnswerText> results=null;
         try {
@@ -24,8 +24,6 @@ public class AnswerTextGetAll {
                 // if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
                 //    query.setOrdering("noteLowerCase ASC");
                 //}
-
-                //query.setRange(aStart, aStart+10);
 
                 results = (List<AnswerText>) query.execute(aAnswerId);
 
@@ -44,7 +42,7 @@ public class AnswerTextGetAll {
         return results;
     }
     
-    public static List<AnswerText> executeBySurveyId(Long aSurveyId, Long aStart, String aSortBy) {
+    public static List<AnswerText> executeBySurveyId(Long aSurveyId, String aSortBy) {
         PersistenceManager pm=null;
         List<AnswerText> results=null;
         try {
@@ -59,8 +57,6 @@ public class AnswerTextGetAll {
                 // if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
                 //    query.setOrdering("noteLowerCase ASC");
                 //}
-
-                //query.setRange(aStart, aStart+10);
 
                 results = (List<AnswerText>) query.execute(aSurveyId);
 

@@ -51,15 +51,15 @@ public class SurveyServlet extends HttpServlet {
         }
         
         // Get languages
-        List<Language> languages=LanguageGetAll.execute(surveyId, 0L, null);
+        List<Language> languages=LanguageGetAll.execute(surveyId, null);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
         
         // Get questions
-        List<Question> questions=QuestionGetAll.execute(surveyId, 0L, null);
+        List<Question> questions=QuestionGetAll.execute(surveyId, null);
         request.setAttribute(RequestUtils.QUESTIONS, questions);
         
         // Get answers sets
-        List<AnswerSet> answerSets=AnswerSetGetAll.execute(surveyId, 0L, null);
+        List<AnswerSet> answerSets=AnswerSetGetAll.execute(surveyId, null);
         request.setAttribute(RequestUtils.ANSWER_SETS, answerSets);
     }
 }
