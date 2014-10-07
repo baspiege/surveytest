@@ -10,7 +10,7 @@
 <body onunload="">
 <jsp:include page="/pages/components/edits.jsp"/>
 <%-- Fields --%>
-<form id="answer" method="post" action="answerAdd" autocomplete="off">
+<form id="answer" method="post" action="answerUpdate" autocomplete="off">
 <table>
   <tr>
     <td>

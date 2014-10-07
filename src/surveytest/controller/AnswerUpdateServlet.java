@@ -59,9 +59,6 @@ public class AnswerUpdateServlet extends HttpServlet {
                 String description=RequestUtils.getAlphaInput(request,"description",bundle.getString("descriptionLabel"),true);
                 answer.setText(description);
                 
-                Long answerSetId=RequestUtils.getNumericInput(request,"answerSetId",bundle.getString("answerSetLabel"),true);
-                answer.setAnswerSetId(answerSetId);
-                
                 // Answer Text
                 List<AnswerText> answerTexts=(List<AnswerText>)request.getAttribute(RequestUtils.ANSWER_TEXTS);
                 for (AnswerText answerText: answerTexts) {

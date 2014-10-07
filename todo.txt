@@ -23,3 +23,4 @@ Admins
 
 Other
 * Clean up code
+* Build using Ant or Eclipse.  See setup.txt

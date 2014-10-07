@@ -55,16 +55,11 @@ public class AnswerAddServlet extends HttpServlet {
                 answer.setText(description);
 
                 // Text
-                List<AnswerText> answerTexts=new ArrayList<AnswerText>();
-                for (Language language: languages) {
-                    String answerTextLanguageId="answerText_Language_" + language.getKey().getId();
-                    String answerTextLanguage=RequestUtils.getAlphaInput(request,answerTextLanguageId,language.getName(),true);
-                    AnswerText answerText=new AnswerText();
-                    answerText.setAnswerSetId(answerSet.getKey().getId());
-                    answerText.setLanguageId(language.getKey().getId());
-                    answerText.setSurveyId(answer.getSurveyId());
+                List<AnswerText> answerTexts=(List<AnswerText>)request.getAttribute(RequestUtils.ANSWER_TEXTS);                
+                for (AnswerText answerText: answerTexts) {
+                    String answerTextLanguageId="answerText_Language_" + answerText.getLanguageId();
+                    String answerTextLanguage=RequestUtils.getAlphaInput(request,answerTextLanguageId, answerText.getLanguage().getName(),true);
                     answerText.setText(answerTextLanguage);
-                    answerTexts.add(answerText);
                 }
 
                 if (!RequestUtils.hasEdits(request)) {
@@ -99,7 +94,7 @@ public class AnswerAddServlet extends HttpServlet {
 //            throw new SecurityException("User principal not found");
 //        }
 
-        // Check anwer set
+        // Check answer set
         Long answerSetId=RequestUtils.getNumericInput(request,"answerSetId","answerSetId",true);
         AnswerSet answerSet=null;
         if (answerSetId!=null) {
@@ -124,6 +119,8 @@ public class AnswerAddServlet extends HttpServlet {
         List<AnswerText> answerTexts=new ArrayList<AnswerText>();
         for (Language language: languages) {
             AnswerText answerText=new AnswerText();
+            answerText.setSurveyId(answer.getSurveyId());
+            answerText.setLanguageId(language.getKey().getId());
             answerText.setLanguage(language);
             answerText.setText("");
             answerTexts.add(answerText);
