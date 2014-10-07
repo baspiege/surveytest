@@ -16,11 +16,10 @@ public class SurveyGetAll {
     /**
      * Get surveys.
      *
-     * @param aStart starting position
      * @param aSortBy sort by
      * @since 1.0
      */
-    public static List<Survey> execute(Long aStart, String aSortBy) {
+    public static List<Survey> execute(String aSortBy) {
         PersistenceManager pm=null;
         List<Survey> results=null;
         try {
@@ -33,9 +32,6 @@ public class SurveyGetAll {
                 if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
                     query.setOrdering("name ASC");
                 }
-
-                // TODO - Update if needed
-                //query.setRange(aStart, aStart+10);
 
                 results = (List<Survey>) query.execute();
 

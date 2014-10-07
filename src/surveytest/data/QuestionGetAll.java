@@ -17,11 +17,10 @@ public class QuestionGetAll {
      * Get question.
      *
      * @param aSurveyId
-     * @param aStart starting position
      * @param aSortBy sort by
      * @since 1.0
      */
-    public static List<Question> execute(Long aSurveyId, Long aStart, String aSortBy) {
+    public static List<Question> execute(Long aSurveyId, String aSortBy) {
         PersistenceManager pm=null;
         List<Question> results=null;
         try {
@@ -36,8 +35,6 @@ public class QuestionGetAll {
                 // if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
                 //    query.setOrdering("noteLowerCase ASC");
                 //}
-
-                //query.setRange(aStart, aStart+10);
 
                 results = (List<Question>) query.execute(aSurveyId);
 

@@ -8,7 +8,7 @@ import javax.jdo.Query;
 
 public class AnswerSetGetAll {
 
-    public static List<AnswerSet> execute(Long aSurveyId, Long aStart, String aSortBy) {
+    public static List<AnswerSet> execute(Long aSurveyId, String aSortBy) {
         PersistenceManager pm=null;
         List<AnswerSet> results=null;
         try {
@@ -23,8 +23,6 @@ public class AnswerSetGetAll {
                 if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
                     query.setOrdering("descriptionLowerCase ASC");
                 }
-
-                //query.setRange(aStart, aStart+10);
 
                 results = (List<AnswerSet>) query.execute(aSurveyId);
 

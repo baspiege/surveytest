@@ -36,6 +36,7 @@ public class ControllerConstants {
     // Answers
     public static String ANSWER="/pages/answer.jsp";
     public static String ANSWER_ADD="/pages/answerAdd.jsp";
+    public static String ANSWER_UPDATE="/pages/answerUpdate.jsp";
     
     // Survey Response
     public static String SURVEY_RESPONSE="/pages/surveyResponse.jsp";
