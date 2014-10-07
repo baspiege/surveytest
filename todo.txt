@@ -1,13 +1,14 @@
 TODO
 
 Next:
-* Delete, edit: survey (can't if there are languages, answer sets, or questions)
-* Delete, edit: answer set (can't if there are answers)
+* Delete, edit: survey (can't delete if there are languages, answer sets, or questions)
+* Delete, edit: answer set (can't delete if there are answers)
 
 Taking survey
-* Capture survey identifier when survey starts (phone number)
+* Capture survey identifier when survey starts (e.g. phone number)
 * Add checks to make sure all questions answered
-* Show reward
+* Show reward - Create unique id per reward?
+* Add way to add rewards (for admins) 
 
 Ordering/Sorting
 * Order questions, answers
