@@ -11,15 +11,14 @@ Taking survey
 
 Ordering/Sorting
 * Order questions, answers
-* Sort items on survey page
+* Sort items (languages, answer sets) on survey page
 * Sort surveys on surveys page
 
 Admins
-* Restrict survey creation to admins
+* Restrict survey creation to admins (Google login)
 * Add history for question, answer, answer set, language, survey (not needed)
 * Add 'update by' and 'last updated time'
 * Delete language (delete question text and answer text?)
 
 Other
-* Clean up code
 * Build using Ant or Eclipse.  See setup.txt
