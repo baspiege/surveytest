@@ -14,17 +14,20 @@ public class ControllerConstants {
     public static String SURVEY_RESPONSE_REDIRECT="/redirects/surveyResponse.jsp";
     public static String SURVEY_CONFIRMATION_REDIRECT="/redirects/surveyConfirmation.jsp";
     
-    // Surveys page
+    // Surveys
     public static String SURVEYS="/pages/surveys.jsp";    
+    
+    // Survey
     public static String SURVEY="/pages/survey.jsp";
     public static String SURVEY_ADD="/pages/surveyAdd.jsp";
+    public static String SURVEY_UPDATE="/pages/surveyUpdate.jsp";
     
     // Language
     public static String LANGUAGE="/pages/language.jsp";
     public static String LANGUAGE_ADD="/pages/languageAdd.jsp";
     public static String LANGUAGE_UPDATE="/pages/languageUpdate.jsp";
     
-    // Question pages
+    // Question
     public static String QUESTION="/pages/question.jsp";
     public static String QUESTION_ADD="/pages/questionAdd.jsp";
     public static String QUESTION_UPDATE="/pages/questionUpdate.jsp";
