@@ -25,8 +25,6 @@ public class LanguageUpdate {
                 language.setIdentifierText(aLanguage.getIdentifierText());
                 language.setLastUpdateTime(new Date());
             }
-
-            pm.makePersistent(aLanguage);
         } finally {
             if (pm!=null) {
                 pm.close();
