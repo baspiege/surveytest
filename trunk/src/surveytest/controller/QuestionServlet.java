@@ -68,7 +68,7 @@ public class QuestionServlet extends HttpServlet {
         }
         request.setAttribute(RequestUtils.ANSWER_SET, answerSet);
         
-        List<Language> languages=LanguageGetAll.execute(question.getSurveyId(), null);
+        List<Language> languages=LanguageGetAll.execute(question.getSurveyId());
         request.setAttribute(RequestUtils.LANGUAGES, languages);
 
         Map languagesMap=new HashMap();

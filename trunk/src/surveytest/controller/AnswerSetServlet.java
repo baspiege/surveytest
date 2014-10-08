@@ -44,7 +44,7 @@ public class AnswerSetServlet extends HttpServlet {
             request.setAttribute(RequestUtils.ANSWER_SET, answerSet);
         }
         
-        List<Answer> answers=AnswerGetAll.execute(answerSetId, null);
+        List<Answer> answers=AnswerGetAll.execute(answerSetId);
         request.setAttribute(RequestUtils.ANSWERS, answers);
         
         Survey survey=SurveyGetSingle.execute(answerSet.getSurveyId());

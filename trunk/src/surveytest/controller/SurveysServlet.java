@@ -32,7 +32,7 @@ public class SurveysServlet extends HttpServlet {
     }
 
     private void setUpData(HttpServletRequest request) {
-        List<Survey> surveys=new SurveyGetAll().execute(null);        
+        List<Survey> surveys=new SurveyGetAll().execute();        
         request.setAttribute(RequestUtils.SURVEYS,surveys);
     }
 }

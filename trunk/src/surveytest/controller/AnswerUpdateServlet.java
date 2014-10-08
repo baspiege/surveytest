@@ -145,11 +145,11 @@ public class AnswerUpdateServlet extends HttpServlet {
         request.setAttribute(RequestUtils.SURVEY, survey);
 
         // Get languages
-        List<Language> languages=LanguageGetAll.execute(survey.getKey().getId(), null);
+        List<Language> languages=LanguageGetAll.execute(survey.getKey().getId());
         request.setAttribute(RequestUtils.LANGUAGES, languages);
                 
         // Answer Texts
-        List<AnswerText> answerTexts=AnswerTextGetAll.execute(answerId, null);
+        List<AnswerText> answerTexts=AnswerTextGetAll.execute(answerId);
         request.setAttribute(RequestUtils.ANSWER_TEXTS, answerTexts);
 
         Map answerTextMap=new HashMap();
@@ -175,7 +175,7 @@ public class AnswerUpdateServlet extends HttpServlet {
         request.setAttribute(RequestUtils.ANSWER_TEXTS, answerTexts);
         
         // Get answers sets
-        List<AnswerSet> answerSets=AnswerSetGetAll.execute(survey.getKey().getId(), null);
+        List<AnswerSet> answerSets=AnswerSetGetAll.execute(survey.getKey().getId());
         request.setAttribute(RequestUtils.ANSWER_SETS, answerSets);
     }
 }

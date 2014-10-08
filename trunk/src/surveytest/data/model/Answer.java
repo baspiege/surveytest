@@ -25,6 +25,9 @@ public class Answer implements Serializable {
     private String text;
     
     @Persistent
+    private String textLowerCase;
+    
+    @Persistent
     private long surveyId;
     
     @Persistent
@@ -47,6 +50,7 @@ public class Answer implements Serializable {
 
     public void setText(String aText) {
         text=aText;
+        textLowerCase=aText.toLowerCase();
     }
     
     public long getSurveyId() {

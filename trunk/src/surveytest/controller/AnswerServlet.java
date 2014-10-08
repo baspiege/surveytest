@@ -55,13 +55,13 @@ public class AnswerServlet extends HttpServlet {
         AnswerSet answerSet=AnswerSetGetSingle.execute(answer.getAnswerSetId());
         request.setAttribute(RequestUtils.ANSWER_SET, answerSet);
         
-        List<AnswerText> answerTexts=AnswerTextGetAll.execute(answerId, null);
+        List<AnswerText> answerTexts=AnswerTextGetAll.execute(answerId);
         request.setAttribute(RequestUtils.ANSWER_TEXTS, answerTexts);
         
         Survey survey=SurveyGetSingle.execute(answer.getSurveyId());
         request.setAttribute(RequestUtils.SURVEY, survey);
         
-        List<Language> languages=LanguageGetAll.execute(answer.getSurveyId(), null);
+        List<Language> languages=LanguageGetAll.execute(answer.getSurveyId());
         request.setAttribute(RequestUtils.LANGUAGES, languages);
 
         Map languagesMap=new HashMap();

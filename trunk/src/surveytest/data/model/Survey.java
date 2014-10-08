@@ -20,6 +20,9 @@ public class Survey implements Serializable {
 
     @Persistent
     private String name;	
+    
+    @Persistent
+    private String nameLowerCase;
 
     public Survey() {
     }
@@ -34,5 +37,6 @@ public class Survey implements Serializable {
 
     public void setName(String aName) {
         name=aName;
+        nameLowerCase=aName.toLowerCase();
     }
 }
