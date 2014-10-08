@@ -18,7 +18,7 @@
 
 <jsp:include page="/pages/components/edits.jsp"/>
 
-<form id="surveyLanguage" method="post" action="surveyLanguage" autocomplete="off">
+<form method="post" action="surveyLanguage" autocomplete="off">
 
 <section>
 <ul class="noListMarkers">

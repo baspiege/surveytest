@@ -10,8 +10,7 @@
 </head>
 <body onunload="">
 <jsp:include page="/pages/components/edits.jsp"/>
-<%-- Fields --%>
-<form id="language" method="post" action="languageAdd" autocomplete="off">
+<form method="post" action="languageAdd" autocomplete="off">
 <table>
   <tr>
     <td><fmt:message key="nameLabel"/></td>

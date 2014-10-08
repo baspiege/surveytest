@@ -6,21 +6,8 @@ import javax.jdo.PersistenceManager;
 
 import surveytest.data.model.Answer;
 
-/**
- * Update an answer.
- *
- * @author Brian Spiegel
- */
 public class AnswerUpdate {
 
-    /**
-     * Update an answer.
-     *
-     * @param aAnswer answer
-     * @return an updated answer
-     *
-     * @since 1.0
-     */
     public static Answer execute(Answer aAnswer) {
 
         Answer answer=null;

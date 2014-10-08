@@ -4,36 +4,16 @@
 <%@ page isELIgnored="false" %>
 <jsp:include page="/pages/components/htmlStartNoCache.jsp" />
 <fmt:bundle basename="Text">
-<title><fmt:message key="updateAnswerLabel"/></title>
+<title><fmt:message key="updateSurveyLabel"/></title>
 <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 </head>
 <body onunload="">
 <jsp:include page="/pages/components/edits.jsp"/>
-<form method="post" action="answerUpdate" autocomplete="off">
+<form method="post" action="surveyUpdate" autocomplete="off">
 <table>
-  <tr>
-    <td>
-      <fmt:message key="descriptionLabel"/>
-    </td>
-    <td>
-      <textarea name="description" title="<fmt:message key="descriptionLabel"/>" maxlength="500"/><c:out value="${answer.text}"/></textarea>
-    </td>
-  </tr>
-
-  <c:forEach var="answerText" items="${answerTexts}">
-    <tr>
-      <td>
-        <c:out value="${answerText.language.name}"/>
-      </td>
-      <td>
-        <textarea name="answerText_Language_<c:out value="${answerText.language.key.id}"/>" title="<fmt:message key="descriptionLabel"/>" maxlength="500"/><c:out value="${answerText.text}"/></textarea>
-      </td>
-    </tr>
-  </c:forEach>
-  
+<tr><td><fmt:message key="nameLabel"/></td><td><input type="text" name="name" value="<c:out value="${survey.name}"/>" id="name" title="<fmt:message key="nameLabel"/>" maxlength="500"/></td></tr>
 </table>
 <p>
-<input id="answerId" type="hidden" name="answerId" value="<c:out value="${answer.key.id}"/>" />
 <input class="button" type="submit" style="display:none" id="updateButtonDisabled" disabled="disabled" value="<fmt:message key="updateLabel"/>"/>
 <input class="button" type="submit" style="display:inline" id="updateButtonEnabled" name="action" value="<fmt:message key="updateLabel"/>"/>
 <input class="button" type="submit" style="display:inline" id="deleteButtonEnabled" name="action" value="<fmt:message key="deleteLabel"/>"/>
@@ -42,5 +22,5 @@
 <jsp:include page="/pages/components/footer.jsp"/>
 </body>
 </fmt:bundle>
-<script type="text/javascript" src="/js/answerUpdate.js" ></script>
+<script type="text/javascript" src="/js/surveyUpdate.js" ></script>
 </html>

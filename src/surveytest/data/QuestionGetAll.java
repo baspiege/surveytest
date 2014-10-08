@@ -6,20 +6,8 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-/**
- * Get questions.
- *
- * @author Brian Spiegel
- */
 public class QuestionGetAll {
 
-    /**
-     * Get question.
-     *
-     * @param aSurveyId
-     * @param aSortBy sort by
-     * @since 1.0
-     */
     public static List<Question> execute(Long aSurveyId, String aSortBy) {
         PersistenceManager pm=null;
         List<Question> results=null;
