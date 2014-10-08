@@ -17,9 +17,6 @@ public class SurveyAdd {
             // Save
             pm.makePersistent(aSurvey);
             
-            // History
-            // SurveyHistory surveyHistory=new SurveyHistory(aSurvey);
-            //pm.makePersistent(surveyHistory);
         } finally {
             if (pm!=null) {
                 pm.close();

@@ -17,9 +17,6 @@ public class AnswerTextAdd {
             // Save
             pm.makePersistent(aAnswerText);
             
-            // History
-            //AnswerTextHistory questionTextHistory=new AnswerTextHistory(aAnswerText);
-            //pm.makePersistent(questionTextHistory);
         } finally {
             if (pm!=null) {
                 pm.close();
