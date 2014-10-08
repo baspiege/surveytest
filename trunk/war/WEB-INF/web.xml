@@ -36,6 +36,14 @@
       <servlet-name>surveyAdd</servlet-name>
       <url-pattern>/surveyAdd</url-pattern>
     </servlet-mapping>
+    <servlet>
+      <servlet-name>surveyUpdate</servlet-name>
+      <servlet-class>surveytest.controller.SurveyUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>surveyUpdate</servlet-name>
+      <url-pattern>/surveyUpdate</url-pattern>
+    </servlet-mapping>
 
     <!-- Language -->
     <servlet>
@@ -133,7 +141,7 @@
       <url-pattern>/answerUpdate</url-pattern>
     </servlet-mapping>    
     
-    <!-- Survey Actions -->
+    <!-- User Survey Actions -->
     <servlet>
       <servlet-name>surveyLanguage</servlet-name>
       <servlet-class>surveytest.controller.SurveyLanguageServlet</servlet-class>

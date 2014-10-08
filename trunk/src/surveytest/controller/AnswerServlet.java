@@ -40,9 +40,6 @@ public class AnswerServlet extends HttpServlet {
         RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
     }
 
-    /**
-    * Set-up the data.
-    */
     private void setUpData(HttpServletRequest request) {
 
         // Get answer

@@ -34,9 +34,6 @@ public class SurveyServlet extends HttpServlet {
         RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY);
     }
 
-    /**
-    * Set-up the data.
-    */
     private void setUpData(HttpServletRequest request) {
 
         // Check survey
