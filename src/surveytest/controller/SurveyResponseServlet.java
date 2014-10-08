@@ -119,9 +119,6 @@ public class SurveyResponseServlet extends HttpServlet {
     
     }
 
-    /**
-    * Set-up the data.
-    */
     private void setUpData(HttpServletRequest request) {
     
         SurveyResponse surveyResponse=new SurveyResponse();

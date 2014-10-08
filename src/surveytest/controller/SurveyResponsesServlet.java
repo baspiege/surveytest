@@ -37,9 +37,6 @@ public class SurveyResponsesServlet extends HttpServlet {
     
     }
 
-    /**
-    * Set-up the data.
-    */
     private void setUpData(HttpServletRequest request) {
                 
         // Check survey

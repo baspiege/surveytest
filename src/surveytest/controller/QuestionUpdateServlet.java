@@ -79,9 +79,6 @@ public class QuestionUpdateServlet extends HttpServlet {
         }
     }
 
-    /**
-    * Update action.
-    */
     private void updateAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
@@ -108,10 +105,7 @@ public class QuestionUpdateServlet extends HttpServlet {
         }
     }
 
-    /**
-    * Delete action.
-    */
-    private void deleteAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+-    private void deleteAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
         List<QuestionText> questionTexts=(List<QuestionText>)request.getAttribute(RequestUtils.QUESTION_TEXTS);
       
@@ -130,10 +124,7 @@ public class QuestionUpdateServlet extends HttpServlet {
             RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_UPDATE);
         }
     }
-
-    /**
-    * Set-up the data.
-    */
+`
     private void setUpData(HttpServletRequest request) {
 
         // Check if signed in

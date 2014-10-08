@@ -33,9 +33,6 @@ public class AnswerSetServlet extends HttpServlet {
         RequestUtils.forwardTo(request,response,ControllerConstants.SURVEYS_REDIRECT);
     }
 
-    /**
-    * Set-up the data.
-    */
     private void setUpData(HttpServletRequest request) {
 
         // Get AnswerSet

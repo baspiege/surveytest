@@ -83,9 +83,6 @@ public class AnswerAddServlet extends HttpServlet {
         }
     }
 
-    /**
-    * Set-up the data.
-    */
     private void setUpData(HttpServletRequest request) {
 
         // Check if signed in

@@ -76,9 +76,6 @@ public class AnswerUpdateServlet extends HttpServlet {
         }
     }
 
-    /**
-    * Update action.
-    */
     private void updateAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Answer answer=(Answer)request.getAttribute(RequestUtils.ANSWER);
@@ -105,9 +102,6 @@ public class AnswerUpdateServlet extends HttpServlet {
         }
     }
 
-    /**
-    * Delete action.
-    */
     private void deleteAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Answer answer=(Answer)request.getAttribute(RequestUtils.ANSWER);
         List<AnswerText> answerTexts=(List<AnswerText>)request.getAttribute(RequestUtils.ANSWER_TEXTS);
@@ -128,9 +122,6 @@ public class AnswerUpdateServlet extends HttpServlet {
         }
     }
 
-    /**
-    * Set-up the data.
-    */
     private void setUpData(HttpServletRequest request) {
 
         // Check if signed in
