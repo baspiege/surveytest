@@ -20,7 +20,7 @@ public class AnswerGetAll {
                 query.declareParameters("long answerSetIdParam");
 
                 // Sorting
-                query.setOrdering("descriptionLowerCase ASC");
+                query.setOrdering("textLowerCase ASC");
 
                 results = (List<Answer>) query.execute(aAnswerSetId);
 
@@ -51,7 +51,7 @@ public class AnswerGetAll {
                 query.declareParameters("long surveyIdParam");
 
                 // Sorting
-                query.setOrdering("descriptionLowerCase ASC");
+                query.setOrdering("textLowerCase ASC");
 
                 results = (List<Answer>) query.execute(aSurveyId);
 
