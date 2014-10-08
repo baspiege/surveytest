@@ -1,7 +1,6 @@
 TODO
 
 Next:
-* Delete, edit: survey (can't delete if there are languages, answer sets, or questions)
 * Delete, edit: answer set (can't delete if there are answers)
 
 Taking survey

@@ -64,6 +64,8 @@ public class SurveyUpdateServlet extends HttpServlet {
 
         Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
 
+        survey=SurveyUpdate.execute(survey);
+        
         // If no edits, forward to question.
         if (!RequestUtils.hasEdits(request)) {
             request.setAttribute("surveyId",survey.getKey().getId());
