@@ -5,20 +5,8 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-/**
- * Get language.
- *
- * @author Brian Spiegel
- */
 public class LanguageGetSingle {
 
-    /**
-     * Get language.
-     *
-     * @param aLanguageId language Id
-     * @return a language
-     * @since 1.0
-     */
     public static Language execute(Long aLanguageId) {
         PersistenceManager pm=null;
         Language language=null;

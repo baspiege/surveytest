@@ -6,19 +6,8 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-/**
- * Get surveys.
- *
- * @author Brian Spiegel
- */
 public class SurveyGetAll {
 
-    /**
-     * Get surveys.
-     *
-     * @param aSortBy sort by
-     * @since 1.0
-     */
     public static List<Survey> execute(String aSortBy) {
         PersistenceManager pm=null;
         List<Survey> results=null;

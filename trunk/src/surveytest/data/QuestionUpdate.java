@@ -7,21 +7,8 @@ import javax.jdo.PersistenceManager;
 import surveytest.data.model.Question;
 import surveytest.data.model.QuestionHistory;
 
-/**
- * Update a question.
- *
- * @author Brian Spiegel
- */
 public class QuestionUpdate {
 
-    /**
-     * Update a question.
-     *
-     * @param aQuestion question
-     * @return an updated question
-     *
-     * @since 1.0
-     */
     public static Question execute(Question aQuestion) {
 
         Question question=null;

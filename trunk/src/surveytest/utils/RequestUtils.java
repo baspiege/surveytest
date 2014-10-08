@@ -11,11 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Request utilities.
- *
- * @author Brian Spiegel
- */
+
 public class RequestUtils {
 
     public static String EDITS="edits";
@@ -212,17 +208,4 @@ public class RequestUtils {
         aResponse.setHeader("Pragma","no-cache");
         aResponse.setDateHeader ("Expires", -1);
     }
-
-    /**
-    * Set cache headers.
-    *
-    * @param aResponse Servlet Response
-    */
-    public static void setCacheHeaders(HttpServletResponse aResponse, int days) {
-        long cacheInSeconds = 60 * 60 * 24 * days;        
-        long now = System.currentTimeMillis();
-        aResponse.addHeader("Cache-Control", "max-age=" + cacheInSeconds);
-        aResponse.setDateHeader("Last-Modified", now);
-        aResponse.setDateHeader("Expires", now + cacheInSeconds * 1000);
-    }    
 }

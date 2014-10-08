@@ -5,13 +5,12 @@
 <%@ page isELIgnored="false" %>
 <jsp:include page="/pages/components/htmlStartNoCache.jsp" />
 <fmt:bundle basename="Text">
-<title><fmt:message key="surveyLabel"/></title>
+<title><fmt:message key="addSurveyLabel"/></title>
 <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 </head>
 <body onunload="">
 <jsp:include page="/pages/components/edits.jsp"/>
-<%-- Fields --%>
-<form id="question" method="post" action="surveyAdd" autocomplete="off">
+<form method="post" action="surveyAdd" autocomplete="off">
 <table>
 <tr><td><fmt:message key="nameLabel"/></td><td><input type="text" name="name" value="<c:out value="${survey.name}"/>" id="name" title="<fmt:message key="nameLabel"/>" maxlength="500"/></td></tr>
 </table>

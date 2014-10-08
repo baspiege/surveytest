@@ -18,7 +18,7 @@
 
 <jsp:include page="/pages/components/edits.jsp"/>
 
-<form id="surveyReponse" method="post" action="surveyResponse" autocomplete="off">
+<form method="post" action="surveyResponse" autocomplete="off">
 
 <section class="data">
 
