@@ -11,8 +11,6 @@ Taking survey
 
 Ordering/Sorting
 * Order questions, answers
-* Sort items (languages, answer sets) on survey page
-* Sort surveys on surveys page
 
 Admins
 * Restrict survey creation to admins (Google login)
