@@ -8,7 +8,7 @@ import javax.jdo.Query;
 
 public class SurveyGetAll {
 
-    public static List<Survey> execute(String aSortBy) {
+    public static List<Survey> execute() {
         PersistenceManager pm=null;
         List<Survey> results=null;
         try {
@@ -18,9 +18,7 @@ public class SurveyGetAll {
                 query = pm.newQuery(Survey.class);
 
                 // Sorting
-                if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
-                    query.setOrdering("name ASC");
-                }
+                query.setOrdering("nameLowerCase ASC");
 
                 results = (List<Survey>) query.execute();
 

@@ -23,6 +23,9 @@ public class QuestionHistory implements Serializable {
 
     @Persistent
     private String text;
+    
+    @Persistent
+    private String textLowerCase;
 
     public QuestionHistory() {
     }
@@ -42,6 +45,7 @@ public class QuestionHistory implements Serializable {
 
     public void setText(String aText) {
         text=aText;
+        textLowerCase=aText.toLowerCase();
     }
 
 }

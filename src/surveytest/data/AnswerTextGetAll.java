@@ -9,7 +9,7 @@ import javax.jdo.Query;
 
 public class AnswerTextGetAll {
 
-    public static List<AnswerText> execute(Long aAnswerId, String aSortBy) {
+    public static List<AnswerText> execute(Long aAnswerId) {
         PersistenceManager pm=null;
         List<AnswerText> results=null;
         try {
@@ -19,11 +19,6 @@ public class AnswerTextGetAll {
                 query = pm.newQuery(AnswerText.class);
                 query.setFilter("answerId==answerIdParam");
                 query.declareParameters("long answerIdParam");
-
-                // Sorting
-                // if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
-                //    query.setOrdering("noteLowerCase ASC");
-                //}
 
                 results = (List<AnswerText>) query.execute(aAnswerId);
 
@@ -42,7 +37,7 @@ public class AnswerTextGetAll {
         return results;
     }
     
-    public static List<AnswerText> executeBySurveyId(Long aSurveyId, String aSortBy) {
+    public static List<AnswerText> executeBySurveyId(Long aSurveyId) {
         PersistenceManager pm=null;
         List<AnswerText> results=null;
         try {
@@ -52,11 +47,6 @@ public class AnswerTextGetAll {
                 query = pm.newQuery(AnswerText.class);
                 query.setFilter("surveyId==surveyIdParam");
                 query.declareParameters("long surveyIdParam");
-
-                // Sorting
-                // if (aSortBy==null || aSortBy.equalsIgnoreCase("name")){
-                //    query.setOrdering("noteLowerCase ASC");
-                //}
 
                 results = (List<AnswerText>) query.execute(aSurveyId);
 

@@ -23,6 +23,9 @@ public class Language implements Serializable {
     private String name;
     
     @Persistent
+    private String nameLowerCase;
+    
+    @Persistent
     private String introText;
     
     @Persistent
@@ -61,6 +64,7 @@ public class Language implements Serializable {
 
     public void setName(String aName) {
         name=aName;
+        nameLowerCase=aName.toLowerCase();
     }
     
     public void setSurveyId(long aSurveyId) {

@@ -116,7 +116,7 @@ public class QuestionAddServlet extends HttpServlet {
         request.setAttribute(RequestUtils.QUESTION, question);
 
         // Get languages
-        List<Language> languages=LanguageGetAll.execute(surveyId, null);
+        List<Language> languages=LanguageGetAll.execute(surveyId);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
 
         // Question Texts
@@ -132,7 +132,7 @@ public class QuestionAddServlet extends HttpServlet {
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
         
         // Get answers sets
-        List<AnswerSet> answerSets=AnswerSetGetAll.execute(surveyId, null);
+        List<AnswerSet> answerSets=AnswerSetGetAll.execute(surveyId);
         request.setAttribute(RequestUtils.ANSWER_SETS, answerSets);
     }
 }

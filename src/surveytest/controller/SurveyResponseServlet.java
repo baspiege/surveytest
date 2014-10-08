@@ -149,11 +149,11 @@ public class SurveyResponseServlet extends HttpServlet {
         }
  
         // Get languages
-        List<Language> languages=LanguageGetAll.execute(surveyId, null);
+        List<Language> languages=LanguageGetAll.execute(surveyId);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
         
         // Get questions
-        List<Question> questions=QuestionGetAll.execute(surveyId, null);
+        List<Question> questions=QuestionGetAll.execute(surveyId);
         request.setAttribute(RequestUtils.QUESTIONS, questions);
         
         // Get question texts
@@ -161,15 +161,15 @@ public class SurveyResponseServlet extends HttpServlet {
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
                 
         // Get answers sets
-        List<AnswerSet> answerSets=AnswerSetGetAll.execute(surveyId, null);
+        List<AnswerSet> answerSets=AnswerSetGetAll.execute(surveyId);
         request.setAttribute(RequestUtils.ANSWER_SETS, answerSets);
         
         // Get answers
-        List<Answer> answers=AnswerGetAll.executeBySurveyId(surveyId, null);
+        List<Answer> answers=AnswerGetAll.executeBySurveyId(surveyId);
         request.setAttribute(RequestUtils.ANSWERS, answers);
                 
         // Get answer texts
-        List<AnswerText> answerTexts=AnswerTextGetAll.executeBySurveyId(surveyId, null);
+        List<AnswerText> answerTexts=AnswerTextGetAll.executeBySurveyId(surveyId);
         request.setAttribute(RequestUtils.ANSWER_TEXTS, answerTexts);
                 
         // Answer set map       

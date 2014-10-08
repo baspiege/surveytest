@@ -82,7 +82,7 @@ public class SurveyLanguageServlet extends HttpServlet {
         }
         
         // Get languages
-        List<Language> languages=LanguageGetAll.execute(surveyId, null);
+        List<Language> languages=LanguageGetAll.execute(surveyId);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
     }
 }
