@@ -20,7 +20,7 @@ public class QuestionGetAll {
                 query.declareParameters("long surveyIdParam");
 
                 // Sorting
-                query.setOrdering("descriptionLowerCase ASC");
+                query.setOrdering("textLowerCase ASC");
 
                 results = (List<Question>) query.execute(aSurveyId);
 
