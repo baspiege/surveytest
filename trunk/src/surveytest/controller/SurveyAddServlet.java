@@ -2,6 +2,7 @@ package surveytest.controller;
 
 import surveytest.data.SurveyAdd;
 import surveytest.data.model.Survey;
+import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -43,14 +44,14 @@ public class SurveyAddServlet extends HttpServlet {
                 // Fields
                 String name=RequestUtils.getAlphaInput(request,"name",bundle.getString("nameLabel"),true);
                 survey.setName(name);
-                if (!RequestUtils.hasEdits(request)) {
+                if (!EditUtils.hasEdits(request)) {
                     survey=SurveyAdd.execute(survey);
                 }
             }
         }
 
         // If no edits, forward to survey.
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             //request.setAttribute("surveyId",survey.getKey().getId());
             //RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEYS_REDIRECT);

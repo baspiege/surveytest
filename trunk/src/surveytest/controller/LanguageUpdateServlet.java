@@ -8,6 +8,7 @@ import surveytest.data.SurveyGetSingle;
 import surveytest.data.model.Language;
 import surveytest.data.model.QuestionText;
 import surveytest.data.model.Survey;
+import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -54,7 +55,7 @@ public class LanguageUpdateServlet extends HttpServlet {
                 language.setSubmitButtonText(submitButtonText);
                 language.setSurveyName(surveyName);
                 language.setIdentifierText(identifierText);
-                if (!RequestUtils.hasEdits(request)) {
+                if (!EditUtils.hasEdits(request)) {
                     language=LanguageUpdate.execute(language);
                 }
             } else if (action.equals(bundle.getString("deleteLabel"))) {		
@@ -63,16 +64,16 @@ public class LanguageUpdateServlet extends HttpServlet {
                 // TODO - How can language be deleted?  Remove all questions first?  Or delete question text as well.
                 // Or set language to inactive?
                 if (!questionTexts.isEmpty()) {
-                    RequestUtils.addEditUsingKey(request,"languageCantBeDeletedWithQuestionsMessage");
+                    EditUtils.addEditUsingKey(request,"languageCantBeDeletedWithQuestionsMessage");
                 }
-                if (!RequestUtils.hasEdits(request)) {
+                if (!EditUtils.hasEdits(request)) {
                     LanguageDelete.execute(language);
                 }         
             }
         }
 
         // If no edits, forward to survey.
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             request.setAttribute("surveyId",language.getSurveyId());
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
         } else {

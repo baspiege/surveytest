@@ -10,6 +10,7 @@ import surveytest.data.model.AnswerSet;
 import surveytest.data.model.Language;
 import surveytest.data.model.Answer;
 import surveytest.data.model.Survey;
+import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -64,11 +65,11 @@ public class AnswerSetUpdateServlet extends HttpServlet {
 
         AnswerSet answerSet=(AnswerSet)request.getAttribute(RequestUtils.ANSWER_SET);
         
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             answerSet=AnswerSetUpdate.execute(answerSet);
         }
         // If no edits, forward to answer set.
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             request.setAttribute("answerSetId",answerSet.getKey().getId());
             RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_SET_REDIRECT);
         } else {
@@ -79,11 +80,11 @@ public class AnswerSetUpdateServlet extends HttpServlet {
     private void deleteAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AnswerSet answerSet=(AnswerSet)request.getAttribute(RequestUtils.ANSWER_SET);
       
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             AnswerSetDelete.execute(answerSet);
         }
         
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             request.setAttribute("surveyId", answerSet.getSurveyId());
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
         } else {

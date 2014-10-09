@@ -4,6 +4,7 @@ import surveytest.data.model.Language;
 import surveytest.data.model.Survey;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.SurveyGetSingle;
+import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class SurveyLanguageServlet extends HttpServlet {
                 // Fields
                 Long languageId=RequestUtils.getNumericInput(request,"languageId",bundle.getString("languageLabel"),true);
             
-                if (!RequestUtils.hasEdits(request)) {
+                if (!EditUtils.hasEdits(request)) {
             
                     // Check if valid language
                     List<Language> languages=(List<Language>)request.getAttribute(RequestUtils.LANGUAGES);
@@ -52,14 +53,14 @@ public class SurveyLanguageServlet extends HttpServlet {
                         }
                     }
                     if (!found) {
-                        RequestUtils.addEdit(request,bundle.getString("languageNotFoundMessage"));
+                        EditUtils.addEdit(request,bundle.getString("languageNotFoundMessage"));
                     }
                 }
             }
         }
         
         // If no edits, forward to survey response with survey and language id.
-        if (!RequestUtils.hasEdits(request) && language!=null) {
+        if (!EditUtils.hasEdits(request) && language!=null) {
             request.setAttribute("surveyId",language.getSurveyId());
             request.setAttribute("languageId",language.getKey().getId());
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_RESPONSE_REDIRECT);

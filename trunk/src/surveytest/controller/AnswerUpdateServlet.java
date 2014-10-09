@@ -14,6 +14,7 @@ import surveytest.data.model.Language;
 import surveytest.data.model.Answer;
 import surveytest.data.model.AnswerText;
 import surveytest.data.model.Survey;
+import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -80,7 +81,7 @@ public class AnswerUpdateServlet extends HttpServlet {
         Answer answer=(Answer)request.getAttribute(RequestUtils.ANSWER);
         List<AnswerText> answerTexts=(List<AnswerText>)request.getAttribute(RequestUtils.ANSWER_TEXTS);
         
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             answer=AnswerUpdate.execute(answer);
             
             for (AnswerText answerText: answerTexts) {
@@ -93,7 +94,7 @@ public class AnswerUpdateServlet extends HttpServlet {
             }
         }
         // If no edits, forward to answer.
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             request.setAttribute("answerId",answer.getKey().getId());
             RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_REDIRECT);
         } else {
@@ -105,7 +106,7 @@ public class AnswerUpdateServlet extends HttpServlet {
         Answer answer=(Answer)request.getAttribute(RequestUtils.ANSWER);
         List<AnswerText> answerTexts=(List<AnswerText>)request.getAttribute(RequestUtils.ANSWER_TEXTS);
       
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             AnswerDelete.execute(answer);
             
             for (AnswerText answerText: answerTexts) {
@@ -113,7 +114,7 @@ public class AnswerUpdateServlet extends HttpServlet {
             }
         }
         
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             request.setAttribute("answerSetId",answer.getAnswerSetId());
             RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_SET_REDIRECT);
         } else {

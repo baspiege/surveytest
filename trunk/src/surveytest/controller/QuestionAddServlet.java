@@ -10,6 +10,7 @@ import surveytest.data.model.Language;
 import surveytest.data.model.Question;
 import surveytest.data.model.QuestionText;
 import surveytest.data.model.Survey;
+import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -69,7 +70,7 @@ public class QuestionAddServlet extends HttpServlet {
                     questionText.setText(questionTextLanguage);
                 }
 
-                if (!RequestUtils.hasEdits(request)) {
+                if (!EditUtils.hasEdits(request)) {
                     question=QuestionAdd.execute(question);
 
                     for (QuestionText questionText: questionTexts) {
@@ -82,7 +83,7 @@ public class QuestionAddServlet extends HttpServlet {
         }
 
         // If no edits, forward to question.
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             request.setAttribute("questionId",question.getKey().getId());
             RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_REDIRECT);
         } else {

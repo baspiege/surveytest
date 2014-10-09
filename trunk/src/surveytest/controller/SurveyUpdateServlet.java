@@ -10,6 +10,7 @@ import surveytest.data.model.AnswerSet;
 import surveytest.data.model.Language;
 import surveytest.data.model.Question;
 import surveytest.data.model.Survey;
+import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -67,7 +68,7 @@ public class SurveyUpdateServlet extends HttpServlet {
         survey=SurveyUpdate.execute(survey);
         
         // If no edits, forward to question.
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             request.setAttribute("surveyId",survey.getKey().getId());
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
         } else {
@@ -83,22 +84,22 @@ public class SurveyUpdateServlet extends HttpServlet {
         List<AnswerSet> answerSets=(List<AnswerSet>)request.getAttribute(RequestUtils.ANSWER_SETS);        
       
         if (!questions.isEmpty()) {
-            RequestUtils.addEditUsingKey(request,"surveyCantBeDeletedWithQuestionsMessage");
+            EditUtils.addEditUsingKey(request,"surveyCantBeDeletedWithQuestionsMessage");
         }
         
         if (!languages.isEmpty()) {
-            RequestUtils.addEditUsingKey(request,"surveyCantBeDeletedWithLanguagesMessage");
+            EditUtils.addEditUsingKey(request,"surveyCantBeDeletedWithLanguagesMessage");
         }
         
         if (!answerSets.isEmpty()) {
-            RequestUtils.addEditUsingKey(request,"surveyCantBeDeletedWithAnswerSetsMessage");
+            EditUtils.addEditUsingKey(request,"surveyCantBeDeletedWithAnswerSetsMessage");
         }
       
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             SurveyDelete.execute(survey);
         }
         
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEYS_REDIRECT);
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_UPDATE);

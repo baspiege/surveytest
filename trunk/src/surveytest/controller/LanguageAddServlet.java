@@ -4,6 +4,7 @@ import surveytest.data.LanguageAdd;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.model.Language;
 import surveytest.data.model.Survey;
+import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -51,14 +52,14 @@ public class LanguageAddServlet extends HttpServlet {
                 language.setSurveyName(surveyName);
                 language.setIdentifierText(identifierText);
                 
-                if (!RequestUtils.hasEdits(request)) {
+                if (!EditUtils.hasEdits(request)) {
                     language=LanguageAdd.execute(language);
                 }
             }
         }
 
         // If no edits, forward to survey.
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             request.setAttribute("surveyId",language.getSurveyId());
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
         } else {

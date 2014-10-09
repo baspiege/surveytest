@@ -15,6 +15,7 @@ import surveytest.data.model.Language;
 import surveytest.data.model.Question;
 import surveytest.data.model.QuestionText;
 import surveytest.data.model.Survey;
+import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -84,7 +85,7 @@ public class QuestionUpdateServlet extends HttpServlet {
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
         List<QuestionText> questionTexts=(List<QuestionText>)request.getAttribute(RequestUtils.QUESTION_TEXTS);
         
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             question=QuestionUpdate.execute(question);
             
             for (QuestionText questionText: questionTexts) {
@@ -97,7 +98,7 @@ public class QuestionUpdateServlet extends HttpServlet {
             }
         }
         // If no edits, forward to question.
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             request.setAttribute("questionId",question.getKey().getId());
             RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_REDIRECT);
         } else {
@@ -109,7 +110,7 @@ public class QuestionUpdateServlet extends HttpServlet {
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
         List<QuestionText> questionTexts=(List<QuestionText>)request.getAttribute(RequestUtils.QUESTION_TEXTS);
       
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             QuestionDelete.execute(question);
             
             for (QuestionText questionText: questionTexts) {
@@ -117,7 +118,7 @@ public class QuestionUpdateServlet extends HttpServlet {
             }
         }
         
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             request.setAttribute("surveyId",question.getSurveyId());
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
         } else {
