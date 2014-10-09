@@ -86,7 +86,6 @@ public class LanguageAddServlet extends HttpServlet {
             throw new RuntimeException("Survey not found:" + surveyId);
         }
         
-        // Set language
         Language language=new Language();
         language.setSurveyId(surveyId);
         //language.setUser(request.getUserPrincipal().getName());

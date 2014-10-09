@@ -30,7 +30,6 @@ public class LanguageServlet extends HttpServlet {
 
     private void setUpData(HttpServletRequest request) {
         
-        // Language
         Long languageId=RequestUtils.getNumericInput(request,"languageId","languageId",true);
         Language language=null;
         if (languageId!=null) {

@@ -23,6 +23,8 @@ public class QuestionUpdate {
                 if (aQuestion.getText()!=null) {
                     question.setText(aQuestion.getText());
                 }
+                
+                question.setAnswerSetId(aQuestion.getAnswerSetId());
 
                 // question.setLastUpdateTime(new Date());
                 // question.setUser(aQuestion.getUser());

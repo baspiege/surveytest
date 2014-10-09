@@ -103,17 +103,14 @@ public class AnswerAddServlet extends HttpServlet {
             throw new RuntimeException("Answer Set not found:" + answerSetId);
         }
 
-        // Set answer
         Answer answer=new Answer();
         answer.setSurveyId(answerSet.getSurveyId());
         answer.setAnswerSetId(answerSet.getKey().getId());
         request.setAttribute(RequestUtils.ANSWER, answer);
 
-        // Get languages
         List<Language> languages=LanguageGetAll.execute(answer.getSurveyId());
         request.setAttribute(RequestUtils.LANGUAGES, languages);
 
-        // Answer Texts
         List<AnswerText> answerTexts=new ArrayList<AnswerText>();
         for (Language language: languages) {
             AnswerText answerText=new AnswerText();

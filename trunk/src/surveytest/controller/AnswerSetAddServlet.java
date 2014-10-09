@@ -80,7 +80,6 @@ public class AnswerSetAddServlet extends HttpServlet {
             throw new RuntimeException("Survey not found:" + surveyId);
         }
 
-        // Answer set
         AnswerSet answerSet=new AnswerSet();
         answerSet.setSurveyId(survey.getKey().getId());
         //question.setUser(request.getUserPrincipal().getName());

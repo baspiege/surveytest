@@ -38,4 +38,35 @@ public class QuestionGetAll {
         }
         return results;
     }
+    
+    public static List<Question> executeByAnswerSetId(Long aAnswerSetId) {
+        PersistenceManager pm=null;
+        List<Question> results=null;
+        try {
+            pm=PMF.get().getPersistenceManager();
+            Query query=null;
+            try {
+                query = pm.newQuery(Question.class);
+                query.setFilter("answerSetId==answerSetIdParam");
+                query.declareParameters("long answerSetIdParam");
+
+                // Sorting
+                query.setOrdering("textLowerCase ASC");
+
+                results = (List<Question>) query.execute(aAnswerSetId);
+
+                // Touch object to get data.  Size method triggers the underlying database call.
+                results.size();
+            } finally {
+                if (query!=null) {
+                    query.closeAll();
+                }
+            }
+        } finally {
+            if (pm!=null) {
+                pm.close();
+            }
+        }
+        return results;
+    }
 }

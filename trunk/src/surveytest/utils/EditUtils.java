@@ -30,42 +30,24 @@ public class EditUtils {
         getEdits(aRequest).add(bundle.getString(aKey));
     }
 
-    /**
-    * Get the edits.
-    *
-    * @return a list of edits
-    */
     public static List<String> getEdits(HttpServletRequest aRequest) {
         List<String> edits=(List<String>)aRequest.getAttribute(EDITS);
         if (edits==null) {
             edits=new ArrayList<String>();
             aRequest.setAttribute(EDITS,edits);
         }
-
         return edits;
     }
 
-    /**
-    * Has edits.
-    *
-    * @param aRequest Servlet Request
-    * @return a boolean indicating if there are edits
-    */
     public static boolean hasEdits(HttpServletRequest aRequest) {
         boolean hasEdits=false;
         List<String> edits=(List<String>)aRequest.getAttribute(EDITS);
         if (edits!=null && edits.size()>0) {
             hasEdits=true;
         }
-
         return hasEdits;
     }
 
-    /**
-    * Remove edits.
-    *
-    * @param aRequest Servlet Request
-    */
     public static void removeEdits(HttpServletRequest aRequest) {
         List<String> edits=(List<String>)aRequest.getAttribute(EDITS);
         if (edits!=null && edits.size()>0) {

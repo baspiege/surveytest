@@ -47,15 +47,12 @@ public class SurveyServlet extends HttpServlet {
             throw new RuntimeException("Survey not found:" + surveyId);
         }
         
-        // Get languages
         List<Language> languages=LanguageGetAll.execute(surveyId);
         request.setAttribute(RequestUtils.LANGUAGES, languages);
         
-        // Get questions
         List<Question> questions=QuestionGetAll.execute(surveyId);
         request.setAttribute(RequestUtils.QUESTIONS, questions);
         
-        // Get answers sets
         List<AnswerSet> answerSets=AnswerSetGetAll.execute(surveyId);
         request.setAttribute(RequestUtils.ANSWER_SETS, answerSets);
     }

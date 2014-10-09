@@ -144,15 +144,12 @@ public class QuestionUpdateServlet extends HttpServlet {
             request.setAttribute(RequestUtils.QUESTION,question);
         }
         
-        // Survey
         Survey survey=SurveyGetSingle.execute(question.getSurveyId());
         request.setAttribute(RequestUtils.SURVEY, survey);
 
-        // Get languages
         List<Language> languages=LanguageGetAll.execute(survey.getKey().getId());
         request.setAttribute(RequestUtils.LANGUAGES, languages);
                 
-        // Question Texts
         List<QuestionText> questionTexts=QuestionTextGetAll.execute(questionId);
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
 
