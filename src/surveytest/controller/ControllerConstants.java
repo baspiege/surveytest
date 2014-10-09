@@ -32,11 +32,12 @@ public class ControllerConstants {
     public static String QUESTION_ADD="/pages/questionAdd.jsp";
     public static String QUESTION_UPDATE="/pages/questionUpdate.jsp";
     
-    // Answer Sets
+    // Answer Set
     public static String ANSWER_SET="/pages/answerSet.jsp";
     public static String ANSWER_SET_ADD="/pages/answerSetAdd.jsp";
+    public static String ANSWER_SET_UPDATE="/pages/answerSetUpdate.jsp";
     
-    // Answers
+    // Answer
     public static String ANSWER="/pages/answer.jsp";
     public static String ANSWER_ADD="/pages/answerAdd.jsp";
     public static String ANSWER_UPDATE="/pages/answerUpdate.jsp";

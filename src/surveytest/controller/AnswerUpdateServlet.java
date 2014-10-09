@@ -7,7 +7,6 @@ import surveytest.data.AnswerTextAdd;
 import surveytest.data.AnswerTextDelete;
 import surveytest.data.AnswerTextGetAll;
 import surveytest.data.AnswerTextUpdate;
-import surveytest.data.AnswerSetGetAll;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.model.AnswerSet;
@@ -173,9 +172,5 @@ public class AnswerUpdateServlet extends HttpServlet {
             }
         }
         request.setAttribute(RequestUtils.ANSWER_TEXTS, answerTexts);
-        
-        // Get answers sets
-        List<AnswerSet> answerSets=AnswerSetGetAll.execute(survey.getKey().getId());
-        request.setAttribute(RequestUtils.ANSWER_SETS, answerSets);
     }
 }

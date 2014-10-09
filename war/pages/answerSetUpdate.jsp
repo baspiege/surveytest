@@ -4,12 +4,12 @@
 <%@ page isELIgnored="false" %>
 <jsp:include page="/pages/components/htmlStartNoCache.jsp" />
 <fmt:bundle basename="Text">
-<title><fmt:message key="addAnswerSetLabel"/></title>
+<title><fmt:message key="updateAnswerSetLabel"/></title>
 <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 </head>
 <body onunload="">
 <jsp:include page="/pages/components/edits.jsp"/>
-<form method="post" action="answerSetAdd" autocomplete="off">
+<form method="post" action="answerSetUpdate" autocomplete="off">
 <table>
   <tr>
     <td>
@@ -21,13 +21,14 @@
   </tr>
 </table>
 <p>
-<input id="surveyId" type="hidden" name="surveyId" value="<c:out value="${answerSet.surveyId}"/>" />
-<input class="button" type="submit" style="display:none" id="addButtonDisabled" disabled="disabled" value="<fmt:message key="addLabel"/>"/>
-<input class="button" type="submit" style="display:inline" id="addButtonEnabled" name="action" value="<fmt:message key="addLabel"/>"/>
+<input id="answerSetId" type="hidden" name="answerSetId" value="<c:out value="${answerSet.key.id}"/>" />
+<input class="button" type="submit" style="display:none" id="updateButtonDisabled" disabled="disabled" value="<fmt:message key="updateLabel"/>"/>
+<input class="button" type="submit" style="display:inline" id="updateButtonEnabled" name="action" value="<fmt:message key="updateLabel"/>"/>
+<input class="button" type="submit" style="display:inline" id="deleteButtonEnabled" name="action" value="<fmt:message key="deleteLabel"/>"/>
 </p>
 </form>
 <jsp:include page="/pages/components/footer.jsp"/>
 </body>
 </fmt:bundle>
-<script type="text/javascript" src="/js/answerSetAdd.js" ></script>
+<script type="text/javascript" src="/js/answerSetUpdate.js" ></script>
 </html>

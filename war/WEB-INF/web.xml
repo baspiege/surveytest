@@ -114,6 +114,14 @@
       <servlet-name>answerSetAdd</servlet-name>
       <url-pattern>/answerSetAdd</url-pattern>
     </servlet-mapping>    
+    <servlet>
+      <servlet-name>answerSetUpdate</servlet-name>
+      <servlet-class>surveytest.controller.AnswerSetUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>answerSetUpdate</servlet-name>
+      <url-pattern>/answerSetUpdate</url-pattern>
+    </servlet-mapping>    
     
     <!-- Answer Actions -->
     <servlet>
