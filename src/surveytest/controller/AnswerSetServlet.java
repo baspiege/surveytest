@@ -35,7 +35,6 @@ public class AnswerSetServlet extends HttpServlet {
 
     private void setUpData(HttpServletRequest request) {
 
-        // Get AnswerSet
         Long answerSetId=RequestUtils.getNumericInput(request,"answerSetId","answerSetId",true);
         AnswerSet answerSet=AnswerSetGetSingle.execute(answerSetId);
         if (answerSet==null) {

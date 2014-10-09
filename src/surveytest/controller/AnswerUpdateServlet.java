@@ -9,10 +9,10 @@ import surveytest.data.AnswerTextGetAll;
 import surveytest.data.AnswerTextUpdate;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.SurveyGetSingle;
-import surveytest.data.model.AnswerSet;
-import surveytest.data.model.Language;
 import surveytest.data.model.Answer;
+import surveytest.data.model.AnswerSet;
 import surveytest.data.model.AnswerText;
+import surveytest.data.model.Language;
 import surveytest.data.model.Survey;
 import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
@@ -140,15 +140,12 @@ public class AnswerUpdateServlet extends HttpServlet {
             request.setAttribute(RequestUtils.ANSWER,answer);
         }
         
-        // Survey
         Survey survey=SurveyGetSingle.execute(answer.getSurveyId());
         request.setAttribute(RequestUtils.SURVEY, survey);
 
-        // Get languages
         List<Language> languages=LanguageGetAll.execute(survey.getKey().getId());
         request.setAttribute(RequestUtils.LANGUAGES, languages);
                 
-        // Answer Texts
         List<AnswerText> answerTexts=AnswerTextGetAll.execute(answerId);
         request.setAttribute(RequestUtils.ANSWER_TEXTS, answerTexts);
 

@@ -5,10 +5,12 @@ import surveytest.data.AnswerSetDelete;
 import surveytest.data.AnswerSetGetSingle;
 import surveytest.data.AnswerSetUpdate;
 import surveytest.data.LanguageGetAll;
+import surveytest.data.QuestionGetAll;
 import surveytest.data.SurveyGetSingle;
+import surveytest.data.model.Answer;
 import surveytest.data.model.AnswerSet;
 import surveytest.data.model.Language;
-import surveytest.data.model.Answer;
+import surveytest.data.model.Question;
 import surveytest.data.model.Survey;
 import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
@@ -78,7 +80,17 @@ public class AnswerSetUpdateServlet extends HttpServlet {
     }
 
     private void deleteAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        AnswerSet answerSet=(AnswerSet)request.getAttribute(RequestUtils.ANSWER_SET);
+        AnswerSet answerSet=(AnswerSet)request.getAttribute(RequestUtils.ANSWER_SET);  
+        List<Answer> answers=(List<Answer>)request.getAttribute(RequestUtils.ANSWERS);
+        List<Question> questions=(List<Question>)request.getAttribute(RequestUtils.QUESTIONS);           
+       
+        if (!answers.isEmpty()) {
+            EditUtils.addEditUsingKey(request,"answerSetCantBeDeletedWithAnswersMessage");
+        }
+        
+        if (!questions.isEmpty()) {
+            EditUtils.addEditUsingKey(request,"answerSetCantBeDeletedWithQuestionsMessage");
+        }
       
         if (!EditUtils.hasEdits(request)) {
             AnswerSetDelete.execute(answerSet);
@@ -109,11 +121,13 @@ public class AnswerSetUpdateServlet extends HttpServlet {
             request.setAttribute(RequestUtils.ANSWER_SET, answerSet);
         }
         
-        // Survey
         Survey survey=SurveyGetSingle.execute(answerSet.getSurveyId());
         request.setAttribute(RequestUtils.SURVEY, survey);
         
         List<Answer> answers=AnswerGetAll.execute(answerSetId);
         request.setAttribute(RequestUtils.ANSWERS, answers);
+
+        List<Question> questions=QuestionGetAll.executeByAnswerSetId(answerSetId);
+        request.setAttribute(RequestUtils.QUESTIONS, questions);
     }
 }

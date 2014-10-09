@@ -89,7 +89,6 @@ public class LanguageUpdateServlet extends HttpServlet {
 //            throw new SecurityException("User principal not found");
 //        }
         
-        // Language
         Long languageId=RequestUtils.getNumericInput(request,"languageId","languageId",true);
         Language language=null;
         if (languageId!=null) {
