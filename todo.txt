@@ -1,9 +1,12 @@
 TODO
 
+Next:
+Answer set required when adding or updating question.
 
 Taking survey
 * Capture survey identifier when survey starts (e.g. phone number)
 * Add checks to make sure all questions answered
+* Show language text on survey: intro, conf, etc...
 * Show reward - Create unique id per reward?
 * Add way to add rewards (for admins) 
 
@@ -12,8 +15,8 @@ Ordering/Sorting
 
 Admins
 * Restrict survey creation to admins (Google login)
-* Add history for question, answer, answer set, language, survey (not needed)
 * Add 'update by' and 'last updated time'
+* Add history for question, answer, answer set, language, survey (not needed)
 * Delete language (delete question text and answer text?)
 * Delete answer set.  Show questions using this answer set.
 
