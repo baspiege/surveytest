@@ -4,6 +4,7 @@ import surveytest.data.AnswerSetAdd;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.model.AnswerSet;
 import surveytest.data.model.Survey;
+import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -46,13 +47,13 @@ public class AnswerSetAddServlet extends HttpServlet {
                 String description=RequestUtils.getAlphaInput(request,"description",bundle.getString("descriptionLabel"),true);
                 answerSet.setDescription(description);
 
-                if (!RequestUtils.hasEdits(request)) {
+                if (!EditUtils.hasEdits(request)) {
                     answerSet=AnswerSetAdd.execute(answerSet);
                 }
             }
         }
 
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             request.setAttribute("answerSetId", answerSet.getKey().getId());
             RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_SET_REDIRECT);
         } else {

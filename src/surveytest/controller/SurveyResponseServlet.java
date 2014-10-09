@@ -19,6 +19,7 @@ import surveytest.data.QuestionResponseAdd;
 import surveytest.data.QuestionTextGetAll;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.SurveyResponseAdd;
+import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -96,7 +97,7 @@ public class SurveyResponseServlet extends HttpServlet {
                     }
                 }
                 
-                if (!RequestUtils.hasEdits(request)) {
+                if (!EditUtils.hasEdits(request)) {
                     surveyResponse=SurveyResponseAdd.execute(surveyResponse);
                     
                     // Save all the question responses
@@ -109,7 +110,7 @@ public class SurveyResponseServlet extends HttpServlet {
         }
 
         // If no edits, forward to success page.
-        if (!RequestUtils.hasEdits(request)) {
+        if (!EditUtils.hasEdits(request)) {
             request.setAttribute("surveyId",surveyResponse.getSurveyId());
             request.setAttribute("languageId",surveyResponse.getLanguageId());
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_CONFIRMATION_REDIRECT);
