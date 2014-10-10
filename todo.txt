@@ -8,15 +8,18 @@ Taking survey
 * Add checks to make sure all questions answered
 * Show language text on survey: intro, conf, etc...
 * Show reward - Create unique id per reward?
-* Add way to add rewards (for admins) 
+* Add way to add rewards (for survey admins) 
 
 Ordering/Sorting
-* Order questions, answers
+* Order questions (have separate page for ordering)
+* Order answers (have separate page for ordering)
 
 Admins
-* Restrict survey creation to admins (Google login)
-* Add 'update by' and 'last updated time'
-* Add history for question, answer, answer set, language, survey (not needed)
+* Restrict survey updates to admins of the survey.
+  Have list of admins for each survey (so can add/edit/delete admins for survey).
+  Add SurveyAdmin.java with survey Id and email address.
+* Add 'update by' and 'last updated time' to each model object.
+* Add history for question, answer, answer set, language, survey
 * Delete language (delete question text and answer text?)
 * Delete answer set.  Show questions using this answer set.
 
