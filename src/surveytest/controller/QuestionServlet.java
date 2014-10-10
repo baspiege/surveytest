@@ -10,7 +10,9 @@ import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionGetSingle;
 import surveytest.data.QuestionTextGetAll;
 import surveytest.data.SurveyGetSingle;
+import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.RequestUtils;
+import surveytest.utils.UserUtils;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +43,10 @@ public class QuestionServlet extends HttpServlet {
     }
 
     private void setUpData(HttpServletRequest request) {
+    
+        if (!UserUtils.isLoggedOn(request)) {
+            throw new UserNotFoundException();
+        }
 
         // Get question
         Long questionId=RequestUtils.getNumericInput(request,"questionId","questionId",true);

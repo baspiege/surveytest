@@ -8,8 +8,10 @@ import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionResponseGetAll;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.SurveyResponseGetAll;
+import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
+import surveytest.utils.UserUtils;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +40,10 @@ public class SurveyResponsesServlet extends HttpServlet {
     }
 
     private void setUpData(HttpServletRequest request) {
+    
+        if (!UserUtils.isLoggedOn(request)) {
+            throw new UserNotFoundException();
+        }
                 
         // Check survey
         Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);

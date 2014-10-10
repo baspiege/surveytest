@@ -4,7 +4,9 @@ import surveytest.data.model.Language;
 import surveytest.data.model.Survey;
 import surveytest.data.LanguageGetSingle;
 import surveytest.data.SurveyGetSingle;
+import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.RequestUtils;
+import surveytest.utils.UserUtils;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,6 +31,10 @@ public class LanguageServlet extends HttpServlet {
     }
 
     private void setUpData(HttpServletRequest request) {
+    
+        if (!UserUtils.isLoggedOn(request)) {
+            throw new UserNotFoundException();
+        }
         
         Long languageId=RequestUtils.getNumericInput(request,"languageId","languageId",true);
         Language language=null;

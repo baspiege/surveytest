@@ -10,9 +10,11 @@ import surveytest.data.model.Answer;
 import surveytest.data.model.AnswerSet;
 import surveytest.data.model.AnswerText;
 import surveytest.data.model.Survey;
+import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
+import surveytest.utils.UserUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,11 +88,9 @@ public class AnswerAddServlet extends HttpServlet {
 
     private void setUpData(HttpServletRequest request) {
 
-        // Check if signed in
-//        boolean isSignedIn=request.getUserPrincipal().getName()!=null;
-//        if (!isSignedIn) {
-//            throw new SecurityException("User principal not found");
-//        }
+        if (!UserUtils.isLoggedOn(request)) {
+            throw new UserNotFoundException();
+        }
 
         // Check answer set
         Long answerSetId=RequestUtils.getNumericInput(request,"answerSetId","answerSetId",true);

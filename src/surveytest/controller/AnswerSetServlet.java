@@ -6,7 +6,9 @@ import surveytest.data.model.Survey;
 import surveytest.data.AnswerSetGetSingle;
 import surveytest.data.AnswerGetAll;
 import surveytest.data.SurveyGetSingle;
+import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.RequestUtils;
+import surveytest.utils.UserUtils;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +36,10 @@ public class AnswerSetServlet extends HttpServlet {
     }
 
     private void setUpData(HttpServletRequest request) {
+    
+        if (!UserUtils.isLoggedOn(request)) {
+            throw new UserNotFoundException();
+        }
 
         Long answerSetId=RequestUtils.getNumericInput(request,"answerSetId","answerSetId",true);
         AnswerSet answerSet=AnswerSetGetSingle.execute(answerSetId);
