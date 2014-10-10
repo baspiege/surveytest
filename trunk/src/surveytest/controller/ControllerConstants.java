@@ -13,6 +13,10 @@ public class ControllerConstants {
     public static String ANSWER_REDIRECT="/redirects/answer.jsp";
     public static String SURVEY_RESPONSE_REDIRECT="/redirects/surveyResponse.jsp";
     public static String SURVEY_CONFIRMATION_REDIRECT="/redirects/surveyConfirmation.jsp";
+    public static String LOGON_REDIRECT="/redirects/logon.jsp";
+    
+    // Log On
+    public static String LOG_ON="/pages/logon.jsp";
     
     // Surveys
     public static String SURVEYS="/pages/surveys.jsp";    

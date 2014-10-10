@@ -8,9 +8,11 @@ import surveytest.data.SurveyGetSingle;
 import surveytest.data.model.Language;
 import surveytest.data.model.QuestionText;
 import surveytest.data.model.Survey;
+import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
+import surveytest.utils.UserUtils;
 import java.io.IOException;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -83,11 +85,9 @@ public class LanguageUpdateServlet extends HttpServlet {
 
     private void setUpData(HttpServletRequest request) {
 
-        // Check if signed in
-//        boolean isSignedIn=request.getUserPrincipal().getName()!=null;
-//        if (!isSignedIn) {
-//            throw new SecurityException("User principal not found");
-//        }
+        if (!UserUtils.isLoggedOn(request)) {
+            throw new UserNotFoundException();
+        }
         
         Long languageId=RequestUtils.getNumericInput(request,"languageId","languageId",true);
         Language language=null;

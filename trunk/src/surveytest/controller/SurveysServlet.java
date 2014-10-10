@@ -2,7 +2,9 @@ package surveytest.controller;
 
 import surveytest.data.model.Survey;
 import surveytest.data.SurveyGetAll;
+import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.RequestUtils;
+import surveytest.utils.UserUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
-* Show surveys.
-*/
 public class SurveysServlet extends HttpServlet {
 
     /**
@@ -32,6 +31,11 @@ public class SurveysServlet extends HttpServlet {
     }
 
     private void setUpData(HttpServletRequest request) {
+  
+        if (!UserUtils.isLoggedOn(request)) {
+            throw new UserNotFoundException();
+        }
+    
         List<Survey> surveys=new SurveyGetAll().execute();        
         request.setAttribute(RequestUtils.SURVEYS,surveys);
     }

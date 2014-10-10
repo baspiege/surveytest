@@ -187,6 +187,21 @@
       <url-pattern>/surveyResponses</url-pattern>
     </servlet-mapping>    
     
+    <!-- Logon page -->
+    <servlet>
+      <servlet-name>logon</servlet-name>
+      <servlet-class>surveytest.controller.LogOnServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>logon</servlet-name>
+      <url-pattern>/logon</url-pattern>
+    </servlet-mapping>  
+    
+    <error-page>
+      <exception-type>surveytest.exceptions.UserNotFoundException</exception-type>
+      <location>/redirects/logon.jsp</location>
+    </error-page>
+    
     <error-page>
       <exception-type>java.lang.Exception</exception-type>
       <location>/redirects/error.jsp</location>

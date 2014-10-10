@@ -10,9 +10,11 @@ import surveytest.data.model.Language;
 import surveytest.data.model.Question;
 import surveytest.data.model.QuestionText;
 import surveytest.data.model.Survey;
+import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
+import surveytest.utils.UserUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,11 +95,9 @@ public class QuestionAddServlet extends HttpServlet {
 
     private void setUpData(HttpServletRequest request) {
 
-        // Check if signed in
-//        boolean isSignedIn=request.getUserPrincipal().getName()!=null;
-//        if (!isSignedIn) {
-//            throw new SecurityException("User principal not found");
-//        }
+        if (!UserUtils.isLoggedOn(request)) {
+            throw new UserNotFoundException();
+        }
 
         // Check survey
         Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);

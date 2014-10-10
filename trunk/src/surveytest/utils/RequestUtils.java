@@ -99,6 +99,29 @@ public class RequestUtils {
 
         return retValue;
     }
+    
+    public static String getUri(HttpServletRequest aRequest, String nextPage)
+    {
+        StringBuffer uri=new StringBuffer();
+        String serverName=aRequest.getServerName();
+        if (serverName.indexOf("localhost")==-1 && serverName.indexOf("127.0.0.1")==-1) {
+            uri.append("https");
+            uri.append("://");
+            uri.append(serverName);
+        } else {
+            uri.append("http://127.0.0.1:8080");
+        }
+
+        String contextPath=aRequest.getContextPath();
+        if (contextPath!=null && contextPath.trim().length()!=0) {
+            uri.append("/");
+            uri.append(contextPath);
+        }
+
+        uri.append(nextPage);
+
+        return uri.toString();
+    }
 
    /**
     * Forward to.
