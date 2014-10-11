@@ -44,7 +44,10 @@ public class Language implements Serializable {
     private String surveyName;
     
     @Persistent
-    private Date lastUpdateTime;	
+    private Date lastUpdateTime;
+    
+    @Persistent
+    private String lastUpdateUserId;
 
     public Language()
     {
@@ -118,4 +121,12 @@ public class Language implements Serializable {
     public void setLastUpdateTime(Date aLastUpdateTime) {
         lastUpdateTime=aLastUpdateTime;
     }
-}
+    
+    public String getLastUpdateUserId() {
+        return lastUpdateUserId;
+    }
+
+    public void setLastUpdateUserId(String aLastUpdateUserId) {
+        lastUpdateUserId=aLastUpdateUserId;
+    }  
+ }

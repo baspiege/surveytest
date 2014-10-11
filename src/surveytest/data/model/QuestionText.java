@@ -2,6 +2,7 @@ package surveytest.data.model;
 
 import com.google.appengine.api.datastore.Key;
 import java.io.Serializable;
+import java.util.Date;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.NotPersistent;
@@ -33,6 +34,12 @@ public class QuestionText implements Serializable {
     
     @Persistent
     private long languageId;
+    
+    @Persistent
+    private Date lastUpdateTime;
+    
+    @Persistent
+    private String lastUpdateUserId;
 
     @NotPersistent
     private Language language;
@@ -84,4 +91,20 @@ public class QuestionText implements Serializable {
     public void setSurveyId(long aSurveyId) {
         surveyId=aSurveyId;
     }
+    
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date aLastUpdateTime) {
+        lastUpdateTime=aLastUpdateTime;
+    }
+    
+    public String getLastUpdateUserId() {
+        return lastUpdateUserId;
+    }
+
+    public void setLastUpdateUserId(String aLastUpdateUserId) {
+        lastUpdateUserId=aLastUpdateUserId;
+    } 
 }
