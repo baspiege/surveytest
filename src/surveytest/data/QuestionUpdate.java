@@ -25,11 +25,9 @@ public class QuestionUpdate {
                 }
                 
                 question.setAnswerSetId(aQuestion.getAnswerSetId());
+                question.setLastUpdateTime(new Date());
+                question.setLastUpdateUserId(aQuestion.getLastUpdateUserId());
 
-                // question.setLastUpdateTime(new Date());
-                // question.setUser(aQuestion.getUser());
-
-                // History
                 QuestionHistory questionHistory=new QuestionHistory(question);
                 pm.makePersistent(questionHistory);
             }

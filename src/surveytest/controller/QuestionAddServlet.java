@@ -113,7 +113,7 @@ public class QuestionAddServlet extends HttpServlet {
         // Set question
         Question question=new Question();
         question.setSurveyId(survey.getKey().getId());
-        //question.setUser(request.getUserPrincipal().getName());
+        question.setLastUpdateUserId(request.getUserPrincipal().getName());
         request.setAttribute(RequestUtils.QUESTION, question);
 
         List<Language> languages=LanguageGetAll.execute(surveyId);

@@ -10,6 +10,10 @@ Taking survey
 * Show reward - Create unique id per reward?
 * Add way to add rewards (for survey admins) 
 
+Survey Options
+* Open, log on needed
+* Give unique id, or same url?
+
 Ordering/Sorting
 * Order questions (have separate page for ordering)
 * Order answers (have separate page for ordering)
@@ -18,7 +22,9 @@ Admins
 * Restrict survey updates to admins of the survey.
   Have list of admins for each survey (so can add/edit/delete admins for survey).
   Add SurveyAdmin.java with survey Id and email address.
-* Add 'update by' and 'last updated time' to each model object.
+* Set 'update by' and 'last updated time' when adding/updating each model object.
+  Survey, Language, Question (done), QuestionText, Answer, AnswerText, AnswerSet
+
 * Add history for question, answer, answer set, language, survey
 * Delete language (delete question text and answer text?)
 * Delete answer set.  Show questions using this answer set.
