@@ -88,6 +88,7 @@ public class QuestionUpdateServlet extends HttpServlet {
         List<QuestionText> questionTexts=(List<QuestionText>)request.getAttribute(RequestUtils.QUESTION_TEXTS);
         
         if (!EditUtils.hasEdits(request)) {
+            question.setLastUpdateUserId(request.getUserPrincipal().getName());
             question=QuestionUpdate.execute(question);
             
             for (QuestionText questionText: questionTexts) {
@@ -113,6 +114,7 @@ public class QuestionUpdateServlet extends HttpServlet {
         List<QuestionText> questionTexts=(List<QuestionText>)request.getAttribute(RequestUtils.QUESTION_TEXTS);
       
         if (!EditUtils.hasEdits(request)) {
+            question.setLastUpdateUserId(request.getUserPrincipal().getName());
             QuestionDelete.execute(question);
             
             for (QuestionText questionText: questionTexts) {
@@ -133,11 +135,9 @@ public class QuestionUpdateServlet extends HttpServlet {
         if (!UserUtils.isLoggedOn(request)) {
             throw new UserNotFoundException();
         }
-
-        // Get question
+        
         Long questionId=RequestUtils.getNumericInput(request,"questionId","questionId",true);
         Question question=QuestionGetSingle.execute(questionId);
-
         if (question==null) {
             throw new RuntimeException("Question not found: " + questionId);
         } else {
@@ -174,7 +174,6 @@ public class QuestionUpdateServlet extends HttpServlet {
         }
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);
         
-        // Get answers sets
         List<AnswerSet> answerSets=AnswerSetGetAll.execute(survey.getKey().getId());
         request.setAttribute(RequestUtils.ANSWER_SETS, answerSets);
     }

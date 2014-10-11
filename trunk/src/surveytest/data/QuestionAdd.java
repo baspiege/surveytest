@@ -13,12 +13,9 @@ public class QuestionAdd {
         try {
             pm=PMF.get().getPersistenceManager();
 
-            //aQuestion.setLastUpdateTime(new Date());
-
-            // Save
+            aQuestion.setLastUpdateTime(new Date());
             pm.makePersistent(aQuestion);
             
-            // History
             QuestionHistory questionHistory=new QuestionHistory(aQuestion);
             pm.makePersistent(questionHistory);
         } finally {

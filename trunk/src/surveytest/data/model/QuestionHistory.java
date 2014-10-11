@@ -29,6 +29,12 @@ public class QuestionHistory implements Serializable {
     private String textLowerCase;
     
     @Persistent
+    private long surveyId;    
+    
+    @Persistent
+    private long answerSetId;
+    
+    @Persistent
     private Date lastUpdateTime;
     
     @Persistent
@@ -40,6 +46,10 @@ public class QuestionHistory implements Serializable {
     public QuestionHistory(Question aQuestion) {
         setQuestionId(aQuestion.getKey().getId());
         setText(aQuestion.getText());
+        setSurveyId(aQuestion.getSurveyId());
+        setAnswerSetId(aQuestion.getAnswerSetId());
+        setLastUpdateTime(aQuestion.getLastUpdateTime());
+        setLastUpdateUserId(aQuestion.getLastUpdateUserId());
     }
 
     public Key getKey() {
@@ -54,6 +64,22 @@ public class QuestionHistory implements Serializable {
         text=aText;
         textLowerCase=aText.toLowerCase();
     }
+    
+    public long getSurveyId() {
+        return surveyId;
+    }
+    
+    public void setSurveyId(long aSurveyId) {
+        surveyId=aSurveyId;
+    }
+    
+    public long getAnswerSetId() {
+        return answerSetId;
+    }
+    
+    public void setAnswerSetId(long aAnswerSetId) {
+        answerSetId=aAnswerSetId;
+    }  
 
     public Date getLastUpdateTime() {
         return lastUpdateTime;
