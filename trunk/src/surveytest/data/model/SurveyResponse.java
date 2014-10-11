@@ -31,7 +31,10 @@ public class SurveyResponse implements Serializable {
     private long languageId;
     
     @Persistent
-    private Date lastUpdateTime;	
+    private Date lastUpdateTime;
+    
+    @Persistent
+    private String lastUpdateUserId;
 
     @NotPersistent
     private List<QuestionResponse> questionResponses=new ArrayList<QuestionResponse>();    
@@ -67,6 +70,14 @@ public class SurveyResponse implements Serializable {
     public void setLastUpdateTime(Date aLastUpdateTime) {
         lastUpdateTime=aLastUpdateTime;
     }
+    
+    public String getLastUpdateUserId() {
+        return lastUpdateUserId;
+    }
+
+    public void setLastUpdateUserId(String aLastUpdateUserId) {
+        lastUpdateUserId=aLastUpdateUserId;
+    } 
     
     public List<QuestionResponse> getQuestionResponses() {
         return questionResponses;

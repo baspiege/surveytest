@@ -25,17 +25,14 @@ public class LogOnServlet extends HttpServlet {
     private void setUpData(HttpServletRequest request) {
     
         // Check if signed in by checking Google user info.
-        UserService userService = UserServiceFactory.getUserService();
-
-        // True to get new session Id.
-        String postLogonUrl = RequestUtils.getUri(request, "/surveys");
-        boolean isSignedIn=request.getUserPrincipal()!= null;
-
         // If signed in, mark session as logged on.
+        UserService userService = UserServiceFactory.getUserService();
+        boolean isSignedIn=request.getUserPrincipal()!= null;
         if (isSignedIn) {
             request.getSession(true).setAttribute(UserUtils.LOGGED_ON,new Boolean(true));
         }
         
+        String postLogonUrl = RequestUtils.getUri(request, "/surveys");
         String logOnUrl=userService.createLoginURL(postLogonUrl);
         request.setAttribute("logOnUrl",logOnUrl);
     }

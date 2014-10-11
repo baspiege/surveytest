@@ -2,6 +2,7 @@ package surveytest.data.model;
 
 import com.google.appengine.api.datastore.Key;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -32,6 +33,12 @@ public class Answer implements Serializable {
     
     @Persistent
     private long answerSetId;
+    
+    @Persistent
+    private Date lastUpdateTime;
+    
+    @Persistent
+    private String lastUpdateUserId;
     
     @NotPersistent
     private Map<Long,AnswerText> answerTextMap=new HashMap<Long,AnswerText>();
@@ -75,6 +82,22 @@ public class Answer implements Serializable {
     
     public void setAnswerTextMap(Map<Long,AnswerText> aAnswerTextMap) {
         answerTextMap=aAnswerTextMap;
+    } 
+    
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date aLastUpdateTime) {
+        lastUpdateTime=aLastUpdateTime;
+    }
+    
+    public String getLastUpdateUserId() {
+        return lastUpdateUserId;
+    }
+
+    public void setLastUpdateUserId(String aLastUpdateUserId) {
+        lastUpdateUserId=aLastUpdateUserId;
     } 
 
 }

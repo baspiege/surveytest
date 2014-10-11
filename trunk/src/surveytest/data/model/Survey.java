@@ -2,6 +2,7 @@ package surveytest.data.model;
 
 import com.google.appengine.api.datastore.Key;
 import java.io.Serializable;
+import java.util.Date;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -23,6 +24,12 @@ public class Survey implements Serializable {
     
     @Persistent
     private String nameLowerCase;
+    
+    @Persistent
+    private Date lastUpdateTime;
+    
+    @Persistent
+    private String lastUpdateUserId;
 
     public Survey() {
     }
@@ -39,4 +46,20 @@ public class Survey implements Serializable {
         name=aName;
         nameLowerCase=aName.toLowerCase();
     }
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date aLastUpdateTime) {
+        lastUpdateTime=aLastUpdateTime;
+    }
+    
+    public String getLastUpdateUserId() {
+        return lastUpdateUserId;
+    }
+
+    public void setLastUpdateUserId(String aLastUpdateUserId) {
+        lastUpdateUserId=aLastUpdateUserId;
+    }     
 }
