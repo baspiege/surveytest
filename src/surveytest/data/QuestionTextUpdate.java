@@ -25,7 +25,7 @@ public class QuestionTextUpdate {
                 }
 
                 questionText.setLastUpdateTime(new Date());
-                questionText.setLastUpdateUserId(aQuestion.getLastUpdateUserId());
+                questionText.setLastUpdateUserId(aQuestionText.getLastUpdateUserId());
                 
                 QuestionTextHistory questionTextHistory=new QuestionTextHistory(questionText, DataConstants.UPDATE);
                 pm.makePersistent(questionTextHistory);
