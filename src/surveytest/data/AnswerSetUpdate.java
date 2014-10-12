@@ -23,6 +23,9 @@ public class AnswerSetUpdate {
                 if (aAnswerSet.getDescription()!=null) {
                     answerSet.setDescription(aAnswerSet.getDescription());
                 }
+                
+                answerSet.setLastUpdateTime(new Date());
+                answerSet.setLastUpdateUserId(aAnswerSet.getLastUpdateUserId());
             }
         } finally {
             if (pm!=null) {
