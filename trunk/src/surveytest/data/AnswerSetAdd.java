@@ -12,9 +12,8 @@ public class AnswerSetAdd {
         try {
             pm=PMF.get().getPersistenceManager();
 
-            //aAnswerSet.setLastUpdateTime(new Date());
+            aAnswerSet.setLastUpdateTime(new Date());
 
-            // Save
             pm.makePersistent(aAnswerSet);
         } finally {
             if (pm!=null) {

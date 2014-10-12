@@ -58,6 +58,7 @@ public class LanguageUpdateServlet extends HttpServlet {
                 language.setSurveyName(surveyName);
                 language.setIdentifierText(identifierText);
                 if (!EditUtils.hasEdits(request)) {
+                    language.setLastUpdateUserId(request.getUserPrincipal().getName());
                     language=LanguageUpdate.execute(language);
                 }
             } else if (action.equals(bundle.getString("deleteLabel"))) {		
@@ -69,6 +70,7 @@ public class LanguageUpdateServlet extends HttpServlet {
                     EditUtils.addEditUsingKey(request,"languageCantBeDeletedWithQuestionsMessage");
                 }
                 if (!EditUtils.hasEdits(request)) {
+                    language.setLastUpdateUserId(request.getUserPrincipal().getName());
                     LanguageDelete.execute(language);
                 }         
             }

@@ -54,9 +54,8 @@ public class SurveyAddServlet extends HttpServlet {
 
         // If no edits, forward to survey.
         if (!EditUtils.hasEdits(request)) {
-            //request.setAttribute("surveyId",survey.getKey().getId());
-            //RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
-            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEYS_REDIRECT);
+            request.setAttribute("surveyId",survey.getKey().getId());
+            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_ADD);
         }
@@ -68,9 +67,8 @@ public class SurveyAddServlet extends HttpServlet {
             throw new UserNotFoundException();
         }
 
-        // Set survey
         Survey survey=new Survey();
-        //survey.setUser(request.getUserPrincipal().getName());
+        survey.setLastUpdateUserId(request.getUserPrincipal().getName());
         request.setAttribute(RequestUtils.SURVEY, survey);
     }
 }

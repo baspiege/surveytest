@@ -126,6 +126,7 @@ public class QuestionAddServlet extends HttpServlet {
             questionText.setLanguage(language);
             questionText.setLanguageId(language.getKey().getId());
             questionText.setText("");
+            questionText.setLastUpdateUserId(request.getUserPrincipal().getName());
             questionTexts.add(questionText);
         }
         request.setAttribute(RequestUtils.QUESTION_TEXTS, questionTexts);

@@ -82,7 +82,7 @@ public class AnswerSetAddServlet extends HttpServlet {
 
         AnswerSet answerSet=new AnswerSet();
         answerSet.setSurveyId(survey.getKey().getId());
-        //question.setUser(request.getUserPrincipal().getName());
+        answerSet.setLastUpdateUserId(request.getUserPrincipal().getName());
         request.setAttribute(RequestUtils.ANSWER_SET, answerSet);
     }
 }

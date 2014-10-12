@@ -70,6 +70,7 @@ public class AnswerSetUpdateServlet extends HttpServlet {
         AnswerSet answerSet=(AnswerSet)request.getAttribute(RequestUtils.ANSWER_SET);
         
         if (!EditUtils.hasEdits(request)) {
+            answerSet.setLastUpdateUserId(request.getUserPrincipal().getName());
             answerSet=AnswerSetUpdate.execute(answerSet);
         }
         // If no edits, forward to answer set.
@@ -95,6 +96,7 @@ public class AnswerSetUpdateServlet extends HttpServlet {
         }
       
         if (!EditUtils.hasEdits(request)) {
+            answerSet.setLastUpdateUserId(request.getUserPrincipal().getName());
             AnswerSetDelete.execute(answerSet);
         }
         

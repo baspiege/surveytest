@@ -1,6 +1,7 @@
 package surveytest.data;
 
 import surveytest.data.model.QuestionText;
+import surveytest.data.model.QuestionHistory;
 import java.util.Date;
 import javax.jdo.PersistenceManager;
 
@@ -17,6 +18,11 @@ public class QuestionTextDelete {
             questionText=QuestionTextGetSingle.getQuestionText(pm, aQuestionText.getKey().getId());
             
             pm.deletePersistent(questionText);
+            
+            aQuestionText.setLastUpdateTime(new Date());
+            aQuestionText.setLastUpdateUserId(aQuestionText.getLastUpdateUserId());
+            QuestionTextHistory questionTextHistory=new QuestionTextHistory(aQuestionText, DataConstants.DELETE);
+            pm.makePersistent(questionTextHistory);
         } finally {
             if (pm!=null) {
                 pm.close();

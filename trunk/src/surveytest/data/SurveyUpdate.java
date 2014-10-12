@@ -23,8 +23,8 @@ public class SurveyUpdate {
                     survey.setName(aSurvey.getName());
                 }
 
-                // survey.setLastUpdateTime(new Date());
-                // survey.setUser(aSurvey.getUser());
+                survey.setLastUpdateTime(new Date());
+                survey.setLastUpdateUserId(aSurvey.getLastUpdateUserId());
             }
         } finally {
             if (pm!=null) {

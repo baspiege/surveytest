@@ -106,6 +106,7 @@ public class AnswerAddServlet extends HttpServlet {
         Answer answer=new Answer();
         answer.setSurveyId(answerSet.getSurveyId());
         answer.setAnswerSetId(answerSet.getKey().getId());
+        answer.setLastUpdateUserId(request.getUserPrincipal().getName());
         request.setAttribute(RequestUtils.ANSWER, answer);
 
         List<Language> languages=LanguageGetAll.execute(answer.getSurveyId());
@@ -118,6 +119,7 @@ public class AnswerAddServlet extends HttpServlet {
             answerText.setLanguageId(language.getKey().getId());
             answerText.setLanguage(language);
             answerText.setText("");
+            answerText.setLastUpdateUserId(request.getUserPrincipal().getName());
             answerTexts.add(answerText);
         }
         request.setAttribute(RequestUtils.ANSWER_TEXTS, answerTexts);

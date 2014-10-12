@@ -84,9 +84,11 @@ public class AnswerUpdateServlet extends HttpServlet {
         List<AnswerText> answerTexts=(List<AnswerText>)request.getAttribute(RequestUtils.ANSWER_TEXTS);
         
         if (!EditUtils.hasEdits(request)) {
+            answer.setLastUpdateUserId(request.getUserPrincipal().getName());
             answer=AnswerUpdate.execute(answer);
             
             for (AnswerText answerText: answerTexts) {
+                answerText.setLastUpdateUserId(request.getUserPrincipal().getName());
                 if (answerText.getAnswerId()>0) {
                     AnswerTextUpdate.execute(answerText);
                 } else {
@@ -109,9 +111,11 @@ public class AnswerUpdateServlet extends HttpServlet {
         List<AnswerText> answerTexts=(List<AnswerText>)request.getAttribute(RequestUtils.ANSWER_TEXTS);
       
         if (!EditUtils.hasEdits(request)) {
+            answer.setLastUpdateUserId(request.getUserPrincipal().getName());
             AnswerDelete.execute(answer);
             
             for (AnswerText answerText: answerTexts) {
+                answerText.setLastUpdateUserId(request.getUserPrincipal().getName());
                 AnswerTextDelete.execute(answerText);
             }
         }

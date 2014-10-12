@@ -12,11 +12,9 @@ public class SurveyAdd {
         try {
             pm=PMF.get().getPersistenceManager();
 
-            //aSurvey.setLastUpdateTime(new Date());
+            aSurvey.setLastUpdateTime(new Date());
 
-            // Save
-            pm.makePersistent(aSurvey);
-            
+            pm.makePersistent(aSurvey);            
         } finally {
             if (pm!=null) {
                 pm.close();

@@ -48,7 +48,6 @@ public class AnswerServlet extends HttpServlet {
             throw new UserNotFoundException();
         }
 
-        // Get answer
         Long answerId=RequestUtils.getNumericInput(request,"answerId","answerId",true);
         Answer answer=AnswerGetSingle.execute(answerId);
 

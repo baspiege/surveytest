@@ -88,7 +88,7 @@ public class LanguageAddServlet extends HttpServlet {
         
         Language language=new Language();
         language.setSurveyId(surveyId);
-        //language.setUser(request.getUserPrincipal().getName());
+        language.setLastUpdateUserId(request.getUserPrincipal().getName());
         request.setAttribute(RequestUtils.LANGUAGE, language);
     }
 }
