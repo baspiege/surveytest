@@ -16,7 +16,7 @@ public class QuestionAdd {
             aQuestion.setLastUpdateTime(new Date());
             pm.makePersistent(aQuestion);
             
-            QuestionHistory questionHistory=new QuestionHistory(aQuestion);
+            QuestionHistory questionHistory=new QuestionHistory(aQuestion, DataConstants.ADD);
             pm.makePersistent(questionHistory);
         } finally {
             if (pm!=null) {

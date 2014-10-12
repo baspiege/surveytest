@@ -28,7 +28,7 @@ public class QuestionUpdate {
                 question.setLastUpdateTime(new Date());
                 question.setLastUpdateUserId(aQuestion.getLastUpdateUserId());
 
-                QuestionHistory questionHistory=new QuestionHistory(question);
+                QuestionHistory questionHistory=new QuestionHistory(question, DataConstants.UPDATE);
                 pm.makePersistent(questionHistory);
             }
         } finally {
