@@ -11,6 +11,8 @@ public class AnswerAdd {
         PersistenceManager pm=null;
         try {
             pm=PMF.get().getPersistenceManager();
+            
+            aAnswer.setLastUpdateTime(new Date());
 
             pm.makePersistent(aAnswer);
         } finally {

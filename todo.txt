@@ -11,7 +11,7 @@ Taking survey
 * Add way to add rewards (for survey admins) 
 
 Survey Options
-* Open, log on needed
+* When openedm, log on needed
 * Give unique id, or same url?
 
 Ordering/Sorting
@@ -21,11 +21,9 @@ Ordering/Sorting
 Admins
 * Restrict survey updates to admins of the survey.
   Have list of admins for each survey (so can add/edit/delete admins for survey).
-  Add SurveyAdmin.java with survey Id and email address.
-* Set 'update by' and 'last updated time' when adding/updating each model object.
-  Survey, Language, Question (done), QuestionText, Answer, AnswerText, AnswerSet
+  Add SurveyAdmin.java with survey Id and user Id (email address).
 
-* Add history for question, answer, answer set, language, survey
+* Add history for answer, answer set, language, survey
 * Delete language (delete question text and answer text?)
 * Delete answer set.  Show questions using this answer set.
 * Log off button

@@ -92,6 +92,7 @@ public class QuestionUpdateServlet extends HttpServlet {
             question=QuestionUpdate.execute(question);
             
             for (QuestionText questionText: questionTexts) {
+                questionText.setLastUpdateUserId(request.getUserPrincipal().getName());
                 if (questionText.getQuestionId()>0) {
                     QuestionTextUpdate.execute(questionText);
                 } else {
@@ -118,6 +119,7 @@ public class QuestionUpdateServlet extends HttpServlet {
             QuestionDelete.execute(question);
             
             for (QuestionText questionText: questionTexts) {
+                questionText.setLastUpdateUserId(request.getUserPrincipal().getName());
                 QuestionTextDelete.execute(questionText);
             }
         }

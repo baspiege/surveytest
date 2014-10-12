@@ -5,13 +5,14 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
 
-public class QuestionHistory implements Serializable {
+public class QuestionTextHistory implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -20,19 +21,19 @@ public class QuestionHistory implements Serializable {
     private Key key;
 
     @Persistent
-    private long questionId;
-
-    @Persistent
     private String text;
     
     @Persistent
-    private String textLowerCase;
+    private long surveyId;
     
     @Persistent
-    private long surveyId;    
+    private long questionTextId;
     
     @Persistent
-    private long answerSetId;
+    private long questionId;
+    
+    @Persistent
+    private long languageId;
     
     @Persistent
     private Date lastUpdateTime;
@@ -43,48 +44,53 @@ public class QuestionHistory implements Serializable {
     @Persistent
     private String action;
 
-    public QuestionHistory() {
-    }
-
-    public QuestionHistory(Question aQuestion, String aAction) {
-        setSurveyId(aQuestion.getSurveyId());
-        setQuestionId(aQuestion.getKey().getId());
-        setAnswerSetId(aQuestion.getAnswerSetId());
-        setText(aQuestion.getText());
-        setLastUpdateTime(aQuestion.getLastUpdateTime());
-        setLastUpdateUserId(aQuestion.getLastUpdateUserId());
+    public QuestionTextHistory(QuestionText aQuestionText, String aAction) {
+        setSurveyId(aQuestionText.getSurveyId());
+        setLanguageId(aQuestionText.getLanguageId());
+        setQuestionId(aQuestionText.getQuestionId());
+        setQuestionTextId(aQuestionText.getKey().getId());
+        setText(aQuestionText.getText());
+        setLastUpdateTime(aQuestionText.getLastUpdateTime());
+        setLastUpdateUserId(aQuestionText.getLastUpdateUserId());
         setAction(aAction);
     }
 
     public Key getKey() {
         return key;
     }
-
-    public void setQuestionId(long aQuestionId) {
-        questionId=aQuestionId;
+    
+    public String getText() {
+        return text;
     }
 
     public void setText(String aText) {
         text=aText;
-        textLowerCase=aText.toLowerCase();
+    }
+        
+    public long getLanguageId() {
+        return languageId;
+    }
+    
+    public long getQuestionId() {
+        return questionId;
     }
     
     public long getSurveyId() {
         return surveyId;
+    }
+       
+    public void setLanguageId(long aLanguageId) {
+        languageId=aLanguageId;
+    }
+    
+    public void setQuestionId(long aQuestionId) {
+        questionId=aQuestionId;
     }
     
     public void setSurveyId(long aSurveyId) {
         surveyId=aSurveyId;
     }
     
-    public long getAnswerSetId() {
-        return answerSetId;
-    }
-    
-    public void setAnswerSetId(long aAnswerSetId) {
-        answerSetId=aAnswerSetId;
-    }  
-
     public Date getLastUpdateTime() {
         return lastUpdateTime;
     }
@@ -109,4 +115,11 @@ public class QuestionHistory implements Serializable {
         action=aAction;
     } 
     
+    public long getQuestionTexId() {
+        return questionTextId;
+    }
+    
+    public void setQuestionTextId(long aQuestionTextId) {
+        questionTextId=aQuestionTextId;
+    }
 }

@@ -24,8 +24,8 @@ public class AnswerUpdate {
                     answer.setText(aAnswer.getText());
                 }
 
-                // answer.setLastUpdateTime(new Date());
-                // answer.setUser(aAnswer.getUser());
+                answer.setLastUpdateTime(new Date());
+                answer.setLastUpdateUserId(aAnswer.getLastUpdateUserId());
             }
         } finally {
             if (pm!=null) {

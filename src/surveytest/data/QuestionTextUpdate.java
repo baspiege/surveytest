@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.jdo.PersistenceManager;
 
 import surveytest.data.model.QuestionText;
+import surveytest.data.model.QuestionTextHistory;
 
 public class QuestionTextUpdate {
 
@@ -23,8 +24,11 @@ public class QuestionTextUpdate {
                     questionText.setText(aQuestionText.getText());
                 }
 
-                // questionText.setLastUpdateTime(new Date());
-                // questionText.setUser(aQuestionText.getUser());
+                questionText.setLastUpdateTime(new Date());
+                questionText.setLastUpdateUserId(aQuestion.getLastUpdateUserId());
+                
+                QuestionTextHistory questionTextHistory=new QuestionTextHistory(questionText, DataConstants.UPDATE);
+                pm.makePersistent(questionTextHistory);
             }
         } finally {
             if (pm!=null) {

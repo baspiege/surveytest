@@ -12,6 +12,8 @@ public class LanguageAdd {
         try {
             pm=PMF.get().getPersistenceManager();
 
+            aLanguage.setLastUpdateTime(new Date());
+            
             pm.makePersistent(aLanguage);
         } finally {
             if (pm!=null) {

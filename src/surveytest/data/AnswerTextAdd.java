@@ -12,7 +12,7 @@ public class AnswerTextAdd {
         try {
             pm=PMF.get().getPersistenceManager();
 
-            //aAnswerText.setLastUpdateTime(new Date());
+            aAnswerText.setLastUpdateTime(new Date());
 
             // Save
             pm.makePersistent(aAnswerText);

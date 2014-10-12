@@ -67,6 +67,7 @@ public class SurveyUpdateServlet extends HttpServlet {
 
         Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
 
+        survey.setLastUpdateUserId(request.getUserPrincipal().getName());
         survey=SurveyUpdate.execute(survey);
         
         // If no edits, forward to question.
@@ -98,6 +99,7 @@ public class SurveyUpdateServlet extends HttpServlet {
         }
       
         if (!EditUtils.hasEdits(request)) {
+            survey.setLastUpdateUserId(request.getUserPrincipal().getName());
             SurveyDelete.execute(survey);
         }
         
