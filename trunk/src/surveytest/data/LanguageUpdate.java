@@ -23,6 +23,7 @@ public class LanguageUpdate {
                 language.setSubmitButtonText(aLanguage.getSubmitButtonText());
                 language.setSurveyName(aLanguage.getSurveyName());
                 language.setIdentifierText(aLanguage.getIdentifierText());
+                language.setLastUpdateUserId(aLanguage.getLastUpdateUserId());
                 language.setLastUpdateTime(new Date());
             }
         } finally {
