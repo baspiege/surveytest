@@ -39,17 +39,21 @@ public class QuestionHistory implements Serializable {
     
     @Persistent
     private String lastUpdateUserId;
+    
+    @Persistent
+    private String action;
 
     public QuestionHistory() {
     }
 
-    public QuestionHistory(Question aQuestion) {
+    public QuestionHistory(Question aQuestion, String aAction) {
         setQuestionId(aQuestion.getKey().getId());
         setText(aQuestion.getText());
         setSurveyId(aQuestion.getSurveyId());
         setAnswerSetId(aQuestion.getAnswerSetId());
         setLastUpdateTime(aQuestion.getLastUpdateTime());
         setLastUpdateUserId(aQuestion.getLastUpdateUserId());
+        setAction(aAction);
     }
 
     public Key getKey() {
@@ -96,4 +100,13 @@ public class QuestionHistory implements Serializable {
     public void setLastUpdateUserId(String aLastUpdateUserId) {
         lastUpdateUserId=aLastUpdateUserId;
     } 
+    
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String aAction) {
+        action=aAction;
+    } 
+    
 }
