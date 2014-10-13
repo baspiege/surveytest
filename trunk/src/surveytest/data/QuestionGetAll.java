@@ -18,8 +18,6 @@ public class QuestionGetAll {
                 query = pm.newQuery(Question.class);
                 query.setFilter("surveyId==surveyIdParam");
                 query.declareParameters("long surveyIdParam");
-
-                // Sorting
                 query.setOrdering("textLowerCase ASC");
 
                 results = (List<Question>) query.execute(aSurveyId);
@@ -49,8 +47,6 @@ public class QuestionGetAll {
                 query = pm.newQuery(Question.class);
                 query.setFilter("answerSetId==answerSetIdParam");
                 query.declareParameters("long answerSetIdParam");
-
-                // Sorting
                 query.setOrdering("textLowerCase ASC");
 
                 results = (List<Question>) query.execute(aAnswerSetId);

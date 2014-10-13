@@ -13,6 +13,7 @@ import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import surveytest.utils.UserUtils;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +46,6 @@ public class SurveyResponsesServlet extends HttpServlet {
             throw new UserNotFoundException();
         }
                 
-        // Check survey
         Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
         Survey survey=null;
         if (surveyId!=null) {
@@ -64,13 +64,11 @@ public class SurveyResponsesServlet extends HttpServlet {
 
         List<QuestionResponse> questionResponses=QuestionResponseGetAll.execute(surveyId);
         
-        // Language map
         Map languagesMap=new HashMap();
         for (Language language: languages) {
             languagesMap.put(language.getKey().getId(), language);
         }
         
-        // Survey responses map
         Map surveyResponsesMap=new HashMap();
         for (SurveyResponse surveyResponse: surveyResponses) {
             surveyResponsesMap.put(surveyResponse.getKey().getId(), surveyResponse);
@@ -96,6 +94,8 @@ public class SurveyResponsesServlet extends HttpServlet {
 
         // Header
         report.append(escapeField("Survey Response Id") + SEPARATOR);
+        report.append(escapeField("Submitted Time") + SEPARATOR);
+        report.append(escapeField("Identifier") + SEPARATOR);
         //report.append(escapeField("Language Id") + SEPARATOR);
         report.append(escapeField("Language") + SEPARATOR);
         for (Long questionId: questionIds) {
@@ -105,6 +105,8 @@ public class SurveyResponsesServlet extends HttpServlet {
             report.append(escapeField("Answer Text") + SEPARATOR);
         }
         report.append(END_LINE);
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z"); 
                     
         for (SurveyResponse surveyResponse: surveyResponses) {
         
@@ -115,14 +117,13 @@ public class SurveyResponsesServlet extends HttpServlet {
                 questionResponsesMap.put(questionResponse.getQuestionId(), questionResponse);
             }
             
-            // Survey Id
             report.append(surveyResponse.getKey().getId() + SEPARATOR);
+            report.append(dateFormat.format(surveyResponse.getLastUpdateTime()) + SEPARATOR);
+            report.append(surveyResponse.getIdentifier() + SEPARATOR);
             
-            // Language
             //report.append(surveyResponse.getLanguageId() + SEPARATOR);
             report.append(escapeField(language.getName()) + SEPARATOR);            
            
-            // The questions and answers
             for (Long questionId: questionIds) {
                 if (questionResponsesMap.containsKey(questionId)) {
                     QuestionResponse questionResponse=(QuestionResponse)questionResponsesMap.get(questionId);

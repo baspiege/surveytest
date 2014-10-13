@@ -71,7 +71,6 @@ public class SurveyLanguageServlet extends HttpServlet {
 
     private void setUpData(HttpServletRequest request) {
 
-        // Check survey
         Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
         Survey survey=null;
         if (surveyId!=null) {

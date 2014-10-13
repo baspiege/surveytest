@@ -16,8 +16,6 @@ public class SurveyGetAll {
             Query query=null;
             try {
                 query = pm.newQuery(Survey.class);
-
-                // Sorting
                 query.setOrdering("nameLowerCase ASC");
 
                 results = (List<Survey>) query.execute();

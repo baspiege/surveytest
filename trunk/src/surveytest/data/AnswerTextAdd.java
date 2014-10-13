@@ -14,7 +14,6 @@ public class AnswerTextAdd {
 
             aAnswerText.setLastUpdateTime(new Date());
 
-            // Save
             pm.makePersistent(aAnswerText);
             
         } finally {
