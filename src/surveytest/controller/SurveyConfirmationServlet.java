@@ -35,7 +35,6 @@ public class SurveyConfirmationServlet extends HttpServlet {
         SurveyResponse surveyResponse=new SurveyResponse();
         request.setAttribute(RequestUtils.SURVEY_RESPONSE, surveyResponse);
             
-        // Check survey
         Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
         Survey survey=null;
         if (surveyId!=null) {

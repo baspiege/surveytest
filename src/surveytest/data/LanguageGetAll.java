@@ -22,7 +22,6 @@ public class LanguageGetAll {
                 query.setFilter("surveyId==surveyIdParam");
                 query.declareParameters("long surveyIdParam");
 
-                // Sorting
                 query.setOrdering("nameLowerCase ASC");
 
                 results = (List<Language>) query.execute(aSurveyId);
