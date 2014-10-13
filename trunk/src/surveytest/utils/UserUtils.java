@@ -11,6 +11,13 @@ public class UserUtils {
         if (isLoggedOn==null || !isLoggedOn.booleanValue()) {
             return false;
         }
+        if (aRequest.getUserPrincipal()==null || aRequest.getUserPrincipal().getName()==null) {
+            return false;
+        }
         return true;
+    }
+    
+    public static void setLoggedOn(HttpServletRequest aRequest) {
+        aRequest.getSession(true).setAttribute(UserUtils.LOGGED_ON,new Boolean(true));
     }
 }
