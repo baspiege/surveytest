@@ -74,6 +74,7 @@ public class SurveyResponseServlet extends HttpServlet {
                 surveyResponse.setIdentifier(identifier);
             
                 List<QuestionResponse> questionResponses=new ArrayList<QuestionResponse>();
+                Map<Long, QuestionResponse> questionResponsesMap=new HashMap<Long, QuestionResponse>();
             
                 // Fields
                 Map<String,String[]> parameterMap=request.getParameterMap();                
@@ -96,6 +97,16 @@ public class SurveyResponseServlet extends HttpServlet {
                         questionResponse.setAnswerText(answer.getText());
                         questionResponse.setSurveyId(surveyResponse.getSurveyId());
                         questionResponses.add(questionResponse);
+                        questionResponsesMap.put(questionId, questionResponse);
+                    }
+                }
+                
+                // Verify each question is answered
+                for (Question question: questions) {
+                    if (!questionResponsesMap.containsKey(question.getKey().getId())) {
+                        QuestionText questionText=(QuestionText)question.getQuestionTextMap().get(language.getKey().getId());
+                        String required=bundle.getString("fieldRequiredEdit");
+                        EditUtils.addEdit(request, questionText.getText() + required);  // TODO - Make required variable by language
                     }
                 }
                 
