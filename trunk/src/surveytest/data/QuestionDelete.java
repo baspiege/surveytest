@@ -18,7 +18,6 @@ public class QuestionDelete {
             question=QuestionGetSingle.getQuestion(pm, aQuestion.getKey().getId());
             pm.deletePersistent(question);
             
-            // History
             aQuestion.setLastUpdateTime(new Date());
             aQuestion.setLastUpdateUserId(aQuestion.getLastUpdateUserId());
             QuestionHistory questionHistory=new QuestionHistory(aQuestion, DataConstants.DELETE);

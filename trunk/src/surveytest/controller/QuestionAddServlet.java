@@ -62,7 +62,9 @@ public class QuestionAddServlet extends HttpServlet {
                 question.setText(description);
                 
                 Long answerSetId=RequestUtils.getNumericInput(request,"answerSetId",bundle.getString("answerSetLabel"),true);
-                question.setAnswerSetId(answerSetId);
+                if (answerSetId!=null) {
+                    question.setAnswerSetId(answerSetId);
+                }
                 
                 // Question Text
                 List<QuestionText> questionTexts=(List<QuestionText>)request.getAttribute(RequestUtils.QUESTION_TEXTS);
@@ -99,7 +101,6 @@ public class QuestionAddServlet extends HttpServlet {
             throw new UserNotFoundException();
         }
 
-        // Check survey
         Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
         Survey survey=null;
         if (surveyId!=null) {
@@ -110,7 +111,6 @@ public class QuestionAddServlet extends HttpServlet {
             throw new RuntimeException("Survey not found:" + surveyId);
         }
 
-        // Set question
         Question question=new Question();
         question.setSurveyId(survey.getKey().getId());
         question.setLastUpdateUserId(request.getUserPrincipal().getName());

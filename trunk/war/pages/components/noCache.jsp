@@ -1,4 +1,3 @@
-<%--  Sets no cache. --%>
 <%@ page language="java"%>
 <%
 response.setHeader("Cache-Control","no-cache");

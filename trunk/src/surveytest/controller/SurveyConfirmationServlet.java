@@ -47,7 +47,6 @@ public class SurveyConfirmationServlet extends HttpServlet {
             throw new RuntimeException("Survey not found:" + surveyId);
         }
 
-        // Language
         Long languageId=RequestUtils.getNumericInput(request,"languageId","languageId",true);
         Language selectedLanguage=null;
         if (languageId!=null) {

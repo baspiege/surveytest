@@ -75,7 +75,6 @@ public class LanguageAddServlet extends HttpServlet {
             throw new UserNotFoundException();
         }
 
-        // Check survey
         Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
         Survey survey=null;
         if (surveyId!=null) {

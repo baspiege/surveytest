@@ -31,6 +31,9 @@ public class SurveyResponse implements Serializable {
     private long languageId;
     
     @Persistent
+    private String identifier;
+    
+    @Persistent
     private Date lastUpdateTime;
     
     @Persistent
@@ -61,6 +64,14 @@ public class SurveyResponse implements Serializable {
     
     public void setLanguageId(long aLanguageId) {
         languageId=aLanguageId;
+    }
+   
+    public String getIdentifier() {
+        return identifier;
+    }
+    
+    public void setIdentifier(String aIdentifier) {
+        identifier=aIdentifier;
     }
     
     public Date getLastUpdateTime() {
