@@ -21,19 +21,6 @@
 
 <section>
 
-<table>
-  <tr>
-    <td>
-      <c:out value="${language.identifierText}"/>
-    </td>
-    <td>
-      <textarea name="description" title="<c:out value="${language.identifierText}"/>" maxlength="500"/> </textarea>
-    </td>
-  </tr>
-</table>
-
-
-
 <ul class="noListMarkers">
   <c:forEach var="language" items="${languages}">
     <li>
