@@ -89,10 +89,9 @@ public class AnswerUpdateServlet extends HttpServlet {
             
             for (AnswerText answerText: answerTexts) {
                 answerText.setLastUpdateUserId(request.getUserPrincipal().getName());
-                if (answerText.getAnswerId()>0) {
+                if (answerText.getKey()!=null) {
                     AnswerTextUpdate.execute(answerText);
                 } else {
-                    answerText.setAnswerId(answer.getKey().getId());
                     AnswerTextAdd.execute(answerText);                
                 }
             }
@@ -134,7 +133,6 @@ public class AnswerUpdateServlet extends HttpServlet {
             throw new UserNotFoundException();
         }
 
-        // Get answer
         Long answerId=RequestUtils.getNumericInput(request,"answerId","answerId",true);
         Answer answer=AnswerGetSingle.execute(answerId);
 

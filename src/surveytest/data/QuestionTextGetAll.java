@@ -24,6 +24,10 @@ public class QuestionTextGetAll {
 
                 // Touch object to get data.  Size method triggers the underlying database call.
                 results.size();
+                
+                // Transfer to new list to avoid UnsupportedOperationException if an object is added
+                // to the list.
+                results = new ArrayList<QuestionText>(results);
             } finally {
                 if (query!=null) {
                     query.closeAll();

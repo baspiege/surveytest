@@ -48,7 +48,6 @@ public class QuestionServlet extends HttpServlet {
             throw new UserNotFoundException();
         }
 
-        // Get question
         Long questionId=RequestUtils.getNumericInput(request,"questionId","questionId",true);
         Question question=QuestionGetSingle.execute(questionId);
 

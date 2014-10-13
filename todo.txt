@@ -1,7 +1,6 @@
 TODO
 
 Next:
-Answer set required when adding or updating question.
 
 Taking survey
 * Capture survey identifier when survey starts (e.g. phone number)

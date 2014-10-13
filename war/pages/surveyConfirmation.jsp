@@ -19,8 +19,9 @@
 
 <form method="post" action="surveyResponse" autocomplete="off">
 
-<%-- TODO - Get this from survey languae --%>
-<p> Thank you for submitting the survey! </p>
+<p>
+  <c:out value="${language.confirmationText}"/>
+</p>
 
 <jsp:include page="/pages/components/footer.jsp"/>
 

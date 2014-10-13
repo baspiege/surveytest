@@ -11,13 +11,17 @@
 
 <nav>
   <ul id="navlist">
-    <li><c:out value="${survey.name}"/></li>
+    <li><c:out value="${language.surveyName}"/></li>
   </ul>
 </nav>
 
 <jsp:include page="/pages/components/edits.jsp"/>
 
 <form method="post" action="surveyResponse" autocomplete="off">
+
+<p>
+  <c:out value="${language.introText}"/>
+</p>
 
 <section class="data">
 
@@ -49,8 +53,8 @@
 <br/>
 <input id="surveyId" type="hidden" name="surveyId" value="<c:out value="${survey.key.id}"/>" />
 <input id="languageId" type="hidden" name="languageId" value="<c:out value="${language.key.id}"/>" />
-<input class="button" type="submit" style="display:none" id="addButtonDisabled" disabled="disabled" value="<fmt:message key="submitLabel"/>"/>
-<input class="button" type="submit" style="display:inline" id="addButtonEnabled" name="action" value="<fmt:message key="submitLabel"/>"/>
+<input class="button" type="submit" style="display:none" id="addButtonDisabled" disabled="disabled" value="<c:out value="${language.submitButtonText}"/>"/>
+<input class="button" type="submit" style="display:inline" id="addButtonEnabled" name="action" value="<c:out value="${language.submitButtonText}"/>"/>
 
 </form>
 

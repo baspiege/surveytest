@@ -93,10 +93,9 @@ public class QuestionUpdateServlet extends HttpServlet {
             
             for (QuestionText questionText: questionTexts) {
                 questionText.setLastUpdateUserId(request.getUserPrincipal().getName());
-                if (questionText.getQuestionId()>0) {
+                if (questionText.getKey()!=null) {
                     QuestionTextUpdate.execute(questionText);
                 } else {
-                    questionText.setQuestionId(question.getKey().getId());
                     QuestionTextAdd.execute(questionText);                
                 }
             }

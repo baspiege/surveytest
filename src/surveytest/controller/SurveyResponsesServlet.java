@@ -120,7 +120,7 @@ public class SurveyResponsesServlet extends HttpServlet {
             
             // Language
             //report.append(surveyResponse.getLanguageId() + SEPARATOR);
-            report.append(language.getName() + SEPARATOR);            
+            report.append(escapeField(language.getName()) + SEPARATOR);            
            
             // The questions and answers
             for (Long questionId: questionIds) {

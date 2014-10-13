@@ -54,14 +54,13 @@ public class SurveyResponseServlet extends HttpServlet {
         
         List<Question> questions=(List<Question>)request.getAttribute(RequestUtils.QUESTIONS);
         List<Answer> answers=(List<Answer>)request.getAttribute(RequestUtils.ANSWERS);
+        Language language=(Language)request.getAttribute(RequestUtils.LANGUAGE);
         
-       // Answer map       
         Map answerMap=new HashMap();
         for (Answer answer: answers) {
             answerMap.put(answer.getKey().getId(), answer);
         }                
                 
-        // Question map
         Map questionMap=new HashMap();
         for (Question question: questions) {
             questionMap.put(question.getKey().getId(), question);
@@ -69,7 +68,10 @@ public class SurveyResponseServlet extends HttpServlet {
 
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
-            if (action.equals(bundle.getString("submitLabel"))) {		
+            if (action.equals(language.getSubmitButtonText())) {		
+            
+                String identifier=RequestUtils.getAlphaInput(request,"identifier",language.getIdentifierText(),true);
+                surveyResponse.setIdentifier(identifier);
             
                 List<QuestionResponse> questionResponses=new ArrayList<QuestionResponse>();
             
@@ -125,7 +127,6 @@ public class SurveyResponseServlet extends HttpServlet {
         SurveyResponse surveyResponse=new SurveyResponse();
         request.setAttribute(RequestUtils.SURVEY_RESPONSE, surveyResponse);
             
-        // Check survey
         Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
         Survey survey=null;
         if (surveyId!=null) {
@@ -137,7 +138,6 @@ public class SurveyResponseServlet extends HttpServlet {
             throw new RuntimeException("Survey not found:" + surveyId);
         }
 
-        // Language
         Long languageId=RequestUtils.getNumericInput(request,"languageId","languageId",true);
         Language selectedLanguage=null;
         if (languageId!=null) {
@@ -167,25 +167,21 @@ public class SurveyResponseServlet extends HttpServlet {
         List<AnswerText> answerTexts=AnswerTextGetAll.executeBySurveyId(surveyId);
         request.setAttribute(RequestUtils.ANSWER_TEXTS, answerTexts);
                 
-        // Answer set map       
         Map answerSetMap=new HashMap();
         for (AnswerSet answerSet: answerSets) {
             answerSetMap.put(answerSet.getKey().getId(), answerSet);
         }            
         
-        // Answer map       
         Map answerMap=new HashMap();
         for (Answer answer: answers) {
             answerMap.put(answer.getKey().getId(), answer);
         }                
         
-        // Language map
         Map languagesMap=new HashMap();
         for (Language language: languages) {
             languagesMap.put(language.getKey().getId(), language);
         }
         
-        // Question map
         Map questionMap=new HashMap();
         for (Question question: questions) {
             questionMap.put(question.getKey().getId(), question);
