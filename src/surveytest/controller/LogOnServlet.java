@@ -14,25 +14,33 @@ public class LogOnServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
-        RequestUtils.forwardTo(request,response,ControllerConstants.LOG_ON);
+        
+        if (!UserUtils.isLoggedOn(request)) {
+            RequestUtils.forwardTo(request,response,ControllerConstants.LOG_ON);
+        } else {
+            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEYS_REDIRECT);
+        }
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
-        RequestUtils.forwardTo(request,response,ControllerConstants.LOG_ON);
+
+        if (!UserUtils.isLoggedOn(request)) {
+            RequestUtils.forwardTo(request,response,ControllerConstants.LOG_ON);
+        } else {
+            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEYS_REDIRECT);
+        }
     }
 
     private void setUpData(HttpServletRequest request) {
-    
-        // Check if signed in by checking Google user info.
-        // If signed in, mark session as logged on.
-        UserService userService = UserServiceFactory.getUserService();
+
         boolean isSignedIn=request.getUserPrincipal()!= null;
         if (isSignedIn) {
-            request.getSession(true).setAttribute(UserUtils.LOGGED_ON,new Boolean(true));
+            UserUtils.setLoggedOn(request);
         }
         
-        String postLogonUrl = RequestUtils.getUri(request, "/surveys");
+        UserService userService = UserServiceFactory.getUserService();
+        String postLogonUrl = RequestUtils.getUri(request, ControllerConstants.SURVEYS_REDIRECT);
         String logOnUrl=userService.createLoginURL(postLogonUrl);
         request.setAttribute("logOnUrl",logOnUrl);
     }
