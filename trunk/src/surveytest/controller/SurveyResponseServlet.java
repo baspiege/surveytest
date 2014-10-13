@@ -106,7 +106,7 @@ public class SurveyResponseServlet extends HttpServlet {
                     if (!questionResponsesMap.containsKey(question.getKey().getId())) {
                         QuestionText questionText=(QuestionText)question.getQuestionTextMap().get(language.getKey().getId());
                         String required=bundle.getString("fieldRequiredEdit");
-                        EditUtils.addEdit(request, questionText.getText() + required);  // TODO - Make required variable by language
+                        EditUtils.addEdit(request, questionText.getText() + ": " + required);  // TODO - Make required variable by language
                     }
                 }
                 
