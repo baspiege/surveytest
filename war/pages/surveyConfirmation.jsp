@@ -11,7 +11,7 @@
 
 <nav>
   <ul id="navlist">
-    <li><c:out value="${survey.name}"/></li>
+    <li><c:out value="${language.surveyName}"/></li>
   </ul>
 </nav>
 

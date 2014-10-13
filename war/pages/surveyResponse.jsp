@@ -23,9 +23,20 @@
   <c:out value="${language.introText}"/>
 </p>
 
+<table>
+  <tr>
+    <td>
+      <c:out value="${language.identifierText}"/>
+    </td>
+    <td>
+      <input type="text" name="identifier" value="" id="identifier" title="<c:out value="${language.identifierText}"/>" maxlength="500"/>
+    </td>
+  </tr>
+</table>
+
 <section class="data">
 
-<table>
+<table>  
   <c:forEach var="question" items="${questions}">
     <tr>
       <td>
