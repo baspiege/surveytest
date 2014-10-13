@@ -42,9 +42,6 @@ public class QuestionResponse implements Serializable {
     
     @Persistent
     private Date lastUpdateTime;
-    
-    @Persistent
-    private String lastUpdateUserId;
 
     public QuestionResponse()
     {
@@ -109,13 +106,4 @@ public class QuestionResponse implements Serializable {
     public void setLastUpdateTime(Date aLastUpdateTime) {
         lastUpdateTime=aLastUpdateTime;
     }
-    
-    public String getLastUpdateUserId() {
-        return lastUpdateUserId;
-    }
-
-    public void setLastUpdateUserId(String aLastUpdateUserId) {
-        lastUpdateUserId=aLastUpdateUserId;
-    } 
-
 }

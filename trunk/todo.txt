@@ -5,8 +5,7 @@ Rewards
 * Add way to add rewards (for survey admins) 
 
 Taking survey
-* When opened, log on needed?
-* Give unique id or same url?
+* Prevent user from taking survey twice
 * Add checks to make sure all questions answered - Browser side
 
 Ordering/Sorting
