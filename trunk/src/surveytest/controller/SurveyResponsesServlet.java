@@ -119,7 +119,7 @@ public class SurveyResponsesServlet extends HttpServlet {
             
             report.append(surveyResponse.getKey().getId() + SEPARATOR);
             report.append(dateFormat.format(surveyResponse.getLastUpdateTime()) + SEPARATOR);
-            report.append(surveyResponse.getIdentifier() + SEPARATOR);
+            report.append(escapeField(surveyResponse.getIdentifier()) + SEPARATOR);
             
             //report.append(surveyResponse.getLanguageId() + SEPARATOR);
             report.append(escapeField(language.getName()) + SEPARATOR);            
