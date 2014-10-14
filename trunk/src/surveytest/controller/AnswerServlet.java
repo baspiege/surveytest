@@ -39,7 +39,7 @@ public class AnswerServlet extends HttpServlet {
     * No post for now.  Route to main page.
     */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
+        RequestUtils.forwardTo(request,response,ControllerConstants.SURVEYS_REDIRECT);
     }
 
     private void setUpData(HttpServletRequest request) {

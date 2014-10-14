@@ -1,7 +1,9 @@
 package surveytest.controller;
 
+import surveytest.data.model.Reward;
 import surveytest.data.model.Survey;
-import surveytest.data.SurveyGetAll;
+import surveytest.data.RewardGetAll;
+import surveytest.data.SurveyGetSingle;
 import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.UserUtils;
@@ -13,14 +15,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class SurveysServlet extends HttpServlet {
+public class RewardsServlet extends HttpServlet {
 
     /**
     * Display page.
     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
-        RequestUtils.forwardTo(request,response,ControllerConstants.SURVEYS);
+        RequestUtils.forwardTo(request,response,ControllerConstants.REWARDS);
     }
 
     /**
@@ -31,12 +33,22 @@ public class SurveysServlet extends HttpServlet {
     }
 
     private void setUpData(HttpServletRequest request) {
-  
+    
         if (!UserUtils.isLoggedOn(request)) {
             throw new UserNotFoundException();
         }
-    
-        List<Survey> surveys=new SurveyGetAll().execute();        
-        request.setAttribute(RequestUtils.SURVEYS,surveys);
+
+        Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
+        Survey survey=null;
+        if (surveyId!=null) {
+            survey=SurveyGetSingle.execute(surveyId);
+            request.setAttribute(RequestUtils.SURVEY, survey);
+        }
+        if (survey==null) {
+            throw new RuntimeException("Survey not found:" + surveyId);
+        }
+        
+        List<Reward> rewards=RewardGetAll.execute(surveyId);
+        request.setAttribute(RequestUtils.REWARDS, rewards);
     }
 }

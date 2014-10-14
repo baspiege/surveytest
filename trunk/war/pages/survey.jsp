@@ -22,8 +22,9 @@
 <p> <fmt:message key="actionsLabel"/> </p>
 <ul>
     <li><a href="/surveyUpdate?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="editLabel"/></a></li> 
+    <li><a href="/rewards?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="manageRewardsLabel"/></a></li>
     <li><a href="/surveyLanguage?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="previewLabel"/></a></li>
-    <li><a href="/surveyResponses?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="surveyResponsesLabel"/></a></li>
+    <li><a href="/surveyResponses?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="viewResponsesLabel"/></a></li>
 </ul>
 </section>
 
