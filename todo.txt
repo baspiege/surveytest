@@ -1,12 +1,12 @@
 TODO
 
 Rewards
-* Show reward - Create unique id per reward?
-* Add way to add rewards (for survey admins) 
+* Add way to add rewards (for survey admins) - Add reward, update reward, delete reward.
+* Show reward
 
 Taking survey
-* Prevent user from taking survey twice
 * Add checks to make sure all questions answered - Browser side
+* Prevent user from taking survey twice
 
 Ordering/Sorting
 * Order questions (have separate page for ordering)
@@ -15,7 +15,7 @@ Ordering/Sorting
 Admins
 * Restrict survey updates to admins of the survey.
   Have list of admins for each survey (so can add/edit/delete admins for survey).
-  Add SurveyAdmin.java with survey Id and user Id (email address).
+  Add Admin.java with survey Id and user Id (email address).
 * Add history for answer, answer set, language, survey
 * Delete language (delete question text and answer text?)
 * Delete answer set.  Show questions using this answer set.

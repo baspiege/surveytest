@@ -34,7 +34,7 @@ public class RewardAddServlet extends HttpServlet {
         setUpData(request);
         String action=RequestUtils.getAlphaInput(request,"action","Action",true);
         ResourceBundle bundle = ResourceBundle.getBundle("Text");
-        Reward reward=(Reward)request.getAttribute(RequestUtils.LANGUAGE);
+        Reward reward=(Reward)request.getAttribute(RequestUtils.REWARD);
 
         // Process based on action
         if (!StringUtils.isEmpty(action)) {

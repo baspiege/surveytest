@@ -18,15 +18,24 @@
 
 <jsp:include page="/pages/components/edits.jsp"/>
 
-<section>
-<p> <fmt:message key="rewardsLabel"/> <a class="add" href="/rewardAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a> </p>
-<ul>
+<section class="data">
+<fmt:message key="rewardsLabel"/> <a class="add" href="/rewardAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a>
+<table>
+  <tr>
+    <th><fmt:message key="urlLabel"/></th>
+    <th><fmt:message key="usedLabel"/></th>
+  </tr>
   <c:forEach var="reward" items="${rewards}">
-    <li>
-      <a href="/reward?rewardId=<c:out value="${reward.key.id}"/>"><c:out value="${reward.url}"/></a>        
-    </li>
+    <tr>
+      <td>
+        <c:out value="${reward.url}"/>        
+      </td>
+      <td>
+        <a href="/reward?rewardId=<c:out value="${reward.key.id}"/>"><c:out value="${reward.used}"/></a>        
+      </td>
+    </tr>
   </c:forEach>
-</ul>
+</table>
 </section>
 
 <jsp:include page="/pages/components/footer.jsp"/>
