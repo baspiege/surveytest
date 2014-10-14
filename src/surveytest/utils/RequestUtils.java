@@ -16,10 +16,8 @@ public class RequestUtils {
    
     public static String ANSWER="answer";
     public static String ANSWERS="answers";
-    
     public static String ANSWER_SET="answerSet";
     public static String ANSWER_SETS="answerSets";
-    
     public static String ANSWER_TEXTS="answerTexts";    
     
     public static String LANGUAGE="language";
@@ -27,16 +25,18 @@ public class RequestUtils {
     
     public static String QUESTION="question";
     public static String QUESTIONS="questions";
-    
     public static String QUESTION_TEXTS="questionTexts";
     
     public static String SURVEY="survey";
     public static String SURVEYS="surveys";
-
+    
     public static String SURVEY_RESPONSE="surveyResponse";
     public static String SURVEY_RESPONSES="surveyResponses";
     
     public static String SURVEY_RESPONSE_REPORT="surveyResponseReport";
+
+    public static String REWARD="reward";
+    public static String REWARDS="rewards";
     
     // These are thread-safe.
     private static Pattern mNumbersPattern=Pattern.compile("[-]?[\\d]*[\\.]?[\\d]*");

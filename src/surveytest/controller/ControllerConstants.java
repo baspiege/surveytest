@@ -54,4 +54,6 @@ public class ControllerConstants {
     // Reports
     public static String SURVEY_RESPONSES="/pages/surveyResponses.jsp";
 
+    // Rewards
+    public static String REWARDS="/pages/rewards.jsp";    
 }

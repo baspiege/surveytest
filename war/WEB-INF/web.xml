@@ -158,7 +158,6 @@
       <servlet-name>surveyLanguage</servlet-name>
       <url-pattern>/surveyLanguage</url-pattern>
     </servlet-mapping>        
-    
     <servlet>
       <servlet-name>surveyResponse</servlet-name>
       <servlet-class>surveytest.controller.SurveyResponseServlet</servlet-class>
@@ -166,8 +165,7 @@
     <servlet-mapping>
       <servlet-name>surveyResponse</servlet-name>
       <url-pattern>/surveyResponse</url-pattern>
-    </servlet-mapping>    
-    
+    </servlet-mapping>
     <servlet>
       <servlet-name>surveyConfirmation</servlet-name>
       <servlet-class>surveytest.controller.SurveyConfirmationServlet</servlet-class>
@@ -195,7 +193,17 @@
     <servlet-mapping>
       <servlet-name>logon</servlet-name>
       <url-pattern>/logon</url-pattern>
-    </servlet-mapping>  
+    </servlet-mapping>
+
+    <!-- Rewards -->    
+    <servlet>
+      <servlet-name>rewards</servlet-name>
+      <servlet-class>surveytest.controller.RewardsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>rewards</servlet-name>
+      <url-pattern>/rewards</url-pattern>
+    </servlet-mapping>    
     
     <error-page>
       <exception-type>surveytest.exceptions.UserNotFoundException</exception-type>
