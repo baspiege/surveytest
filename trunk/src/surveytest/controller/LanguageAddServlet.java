@@ -24,7 +24,6 @@ public class LanguageAddServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
 
-        // Default
         RequestUtils.forwardTo(request,response,ControllerConstants.LANGUAGE_ADD);
     }
 

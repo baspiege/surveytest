@@ -57,5 +57,5 @@
 <jsp:include page="/pages/components/footer.jsp"/>
 </body>
 </fmt:bundle>
-<script type="text/javascript" src="/js/languageUpdate.js" ></script>
+<script type="text/javascript" src="/js/questionUpdate.js" ></script>
 </html>

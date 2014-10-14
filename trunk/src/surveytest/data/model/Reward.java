@@ -42,6 +42,9 @@ public class Reward implements Serializable {
     @Persistent
     private Date lastUpdateTime;
     
+    @Persistent
+    private String lastUpdateUserId;
+    
     public Reward() {
     }
 
@@ -88,6 +91,14 @@ public class Reward implements Serializable {
     public void setLastUpdateTime(Date aLastUpdateTime) {
         lastUpdateTime=aLastUpdateTime;
     }
+    
+    public String getLastUpdateUserId() {
+        return lastUpdateUserId;
+    }
+
+    public void setLastUpdateUserId(String aLastUpdateUserId) {
+        lastUpdateUserId=aLastUpdateUserId;
+    } 
     
     public String getUrl() {
         return url;

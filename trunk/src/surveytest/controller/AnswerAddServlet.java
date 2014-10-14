@@ -32,7 +32,6 @@ public class AnswerAddServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
 
-        // Default
         Answer answer=(Answer)request.getAttribute(RequestUtils.ANSWER);
         answer.setText("");
         RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_ADD);

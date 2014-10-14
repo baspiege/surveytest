@@ -204,6 +204,14 @@
       <servlet-name>rewards</servlet-name>
       <url-pattern>/rewards</url-pattern>
     </servlet-mapping>    
+    <servlet>
+      <servlet-name>rewardAdd</servlet-name>
+      <servlet-class>surveytest.controller.RewardAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>rewardAdd</servlet-name>
+      <url-pattern>/rewardAdd</url-pattern>
+    </servlet-mapping>
     
     <error-page>
       <exception-type>surveytest.exceptions.UserNotFoundException</exception-type>

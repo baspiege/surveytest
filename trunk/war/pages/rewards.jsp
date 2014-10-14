@@ -19,13 +19,6 @@
 <jsp:include page="/pages/components/edits.jsp"/>
 
 <section>
-<p> <fmt:message key="actionsLabel"/> </p>
-<ul>
-    <li><a href="/surveyUpdate?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="editLabel"/></a></li> 
-</ul>
-</section>
-
-<section>
 <p> <fmt:message key="rewardsLabel"/> <a class="add" href="/rewardAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a> </p>
 <ul>
   <c:forEach var="reward" items="${rewards}">
