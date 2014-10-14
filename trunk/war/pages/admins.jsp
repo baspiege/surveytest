@@ -4,7 +4,7 @@
 <%@ page isELIgnored="false" %>
 <fmt:bundle basename="Text">
 <jsp:include page="/pages/components/htmlStartNoCache.jsp" />
-<title id="title"><fmt:message key="rewardsLabel"/></title>
+<title id="title"><fmt:message key="adminsLabel"/></title>
 <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 </head>
 <body onunload="">
@@ -19,19 +19,15 @@
 <jsp:include page="/pages/components/edits.jsp"/>
 
 <section class="data">
-<fmt:message key="rewardsLabel"/> <a class="add" href="/rewardAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a>
+<fmt:message key="adminsLabel"/> <a class="add" href="/adminAdd?surveyId=<c:out value="${survey.key.id}"/>"><fmt:message key="addLabel"/></a>
 <table>
   <tr>
-    <th><fmt:message key="urlLabel"/></th>
-    <th><fmt:message key="usedLabel"/></th>
+    <th><fmt:message key="userIdLabel"/></th>
   </tr>
   <c:forEach var="reward" items="${rewards}">
     <tr>
       <td>
-        <c:out value="${reward.url}"/>        
-      </td>
-      <td>
-        <a href="/reward?rewardId=<c:out value="${reward.key.id}"/>"><c:out value="${reward.used}"/></a>        
+        <a href="/admin?adminId=<c:out value="${admin.key.id}"/>"><c:out value="${admin.userId}"/></a>        
       </td>
     </tr>
   </c:forEach>
