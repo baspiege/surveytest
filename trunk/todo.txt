@@ -1,8 +1,8 @@
 TODO
 
 Rewards
-* Add way to add rewards (for survey admins) - Add reward, update reward, delete reward.
-* Show reward
+* Show reward on confirmation page.
+* Admins - Update reward, delete reward.
 
 Taking survey
 * Add checks to make sure all questions answered - Browser side

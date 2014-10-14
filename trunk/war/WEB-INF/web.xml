@@ -213,6 +213,16 @@
       <url-pattern>/rewardAdd</url-pattern>
     </servlet-mapping>
     
+    <!-- Admins -->
+    <servlet>
+      <servlet-name>admins</servlet-name>
+      <servlet-class>surveytest.controller.AdminsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>admins</servlet-name>
+      <url-pattern>/admins</url-pattern>
+    </servlet-mapping>    
+    
     <error-page>
       <exception-type>surveytest.exceptions.UserNotFoundException</exception-type>
       <location>/redirects/logon.jsp</location>
