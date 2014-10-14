@@ -12,7 +12,7 @@
 <form method="post" action="rewardAdd" autocomplete="off">
 <table>
   <tr>
-    <td><fmt:message key="url"/></td>
+    <td><fmt:message key="urlLabel"/></td>
     <td><input type="text" name="url" value="<c:out value="${reward.url}"/>" id="name" title="<fmt:message key="urlLabel"/>" maxlength="500"/></td>
   </tr>
 </table>
