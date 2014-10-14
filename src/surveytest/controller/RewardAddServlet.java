@@ -1,6 +1,8 @@
 package surveytest.controller;
 
-import surveytest.data.SurveyAdd;
+import surveytest.data.RewardAdd;
+import surveytest.data.SurveyGetSingle;
+import surveytest.data.model.Reward;
 import surveytest.data.model.Survey;
 import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.EditUtils;
@@ -14,10 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
-* Process survey adds.
-*/
-public class SurveyAddServlet extends HttpServlet {
+public class RewardAddServlet extends HttpServlet {
 
     /**
     * Display page.
@@ -25,38 +24,37 @@ public class SurveyAddServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
 
-        Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
-        survey.setName("");
-        RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_ADD);
+        RequestUtils.forwardTo(request,response,ControllerConstants.REWARD_ADD);
     }
 
     /**
-    * Add question.
+    * Add reward.
     */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
         String action=RequestUtils.getAlphaInput(request,"action","Action",true);
         ResourceBundle bundle = ResourceBundle.getBundle("Text");
-        Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
+        Reward reward=(Reward)request.getAttribute(RequestUtils.LANGUAGE);
 
         // Process based on action
         if (!StringUtils.isEmpty(action)) {
             if (action.equals(bundle.getString("addLabel"))) {		
-                // Fields
-                String name=RequestUtils.getAlphaInput(request,"name",bundle.getString("nameLabel"),true);
-                survey.setName(name);
+                // Fields                
+                String url=RequestUtils.getAlphaInput(request,"url",bundle.getString("urlLabel"),true);
+                reward.setUrl(url);
+                
                 if (!EditUtils.hasEdits(request)) {
-                    survey=SurveyAdd.execute(survey);
+                    reward=RewardAdd.execute(reward);
                 }
             }
         }
 
-        // If no edits, forward to survey.
+        // If no edits, forward to rewards.
         if (!EditUtils.hasEdits(request)) {
-            request.setAttribute("surveyId",survey.getKey().getId());
-            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
+            request.setAttribute("surveyId",reward.getSurveyId());
+            RequestUtils.forwardTo(request,response,ControllerConstants.REWARDS_REDIRECT);
         } else {
-            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_ADD);
+            RequestUtils.forwardTo(request,response,ControllerConstants.REWARD_ADD);
         }
     }
 
@@ -66,8 +64,19 @@ public class SurveyAddServlet extends HttpServlet {
             throw new UserNotFoundException();
         }
 
-        Survey survey=new Survey();
-        survey.setLastUpdateUserId(request.getUserPrincipal().getName());
-        request.setAttribute(RequestUtils.SURVEY, survey);
+        Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
+        Survey survey=null;
+        if (surveyId!=null) {
+            survey=SurveyGetSingle.execute(surveyId);
+            request.setAttribute(RequestUtils.SURVEY, survey);
+        }
+        if (survey==null) {
+            throw new RuntimeException("Survey not found:" + surveyId);
+        }
+        
+        Reward reward=new Reward();
+        reward.setSurveyId(surveyId);
+        reward.setLastUpdateUserId(request.getUserPrincipal().getName());
+        request.setAttribute(RequestUtils.REWARD, reward);
     }
 }

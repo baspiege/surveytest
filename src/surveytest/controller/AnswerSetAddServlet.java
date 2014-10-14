@@ -26,7 +26,6 @@ public class AnswerSetAddServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
 
-        // Default
         AnswerSet answerSet=(AnswerSet)request.getAttribute(RequestUtils.ANSWER_SET);
         answerSet.setDescription("");
         RequestUtils.forwardTo(request,response,ControllerConstants.ANSWER_SET_ADD);

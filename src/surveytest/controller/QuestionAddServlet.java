@@ -37,7 +37,6 @@ public class QuestionAddServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
 
-        // Default
         Question question=(Question)request.getAttribute(RequestUtils.QUESTION);
         question.setText("");
         RequestUtils.forwardTo(request,response,ControllerConstants.QUESTION_ADD);
