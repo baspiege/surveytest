@@ -13,7 +13,7 @@
 <table>
   <tr>
     <td><fmt:message key="userIdLabel"/></td>
-    <td><input type="text" name="url" value="<c:out value="${admin.userId}"/>" id="name" title="<fmt:message key="userIdLabel"/>" maxlength="500"/></td>
+    <td><input type="text" name="userId" value="<c:out value="${admin.userId}"/>" id="name" title="<fmt:message key="userIdLabel"/>" maxlength="500"/></td>
   </tr>
 </table>
 <p>

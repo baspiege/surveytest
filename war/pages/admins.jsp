@@ -24,7 +24,7 @@
   <tr>
     <th><fmt:message key="userIdLabel"/></th>
   </tr>
-  <c:forEach var="reward" items="${rewards}">
+  <c:forEach var="admin" items="${admins}">
     <tr>
       <td>
         <a href="/admin?adminId=<c:out value="${admin.key.id}"/>"><c:out value="${admin.userId}"/></a>        
