@@ -1,25 +1,23 @@
 TODO
 
 Rewards
-* Show reward on confirmation page.
-* Admins - Update reward, delete reward.
+* HIGH - Show reward on confirmation page.
+* HIGH - (by admins) Update reward, delete reward.
 
 Taking survey
-* Add checks to make sure all questions answered - Browser side
-* Prevent user from taking survey twice
+* HIGH - Add checks to make sure all questions answered - Browser side
+* HIGH - Prevent user from taking survey twice
 
 Ordering/Sorting
-* Order questions (have separate page for ordering)
-* Order answers (have separate page for ordering)
+* MEDIUM - Order questions (have separate page for ordering)
+* MEDIUM - Order answers (have separate page for ordering)
 
 Admins
-* Restrict survey updates to admins of the survey.
-  Have list of admins for each survey (so can add/edit/delete admins for survey).
-  Add Admin.java with survey Id and user Id (email address).
-* Add history for answer, answer set, language, survey
-* Delete language (delete question text and answer text?)
-* Delete answer set.  Show questions using this answer set.
-* Log off button
+* HIGH - Admin - Update admin user.  Delete admin user.
+* LOW - Add history for answer, answer set, language, survey, admin
+* LOW - Delete language (delete question text and answer text?)
+* LOW - Delete answer set.  Show questions using this answer set.
+* LOW - Log off button
 
 Other
-* Build using Ant or Eclipse.  See setup.txt
+* LOW - Build using Ant or Eclipse.  See setup.txt
