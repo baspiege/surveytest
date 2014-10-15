@@ -221,7 +221,15 @@
     <servlet-mapping>
       <servlet-name>admins</servlet-name>
       <url-pattern>/admins</url-pattern>
-    </servlet-mapping>    
+    </servlet-mapping> 
+    <servlet>
+      <servlet-name>adminAdd</servlet-name>
+      <servlet-class>surveytest.controller.AdminAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>adminAdd</servlet-name>
+      <url-pattern>/adminAdd</url-pattern>
+    </servlet-mapping>
     
     <error-page>
       <exception-type>surveytest.exceptions.UserNotFoundException</exception-type>
