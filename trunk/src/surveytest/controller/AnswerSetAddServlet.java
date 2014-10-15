@@ -1,7 +1,9 @@
 package surveytest.controller;
 
+import surveytest.data.AdminGetSingle;
 import surveytest.data.AnswerSetAdd;
 import surveytest.data.SurveyGetSingle;
+import surveytest.data.model.Admin;
 import surveytest.data.model.AnswerSet;
 import surveytest.data.model.Survey;
 import surveytest.exceptions.UserNotFoundException;
@@ -76,6 +78,12 @@ public class AnswerSetAddServlet extends HttpServlet {
         }
         if (survey==null) {
             throw new RuntimeException("Survey not found:" + surveyId);
+        }
+        
+        String userId=request.getUserPrincipal().getName();
+        Admin admin=AdminGetSingle.getByUserId(userId, surveyId);
+        if (admin==null) {
+            throw new RuntimeException("Admin not authorized for survey.  userId: " + userId + " surveyId: " + surveyId);
         }
 
         AnswerSet answerSet=new AnswerSet();

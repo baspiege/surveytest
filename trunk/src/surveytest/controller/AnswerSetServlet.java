@@ -1,10 +1,12 @@
 package surveytest.controller;
 
+import surveytest.data.AdminGetSingle;
+import surveytest.data.AnswerSetGetSingle;
+import surveytest.data.AnswerGetAll;
+import surveytest.data.model.Admin;
 import surveytest.data.model.Answer;
 import surveytest.data.model.AnswerSet;
 import surveytest.data.model.Survey;
-import surveytest.data.AnswerSetGetSingle;
-import surveytest.data.AnswerGetAll;
 import surveytest.data.SurveyGetSingle;
 import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.RequestUtils;
@@ -47,6 +49,12 @@ public class AnswerSetServlet extends HttpServlet {
             throw new RuntimeException("AnswerSet not found: " + answerSetId);
         } else {
             request.setAttribute(RequestUtils.ANSWER_SET, answerSet);
+        }
+        
+        String userId=request.getUserPrincipal().getName();
+        Admin admin=AdminGetSingle.getByUserId(userId, answerSet.getSurveyId());
+        if (admin==null) {
+            throw new RuntimeException("Admin not authorized for survey.  userId: " + userId + " surveyId: " + answerSet.getSurveyId());
         }
         
         List<Answer> answers=AnswerGetAll.execute(answerSetId);

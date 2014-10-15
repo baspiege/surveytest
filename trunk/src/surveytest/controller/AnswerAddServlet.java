@@ -1,14 +1,16 @@
 package surveytest.controller;
 
+import surveytest.data.AdminGetSingle;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.AnswerAdd;
 import surveytest.data.AnswerSetGetSingle;
 import surveytest.data.AnswerTextAdd;
 import surveytest.data.SurveyGetSingle;
-import surveytest.data.model.Language;
+import surveytest.data.model.Admin;
 import surveytest.data.model.Answer;
 import surveytest.data.model.AnswerSet;
 import surveytest.data.model.AnswerText;
+import surveytest.data.model.Language;
 import surveytest.data.model.Survey;
 import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.EditUtils;
@@ -100,6 +102,12 @@ public class AnswerAddServlet extends HttpServlet {
         }
         if (answerSet==null) {
             throw new RuntimeException("Answer Set not found:" + answerSetId);
+        }
+        
+        String userId=request.getUserPrincipal().getName();
+        Admin admin=AdminGetSingle.getByUserId(userId, answerSet.getSurveyId());
+        if (admin==null) {
+            throw new RuntimeException("Admin not authorized for survey.  userId: " + userId + " surveyId: " + answerSet.getSurveyId());
         }
 
         Answer answer=new Answer();

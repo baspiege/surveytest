@@ -1,5 +1,7 @@
 package surveytest.controller;
 
+import surveytest.data.AdminGetSingle;
+import surveytest.data.model.Admin;
 import surveytest.data.model.Language;
 import surveytest.data.model.Survey;
 import surveytest.data.LanguageGetSingle;
@@ -44,6 +46,12 @@ public class LanguageServlet extends HttpServlet {
         }
         if (language==null) {
             throw new RuntimeException("Language not found:" + languageId);
+        }
+        
+        String userId=request.getUserPrincipal().getName();
+        Admin admin=AdminGetSingle.getByUserId(userId, language.getSurveyId());
+        if (admin==null) {
+            throw new RuntimeException("Admin not authorized for survey.  userId: " + userId + " surveyId: " + language.getSurveyId());
         }
         
         Survey survey=SurveyGetSingle.execute(language.getSurveyId());

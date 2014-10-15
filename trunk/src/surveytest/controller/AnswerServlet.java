@@ -1,9 +1,11 @@
 package surveytest.controller;
 
-import surveytest.data.model.Language;
+import surveytest.data.AdminGetSingle;
+import surveytest.data.model.Admin;
 import surveytest.data.model.Answer;
 import surveytest.data.model.AnswerSet;
 import surveytest.data.model.AnswerText;
+import surveytest.data.model.Language;
 import surveytest.data.model.Survey;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.AnswerGetSingle;
@@ -59,6 +61,12 @@ public class AnswerServlet extends HttpServlet {
         
         AnswerSet answerSet=AnswerSetGetSingle.execute(answer.getAnswerSetId());
         request.setAttribute(RequestUtils.ANSWER_SET, answerSet);
+        
+        String userId=request.getUserPrincipal().getName();
+        Admin admin=AdminGetSingle.getByUserId(userId, answerSet.getSurveyId());
+        if (admin==null) {
+            throw new RuntimeException("Admin not authorized for survey.  userId: " + userId + " surveyId: " + answerSet.getSurveyId());
+        }
         
         List<AnswerText> answerTexts=AnswerTextGetAll.execute(answerId);
         request.setAttribute(RequestUtils.ANSWER_TEXTS, answerTexts);
