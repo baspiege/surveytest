@@ -1,6 +1,8 @@
 package surveytest.controller;
 
+import surveytest.data.AdminAdd;
 import surveytest.data.SurveyAdd;
+import surveytest.data.model.Admin;
 import surveytest.data.model.Survey;
 import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.EditUtils;
@@ -47,6 +49,12 @@ public class SurveyAddServlet extends HttpServlet {
                 survey.setName(name);
                 if (!EditUtils.hasEdits(request)) {
                     survey=SurveyAdd.execute(survey);
+                    
+                    Admin admin=new Admin();
+                    admin.setUserId(request.getUserPrincipal().getName());
+                    admin.setSurveyId(survey.getKey().getId());
+                    admin.setLastUpdateUserId(request.getUserPrincipal().getName());
+                    AdminAdd.execute(admin);
                 }
             }
         }

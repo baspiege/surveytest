@@ -29,6 +29,9 @@ public class Admin implements Serializable {
     
     @Persistent
     private String userId;
+    
+    @Persistent
+    private String userIdLowerCase;
         
     @Persistent
     private Date lastUpdateTime;
@@ -73,6 +76,7 @@ public class Admin implements Serializable {
 
     public void setUserId(String aUserId) {
         userId=aUserId;
+        userIdLowerCase=aUserId.toLowerCase();
     } 
         
 }
