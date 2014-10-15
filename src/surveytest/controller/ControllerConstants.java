@@ -57,5 +57,7 @@ public class ControllerConstants {
     public static String REWARDS_REDIRECT="/redirects/rewards.jsp";
 
     // Admins
-    public static String ADMINS="/pages/admins.jsp";        
+    public static String ADMIN_ADD="/pages/adminAdd.jsp";
+    public static String ADMINS="/pages/admins.jsp";
+    public static String ADMINS_REDIRECT="/redirects/rewards.jsp";
 }
