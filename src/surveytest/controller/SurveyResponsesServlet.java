@@ -40,6 +40,7 @@ public class SurveyResponsesServlet extends HttpServlet {
         String report=(String)request.getAttribute(RequestUtils.SURVEY_RESPONSE_REPORT);
             
         response.setContentType("text/csv");
+        response.setCharacterEncoding("utf-8");
         response.setHeader("Content-Disposition", "attachment; filename=\"SurveyResponses_" + survey.getKey().getId() + ".csv\"");
 
         OutputStream outputStream=null;
