@@ -62,7 +62,7 @@ public class AdminUpdateServlet extends HttpServlet {
         // If no edits, forward to survey.
         if (!EditUtils.hasEdits(request)) {
             request.setAttribute("surveyId",admin.getSurveyId());
-            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
+            RequestUtils.forwardTo(request,response,ControllerConstants.ADMINS_REDIRECT);
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.ADMIN_UPDATE);
         }
