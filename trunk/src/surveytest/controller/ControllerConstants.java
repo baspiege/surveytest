@@ -46,9 +46,6 @@ public class ControllerConstants {
     public static String SURVEY_RESPONSE="/pages/surveyResponse.jsp";
     public static String SURVEY_RESPONSE_REDIRECT="/redirects/surveyResponse.jsp";
 
-    // Reports
-    public static String SURVEY_RESPONSES="/pages/surveyResponses.jsp";
-
     // Rewards
     public static String REWARD="/pages/reward.jsp";    
     public static String REWARD_ADD="/pages/rewardAdd.jsp"; 
@@ -58,6 +55,8 @@ public class ControllerConstants {
 
     // Admins
     public static String ADMIN_ADD="/pages/adminAdd.jsp";
+    public static String ADMIN_REDIRECT="/redirects/admin.jsp";
+    public static String ADMIN_UPDATE="/pages/adminUpdate.jsp";
     public static String ADMINS="/pages/admins.jsp";
     public static String ADMINS_REDIRECT="/redirects/admins.jsp";
 }
