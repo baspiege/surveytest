@@ -230,6 +230,14 @@
       <servlet-name>adminAdd</servlet-name>
       <url-pattern>/adminAdd</url-pattern>
     </servlet-mapping>
+    <servlet>
+      <servlet-name>adminUpdate</servlet-name>
+      <servlet-class>surveytest.controller.AdminUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>adminUpdate</servlet-name>
+      <url-pattern>/adminUpdate</url-pattern>
+    </servlet-mapping>
     
     <error-page>
       <exception-type>surveytest.exceptions.UserNotFoundException</exception-type>

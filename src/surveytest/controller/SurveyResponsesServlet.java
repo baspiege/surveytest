@@ -15,6 +15,7 @@ import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import surveytest.utils.UserUtils;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +36,25 @@ public class SurveyResponsesServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         setUpData(request);
-        RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_RESPONSES);
+        Survey survey=(Survey)request.getAttribute(RequestUtils.SURVEY);
+        String report=(String)request.getAttribute(RequestUtils.SURVEY_RESPONSE_REPORT);
+            
+        response.setContentType("text/csv");
+        response.setHeader("Content-Disposition", "attachment; filename=\"SurveyResponses_" + survey.getKey().getId() + ".csv\"");
+
+        OutputStream outputStream=null;
+        try {
+            outputStream = response.getOutputStream();
+            outputStream.write(report.getBytes());
+            outputStream.flush();
+        }
+        catch(Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (outputStream!=null) {
+                outputStream.close();
+            }
+        }
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
