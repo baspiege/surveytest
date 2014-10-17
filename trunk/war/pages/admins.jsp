@@ -27,7 +27,7 @@
   <c:forEach var="admin" items="${admins}">
     <tr>
       <td>
-        <a href="/admin?adminId=<c:out value="${admin.key.id}"/>"><c:out value="${admin.userId}"/></a>        
+        <a href="/adminUpdate?adminId=<c:out value="${admin.key.id}"/>"><c:out value="${admin.userId}"/></a>        
       </td>
     </tr>
   </c:forEach>

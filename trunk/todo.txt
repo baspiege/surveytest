@@ -1,11 +1,13 @@
 TODO
 
 Rewards
+* HIGH - Add text for reward.
 * HIGH - Show reward on confirmation page.
 * HIGH - (by admins) Update reward, delete reward.
 
 Taking survey
 * HIGH - Add checks to make sure all questions answered - Browser side
+* HIGH - Number questions.
 * HIGH - Prevent user from taking survey twice
 
 Ordering/Sorting
@@ -13,7 +15,6 @@ Ordering/Sorting
 * MEDIUM - Order answers (have separate page for ordering)
 
 Admins
-* HIGH - Admin - Update admin user.  Delete admin user.
 * LOW - Add history for answer, answer set, language, survey, admin
 * LOW - Delete language (delete question text and answer text?)
 * LOW - Delete answer set.  Show questions using this answer set.
