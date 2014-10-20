@@ -47,7 +47,6 @@ public class ControllerConstants {
     public static String SURVEY_RESPONSE_REDIRECT="/redirects/surveyResponse.jsp";
 
     // Rewards
-    public static String REWARD="/pages/reward.jsp";    
     public static String REWARD_ADD="/pages/rewardAdd.jsp"; 
     public static String REWARD_REDIRECT="/redirects/reward.jsp";
     public static String REWARD_UPDATE="/pages/rewardUpdate.jsp"; 

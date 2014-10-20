@@ -53,14 +53,6 @@ public class RewardUpdateServlet extends HttpServlet {
                 deleteAction(request,response);
             }
         }
-
-        // If no edits, forward to survey.
-        if (!EditUtils.hasEdits(request)) {
-            request.setAttribute("surveyId",reward.getSurveyId());
-            RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_REDIRECT);
-        } else {
-            RequestUtils.forwardTo(request,response,ControllerConstants.REWARD_UPDATE);
-        }
     }
     
     private void updateAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -72,8 +64,8 @@ public class RewardUpdateServlet extends HttpServlet {
             reward=RewardUpdate.execute(reward);
         }
         if (!EditUtils.hasEdits(request)) {
-            request.setAttribute("rewardId",reward.getKey().getId());
-            RequestUtils.forwardTo(request,response,ControllerConstants.REWARD_REDIRECT);
+            request.setAttribute("surveyId",reward.getSurveyId());
+            RequestUtils.forwardTo(request,response,ControllerConstants.REWARDS_REDIRECT);
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.REWARD_UPDATE);
         }
