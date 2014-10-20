@@ -2,13 +2,14 @@ TODO
 
 Rewards
 * HIGH - Add text for reward.
-* HIGH - Add token for reward.  So user survey page needs survey id, reward id, and token.
-* HIGH - Show reward on confirmation page.
+* HIGH - User survey page needs survey id, reward id, and token.
+* HIGH - Show reward on confirmation page and mark used.
+If someone takes survey with reward with wrong token, show error.
+If already used, show message that survey already submitted.  (add language specific text)
 
 Taking survey
 * HIGH - Add checks to make sure all questions answered - Browser side
 * HIGH - Number questions.
-* HIGH - Prevent user from taking survey twice
 
 Ordering/Sorting
 * MEDIUM - Order questions (have separate page for ordering)
