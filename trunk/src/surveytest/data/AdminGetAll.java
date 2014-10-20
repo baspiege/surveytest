@@ -18,7 +18,8 @@ public class AdminGetAll {
                 query = pm.newQuery(Admin.class);
                 query.setFilter("surveyId==surveyIdParam");
                 query.declareParameters("long surveyIdParam");
-
+                query.setOrdering("userIdLowerCase ASC");
+                
                 results = (List<Admin>) query.execute(aSurveyId);
 
                 // Touch object to get data.  Size method triggers the underlying database call.
