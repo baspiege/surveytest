@@ -3,7 +3,6 @@ TODO
 Rewards
 * HIGH - Add text for reward.
 * HIGH - Show reward on confirmation page.
-* HIGH - (by admins) Update reward, delete reward.
 
 Taking survey
 * HIGH - Add checks to make sure all questions answered - Browser side

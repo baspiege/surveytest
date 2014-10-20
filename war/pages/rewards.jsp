@@ -31,7 +31,7 @@
         <c:out value="${reward.url}"/>        
       </td>
       <td>
-        <a href="/reward?rewardId=<c:out value="${reward.key.id}"/>"><c:out value="${reward.used}"/></a>        
+        <a href="/rewardUpdate?rewardId=<c:out value="${reward.key.id}"/>"><c:out value="${reward.used}"/></a>        
       </td>
     </tr>
   </c:forEach>
