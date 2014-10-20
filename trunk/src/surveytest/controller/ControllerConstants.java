@@ -50,6 +50,7 @@ public class ControllerConstants {
     public static String REWARD="/pages/reward.jsp";    
     public static String REWARD_ADD="/pages/rewardAdd.jsp"; 
     public static String REWARD_REDIRECT="/redirects/reward.jsp";
+    public static String REWARD_UPDATE="/pages/rewardUpdate.jsp"; 
     public static String REWARDS="/pages/rewards.jsp";    
     public static String REWARDS_REDIRECT="/redirects/rewards.jsp";
 
