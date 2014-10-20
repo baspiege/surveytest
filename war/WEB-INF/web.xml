@@ -212,6 +212,14 @@
       <servlet-name>rewardAdd</servlet-name>
       <url-pattern>/rewardAdd</url-pattern>
     </servlet-mapping>
+    <servlet>
+      <servlet-name>rewardUpdate</servlet-name>
+      <servlet-class>surveytest.controller.RewardUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>rewardUpdate</servlet-name>
+      <url-pattern>/rewardUpdate</url-pattern>
+    </servlet-mapping>
     
     <!-- Admins -->
     <servlet>
