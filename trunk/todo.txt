@@ -2,6 +2,7 @@ TODO
 
 Rewards
 * HIGH - Add text for reward.
+* HIGH - Add token for reward.  So user survey page needs survey id, reward id, and token.
 * HIGH - Show reward on confirmation page.
 
 Taking survey

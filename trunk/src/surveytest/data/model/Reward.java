@@ -40,6 +40,12 @@ public class Reward implements Serializable {
     private String url;
     
     @Persistent
+    private String description;
+    
+    @Persistent
+    private long token;
+    
+    @Persistent
     private Date lastUpdateTime;
     
     @Persistent
@@ -106,6 +112,22 @@ public class Reward implements Serializable {
     
     public void setUrl(String aUrl) {
         url=aUrl;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+    
+    public void setDescription(String aDescription) {
+        description=aDescription;
+    }
+    
+    public long getToken() {
+        return token;
+    }
+    
+    public void setToken(long aToken) {
+        token=aToken;
     }
 
 }
