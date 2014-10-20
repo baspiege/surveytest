@@ -23,12 +23,16 @@
 <table>
   <tr>
     <th><fmt:message key="urlLabel"/></th>
+    <th><fmt:message key="tokenLabel"/></th>
     <th><fmt:message key="usedLabel"/></th>
   </tr>
   <c:forEach var="reward" items="${rewards}">
     <tr>
       <td>
         <c:out value="${reward.url}"/>        
+      </td>
+      <td>
+        <c:out value="${reward.token}"/>        
       </td>
       <td>
         <a href="/rewardUpdate?rewardId=<c:out value="${reward.key.id}"/>"><c:out value="${reward.used}"/></a>        
