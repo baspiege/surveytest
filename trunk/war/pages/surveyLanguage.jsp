@@ -33,6 +33,8 @@
 
 <br/>
 <input id="surveyId" type="hidden" name="surveyId" value="<c:out value="${survey.key.id}"/>" />
+<input id="rewardId" type="hidden" name="rewardId" value="<c:out value="${reward.key.id}"/>" />
+<input id="token" type="hidden" name="token" value="<c:out value="${reward.token}"/>" />
 <input class="button" type="submit" style="display:none" id="addButtonDisabled" disabled="disabled" value="<fmt:message key="submitLabel"/>"/>
 <input class="button" type="submit" style="display:inline" id="addButtonEnabled" name="action" value="<fmt:message key="submitLabel"/>"/>
 
