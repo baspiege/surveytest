@@ -41,18 +41,20 @@ public class SurveyConfirmationServlet extends HttpServlet {
             request.setAttribute(RequestUtils.REWARD, reward);
         }
         
-        // Check if reward token matches
+        // Check token
         if (reward!=null) {
-            Long tokenId=RequestUtils.getNumericInput(request,"tokenId","tokenId",false);
-            if (reward.getToken()!=tokenId) {
+            Long token=RequestUtils.getNumericInput(request,"token","token",true);
+            if (token==null) {
+                throw new RuntimeException("Token not found");
+            }            
+            if (reward.getToken()!=token) {
                 String message="Inputted token not valid for reward id: " + reward.getKey().getId()
                     + " reward token: " + reward.getToken()
                     + " inputted token: " + tokenId; 
                 throw new RuntimeException(message);
             }
             if (reward.getUsed()) {
-                String message="Reward already used";
-                throw new RuntimeException(message);
+                throw new RuntimeException("Reward already used");
             }
         }
     
