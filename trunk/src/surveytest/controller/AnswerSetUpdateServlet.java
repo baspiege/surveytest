@@ -1,7 +1,6 @@
 package surveytest.controller;
 
 import surveytest.data.AdminGetSingle;
-import surveytest.data.model.Admin;
 import surveytest.data.AnswerGetAll;
 import surveytest.data.AnswerSetDelete;
 import surveytest.data.AnswerSetGetSingle;
@@ -9,6 +8,7 @@ import surveytest.data.AnswerSetUpdate;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionGetAll;
 import surveytest.data.SurveyGetSingle;
+import surveytest.data.model.Admin;
 import surveytest.data.model.Answer;
 import surveytest.data.model.AnswerSet;
 import surveytest.data.model.Language;

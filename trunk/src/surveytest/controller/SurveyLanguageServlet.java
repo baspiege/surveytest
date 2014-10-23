@@ -83,6 +83,10 @@ public class SurveyLanguageServlet extends HttpServlet {
         // Check if reward token matches
         if (reward!=null) {
             Long tokenId=RequestUtils.getNumericInput(request,"tokenId","tokenId",false);
+            System.out.println(reward);
+                        System.out.println(tokenId);
+                                    System.out.println(reward.getToken());
+            
             if (reward.getToken()!=tokenId) {
                 String message="Inputted token not valid for reward id: " + reward.getKey().getId()
                     + " reward token: " + reward.getToken()
