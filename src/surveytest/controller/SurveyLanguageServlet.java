@@ -1,8 +1,10 @@
 package surveytest.controller;
 
 import surveytest.data.model.Language;
+import surveytest.data.model.Reward;
 import surveytest.data.model.Survey;
 import surveytest.data.LanguageGetAll;
+import surveytest.data.RewardGetSingle;
 import surveytest.data.SurveyGetSingle;
 import surveytest.utils.EditUtils;
 import surveytest.utils.RequestUtils;
@@ -71,7 +73,36 @@ public class SurveyLanguageServlet extends HttpServlet {
 
     private void setUpData(HttpServletRequest request) {
 
-        Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
+        Long rewardId=RequestUtils.getNumericInput(request,"rewardId","rewardId",false);
+        Reward reward=null;
+        if (rewardId!=null) {
+            reward=RewardGetSingle.execute(rewardId);
+            request.setAttribute(RequestUtils.REWARD, reward);
+        }
+        
+        // Check if reward token matches
+        if (reward!=null) {
+            Long tokenId=RequestUtils.getNumericInput(request,"tokenId","tokenId",false);
+            if (reward.getToken()!=tokenId) {
+                String message="Inputted token not valid for reward id: " + reward.getKey().getId()
+                    + " reward token: " + reward.getToken()
+                    + " inputted token: " + tokenId; 
+                throw new RuntimeException(message);
+            }
+            if (reward.getUsed()) {
+                String message="Reward already used";
+                throw new RuntimeException(message);
+            }
+        }
+        
+        // If no reward, check for survey Id.
+        Long surveyId=null;
+        if (reward==null) {
+            surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",false);
+        } else {
+            surveyId=reward.getSurveyId();
+        }
+        
         Survey survey=null;
         if (surveyId!=null) {
             survey=SurveyGetSingle.execute(surveyId);
