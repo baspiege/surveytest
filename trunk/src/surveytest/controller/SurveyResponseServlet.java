@@ -153,7 +153,7 @@ public class SurveyResponseServlet extends HttpServlet {
             if (reward.getToken()!=token) {
                 String message="Inputted token not valid for reward id: " + reward.getKey().getId()
                     + " reward token: " + reward.getToken()
-                    + " inputted token: " + tokenId; 
+                    + " inputted token: " + token; 
                 throw new RuntimeException(message);
             }
             if (reward.getUsed()) {
