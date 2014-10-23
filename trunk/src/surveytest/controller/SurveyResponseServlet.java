@@ -7,6 +7,7 @@ import surveytest.data.model.Language;
 import surveytest.data.model.Question;
 import surveytest.data.model.QuestionResponse;
 import surveytest.data.model.QuestionText;
+import surveytest.data.model.Reward;
 import surveytest.data.model.Survey;
 import surveytest.data.model.SurveyResponse;
 import surveytest.data.AnswerGetAll;
@@ -17,6 +18,7 @@ import surveytest.data.LanguageGetSingle;
 import surveytest.data.QuestionGetAll;
 import surveytest.data.QuestionResponseAdd;
 import surveytest.data.QuestionTextGetAll;
+import surveytest.data.RewardGetSingle;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.SurveyResponseAdd;
 import surveytest.utils.EditUtils;
@@ -134,6 +136,28 @@ public class SurveyResponseServlet extends HttpServlet {
     }
 
     private void setUpData(HttpServletRequest request) {
+    
+        Long rewardId=RequestUtils.getNumericInput(request,"rewardId","rewardId",false);
+        Reward reward=null;
+        if (rewardId!=null) {
+            reward=RewardGetSingle.execute(rewardId);
+            request.setAttribute(RequestUtils.REWARD, reward);
+        }
+        
+        // Check if reward token matches
+        if (reward!=null) {
+            Long tokenId=RequestUtils.getNumericInput(request,"tokenId","tokenId",false);
+            if (reward.getToken()!=tokenId) {
+                String message="Inputted token not valid for reward id: " + reward.getKey().getId()
+                    + " reward token: " + reward.getToken()
+                    + " inputted token: " + tokenId;
+                throw new RuntimeException(message);
+            }
+            if (reward.getUsed()) {
+                String message="Reward already used";
+                throw new RuntimeException(message);
+            }
+        }
     
         SurveyResponse surveyResponse=new SurveyResponse();
         request.setAttribute(RequestUtils.SURVEY_RESPONSE, surveyResponse);

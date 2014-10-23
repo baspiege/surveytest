@@ -19,6 +19,7 @@ public class RewardUpdate {
             if (reward!=null) {
                 reward.setToken(aReward.getToken());
                 reward.setUrl(aReward.getUrl());
+                reward.setDescription(aReward.getDescription());
                 reward.setLastUpdateUserId(aReward.getLastUpdateUserId());
                 reward.setLastUpdateTime(new Date());
             }
