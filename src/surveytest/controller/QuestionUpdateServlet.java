@@ -1,7 +1,6 @@
 package surveytest.controller;
 
 import surveytest.data.AdminGetSingle;
-import surveytest.data.model.Admin;
 import surveytest.data.AnswerSetGetAll;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionDelete;
@@ -16,6 +15,7 @@ import surveytest.data.model.AnswerSet;
 import surveytest.data.model.Language;
 import surveytest.data.model.Question;
 import surveytest.data.model.QuestionText;
+import surveytest.data.model.Admin;
 import surveytest.data.model.Survey;
 import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.EditUtils;

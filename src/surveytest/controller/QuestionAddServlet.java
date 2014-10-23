@@ -1,12 +1,12 @@
 package surveytest.controller;
 
 import surveytest.data.AdminGetSingle;
-import surveytest.data.model.Admin;
 import surveytest.data.AnswerSetGetAll;
 import surveytest.data.LanguageGetAll;
 import surveytest.data.QuestionAdd;
 import surveytest.data.QuestionTextAdd;
 import surveytest.data.SurveyGetSingle;
+import surveytest.data.model.Admin;
 import surveytest.data.model.AnswerSet;
 import surveytest.data.model.Language;
 import surveytest.data.model.Question;

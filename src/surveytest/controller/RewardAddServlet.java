@@ -1,9 +1,9 @@
 package surveytest.controller;
 
 import surveytest.data.AdminGetSingle;
-import surveytest.data.model.Admin;
 import surveytest.data.RewardAdd;
 import surveytest.data.SurveyGetSingle;
+import surveytest.data.model.Admin;
 import surveytest.data.model.Reward;
 import surveytest.data.model.Survey;
 import surveytest.exceptions.UserNotFoundException;

@@ -1,7 +1,6 @@
 package surveytest.controller;
 
 import surveytest.data.AdminGetSingle;
-import surveytest.data.model.Admin;
 import surveytest.data.AdminAdd;
 import surveytest.data.SurveyGetSingle;
 import surveytest.data.model.Admin;

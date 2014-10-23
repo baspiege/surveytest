@@ -1,12 +1,9 @@
 TODO
 
 Rewards
-* HIGH - User survey page needs (survey id) or (survey id, reward id, and token).
-* HIGH - Show reward on confirmation page and mark used.
-If someone takes survey with reward with wrong token, show error.
-If someone takes survey with reward with correct token and already used, show message that survey already submitted.  (add language specific text)
-To survey reponse page, add column for reward shown.
-* HIGH - Add text for reward. (add, update)  Make this language specific.
+* HIGH - User survey page needs (survey id) or (reward id and token).
+* HIGH - Show reward on confirmation page and mark used.  To survey reponse page, add column for reward shown.
+* HIGH - Add value for reward. (add, update)  Make this language specific?
 
 Taking survey
 * HIGH - Add checks to make sure all questions answered - Browser side

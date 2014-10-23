@@ -1,7 +1,7 @@
 package surveytest.controller;
 
-import surveytest.data.model.Survey;
 import surveytest.data.SurveyGetAll;
+import surveytest.data.model.Survey;
 import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.UserUtils;

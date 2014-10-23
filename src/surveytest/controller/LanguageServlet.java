@@ -1,11 +1,11 @@
 package surveytest.controller;
 
 import surveytest.data.AdminGetSingle;
+import surveytest.data.LanguageGetSingle;
+import surveytest.data.SurveyGetSingle;
 import surveytest.data.model.Admin;
 import surveytest.data.model.Language;
 import surveytest.data.model.Survey;
-import surveytest.data.LanguageGetSingle;
-import surveytest.data.SurveyGetSingle;
 import surveytest.exceptions.UserNotFoundException;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.UserUtils;

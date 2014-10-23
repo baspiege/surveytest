@@ -39,7 +39,7 @@
         <a href="/rewardUpdate?rewardId=<c:out value="${reward.key.id}"/>"><c:out value="${reward.used}"/></a>        
       </td>
       <td>
-        <a href="/surveyLanguage?surveyId=<c:out value="${reward.surveyId}"/>&rewardId=<c:out value="${reward.key.id}"/>&token=<c:out value="${reward.token}"/>">
+        <a href="/surveyLanguage?rewardId=<c:out value="${reward.key.id}"/>&token=<c:out value="${reward.token}"/>">
           <c:out value="${reward.used}"/>
         </a>        
       </td>
