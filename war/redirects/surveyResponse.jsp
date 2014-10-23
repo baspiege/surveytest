@@ -3,5 +3,7 @@
 <c:redirect url="/surveyResponse">
   <c:param name="surveyId" value="${surveyId}"/>
   <c:param name="languageId" value="${languageId}"/>
+  <c:param name="rewardId" value="${rewardId}"/>
+  <c:param name="token" value="${token}"/>
   <c:param name="reload" value="true"/>
 </c:redirect>

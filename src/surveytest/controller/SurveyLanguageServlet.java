@@ -63,8 +63,17 @@ public class SurveyLanguageServlet extends HttpServlet {
         
         // If no edits, forward to survey response with survey and language id.
         if (!EditUtils.hasEdits(request) && language!=null) {
+            Reward reward=(Reward)request.getAttribute(RequestUtils.REWARD);
+            Long rewardId=null;
+            Long token=null;
+            if (reward!=null) {
+                rewardId=reward.getKey().getId();
+                token=reward.getToken();
+            }
             request.setAttribute("surveyId",language.getSurveyId());
             request.setAttribute("languageId",language.getKey().getId());
+            request.setAttribute("rewardId",rewardId);
+            request.setAttribute("token",token);
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_RESPONSE_REDIRECT);
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_LANGUAGE);
