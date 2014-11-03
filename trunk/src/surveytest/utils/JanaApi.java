@@ -102,6 +102,7 @@ public class JanaApi {
         return response;
     }
     
+    // Test method.  The values below are test and do not work.
     public static void main(String[] args) {
         JanaApi janaApi=new JanaApi("gta2i", "293af117b8f14232ad86099f730629bc", "https://api.jana.com/api/");
         
