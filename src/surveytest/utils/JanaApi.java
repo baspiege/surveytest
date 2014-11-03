@@ -91,11 +91,9 @@ public class JanaApi {
             wr.flush();
             wr.close();
             
-            BufferedReader in = new BufferedReader(
-                            new InputStreamReader(
-                            connection.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String responseLine;
-                while ((responseLine = in.readLine()) != null) {
+            while ((responseLine = in.readLine()) != null) {
                 response+=responseLine;
             }
             in.close();
