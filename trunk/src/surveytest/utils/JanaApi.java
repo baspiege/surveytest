@@ -68,10 +68,8 @@ public class JanaApi {
     public String post(String data, String signature, String method){
         long nonce=new Random().nextLong();
         StringBuilder request=new StringBuilder();
-        request.append( "{" );
-        request.append( "\"request\":\"" + data + "\"," );
-        request.append( "\"sig\":\"" + signature + "\"" );
-        request.append( "}" );
+        request.append( "request=" + data);
+        request.append( "&sig=" + signature);
         String postData=request.toString();
         String response="";
         try {
