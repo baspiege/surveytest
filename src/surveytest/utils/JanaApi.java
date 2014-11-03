@@ -26,10 +26,9 @@ public class JanaApi {
     }   
     
     public String getLink(String offerId){
-        String data=getLinkData(offerId); 
-        String encoded=encode(data);
-        String signed=sign(encoded);
-        return post(encoded,signed,"jia-request");
+        String data=encode(getLinkData(offerId)); 
+        String signature=sign(data);
+        return post(data,signature,"jia-request");
     }
     
     public String getLinkData(String offerId){
@@ -62,15 +61,16 @@ public class JanaApi {
         String encoded=Base64.encode(data);     
         encoded=encoded.replace("-","+");
         encoded=encoded.replace("_","/");
+        encoded=encoded.replace("=","");
         return encoded;
     }
         
-    public String post(String encoded, String sig, String method){
+    public String post(String data, String signature, String method){
         long nonce=new Random().nextLong();
         StringBuilder request=new StringBuilder();
         request.append( "{" );
-        request.append( "\"request\":\"" + encoded + "\"," );
-        request.append( "\"sig\":\"" + sig + "\"" );
+        request.append( "\"request\":\"" + data + "\"," );
+        request.append( "\"sig\":\"" + signature + "\"" );
         request.append( "}" );
         String postData=request.toString();
         String response="";
