@@ -1,5 +1,10 @@
 package surveytest.utils;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Random;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
@@ -7,21 +12,25 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class JanaApi {
 
-    public static String DEFAULT_API_URL = "https://api.jana.com/api/";
-    public static long MAX_NONCE = 999999999;
-
     private String clientId="";
     private String secretKey="";
-    private String url="";
+    private String janaUrl="";
     
     public JanaApi(){
     }
     
-    public JanaApi(String clientId, String secretKey, String url){
+    public JanaApi(String clientId, String secretKey, String janaUrl){
         this.clientId=clientId;
         this.secretKey=secretKey;
-        this.url=url;
+        this.janaUrl=janaUrl;
     }   
+    
+    public String getLink(String offerId){
+        String data=getLinkData(offerId); 
+        String encoded=encode(data);
+        String signed=sign(encoded);
+        return post(encoded,signed,"jia-request");
+    }
     
     public String getLinkData(String offerId){
         long nonce=new Random().nextLong();
@@ -37,22 +46,16 @@ public class JanaApi {
         return request.toString();
     }
 
-    public String getLink(String offerId){
-        String data=getLinkData(offerId); 
-        
-        String encoded=encode(data);     
-        
-        try {
+    public String sign(String data){    
+        try {        
             SecretKey key = new SecretKeySpec(secretKey.getBytes(), "HmacSHA256");
             Mac m = Mac.getInstance("HmacSHA256");
             m.init(key);
-            byte[] secretOutput = m.doFinal(encoded.getBytes());
-            
-            encoded=encode(new String(secretOutput));                 
+            byte[] output = m.doFinal(data.getBytes());
+            return encode(new String(output));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return encoded;
     }
     
     public String encode(String data){
@@ -61,17 +64,7 @@ public class JanaApi {
         encoded=encoded.replace("_","/");
         return encoded;
     }
-    
-    public static void main(String[] args) {
-        JanaApi janaApi=new JanaApi("gta2i", "293af117b8f14232ad86099f730629bc", "testUrl");
         
-        String data=janaApi.getLinkData("irl_28f425");
-        System.out.println(data);
-        
-        String link=janaApi.getLink("irl_28f425");
-        System.out.println(link);
-    }
-    
     public String post(String encoded, String sig, String method){
         long nonce=new Random().nextLong();
         StringBuilder request=new StringBuilder();
@@ -79,26 +72,47 @@ public class JanaApi {
         request.append( "\"request\":\"" + encoded + "\"," );
         request.append( "\"sig\":\"" + sig + "\"" );
         request.append( "}" );
-        request.toString();
+        String postData=request.toString();
+        String response="";
+        try {
+            URL url = new URL(janaUrl + method); 
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();           
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            connection.setInstanceFollowRedirects(false); 
+            connection.setRequestMethod("POST"); 
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded"); 
+            connection.setRequestProperty("charset", "utf-8");
+            connection.setRequestProperty("Content-Length", "" + Integer.toString(postData.getBytes().length));
+            connection.setUseCaches(false);
+
+            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+            wr.writeBytes(postData);
+            wr.flush();
+            wr.close();
+            
+            BufferedReader in = new BufferedReader(
+                            new InputStreamReader(
+                            connection.getInputStream()));
+            String responseLine;
+                while ((responseLine = in.readLine()) != null) {
+                response+=responseLine;
+            }
+            in.close();
+            connection.disconnect();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return response;
+    }
+    
+    public static void main(String[] args) {
+        JanaApi janaApi=new JanaApi("gta2i", "293af117b8f14232ad86099f730629bc", "https://api.jana.com/api/");
         
-        // Post to url and method...
+        String data=janaApi.getLinkData("irl_28f425");
+        System.out.println(data);
         
-        // Inspect return
-        return "returnValue";
+        String link=janaApi.getLink("irl_28f425");
+        System.out.println(link);
     }
 }   
-    
-/*
-    def get_jia_link(self, offer_id):
-            
-        data = self.base_request_data()
-        data['method'] = 'jia-request'
-        data['offer'] = offer_id
-
-        encoded = self.encode_data(data)
-        sig = self.sign_data(encoded)
-
-        response = self.post_to_jana(encoded, sig, 'jia-request')
-        
-        return response
-*/
