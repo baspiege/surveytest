@@ -1,6 +1,9 @@
 package surveytest.utils;
 
 import java.util.Random;
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 public class JanaApi {
 
@@ -37,21 +40,51 @@ public class JanaApi {
     public String getLink(String offerId){
         String data=getLinkData(offerId); 
         
+        String encoded=encode(data);     
+        
+        try {
+            SecretKey key = new SecretKeySpec(secretKey.getBytes(), "HmacSHA256");
+            Mac m = Mac.getInstance("HmacSHA256");
+            m.init(key);
+            byte[] secretOutput = m.doFinal(encoded.getBytes());
+            
+            encoded=encode(new String(secretOutput));                 
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return encoded;
+    }
+    
+    public String encode(String data){
         String encoded=Base64.encode(data);     
         encoded=encoded.replace("-","+");
         encoded=encoded.replace("_","/");
-         
         return encoded;
     }
     
     public static void main(String[] args) {
-        JanaApi janaApi=new JanaApi("testClientId", "testKey", "testUrl");
+        JanaApi janaApi=new JanaApi("gta2i", "293af117b8f14232ad86099f730629bc", "testUrl");
         
-        String data=janaApi.getLinkData("testOffer");
+        String data=janaApi.getLinkData("irl_28f425");
         System.out.println(data);
         
-        String link=janaApi.getLink("testOffer");
+        String link=janaApi.getLink("irl_28f425");
         System.out.println(link);
+    }
+    
+    public String post(String encoded, String sig, String method){
+        long nonce=new Random().nextLong();
+        StringBuilder request=new StringBuilder();
+        request.append( "{" );
+        request.append( "\"request\":\"" + encoded + "\"," );
+        request.append( "\"sig\":\"" + sig + "\"" );
+        request.append( "}" );
+        request.toString();
+        
+        // Post to url and method...
+        
+        // Inspect return
+        return "returnValue";
     }
 }   
     
@@ -68,18 +101,4 @@ public class JanaApi {
         response = self.post_to_jana(encoded, sig, 'jia-request')
         
         return response
-
-    def sign_data(self, data):
-        sig = hmac.new(self.secret_key, msg=data, digestmod=hashlib.sha256).digest()
-        encoded_sig = base64.urlsafe_b64encode(sig).rstrip('=')
-        return encoded_sig        
-
-    def post_to_jana(self, encoded, sig, method):
-        url = self.api_url + method
-        payload = { 'request' : encoded, 'sig' : sig }
-        r = requests.post(url, data=payload)
-        return r.json()
-*/            
-            
-            
- 
+*/
