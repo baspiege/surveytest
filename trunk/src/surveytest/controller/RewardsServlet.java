@@ -7,6 +7,7 @@ import surveytest.data.model.Admin;
 import surveytest.data.model.Reward;
 import surveytest.data.model.Survey;
 import surveytest.exceptions.UserNotFoundException;
+import surveytest.utils.JanaApi;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.UserUtils;
 import java.io.IOException;
@@ -58,5 +59,20 @@ public class RewardsServlet extends HttpServlet {
         
         List<Reward> rewards=RewardGetAll.execute(surveyId);
         request.setAttribute(RequestUtils.REWARDS, rewards);
+        
+        // Test
+        JanaApi janaApi=new JanaApi("gta2i", "293af117b8f14232ad86099f730629bc", "https://api.jana.com/api/");
+        
+        String data=janaApi.getLinkData("irl_28f425");
+        System.out.println(data);
+        
+        String link=janaApi.getLink("irl_28f425");
+        System.out.println(link);
+        
+        if (rewards.size()>0) {
+            Reward reward=rewards.get(0);
+            reward.setUrl(link);
+        }
+        // Test
     }
 }
