@@ -37,7 +37,7 @@ public class JanaApi {
         request.append( "{" );
         request.append( "\"method\":\"jia-request\"," );
         request.append( "\"algorithm\":\"HMAC-SHA256\"," );
-        request.append( "\"clientId\":\"" + clientId + "\"," );
+        request.append( "\"client_id\":\"" + clientId + "\"," );
         request.append( "\"offer\":\"" + offerId + "\"," );
         request.append( "\"timestamp\":\"" + System.currentTimeMillis() + "\"," );
         request.append( "\"nonce\":\"" + nonce + "\"" );
