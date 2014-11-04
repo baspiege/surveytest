@@ -1,10 +1,7 @@
 TODO
-Jana API - Java
 
 Rewards
-* HIGH - User survey page needs (survey id) or (reward id and token).  Test both...
-* HIGH - Show reward on confirmation page and mark used.  To survey reponse page, add column for reward shown.
-* HIGH - Add value for reward. (add, update)  Make this language specific?
+* HIGH - Show reward on confirmation page.  To survey reponse page, add column for reward shown.
 
 Taking survey
 * HIGH - Add checks to make sure all questions answered - Browser side
