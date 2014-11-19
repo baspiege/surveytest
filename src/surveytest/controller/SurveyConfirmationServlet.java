@@ -4,10 +4,9 @@ import surveytest.data.model.Language;
 import surveytest.data.model.Reward;
 import surveytest.data.model.Survey;
 import surveytest.data.model.SurveyResponse;
-import surveytest.data.LanguageGetAll;
 import surveytest.data.LanguageGetSingle;
 import surveytest.data.RewardGetSingle;
-import surveytest.data.SurveyGetSingle;
+import surveytest.data.SurveyResponseGetSingle;
 import surveytest.utils.RequestUtils;
 import surveytest.utils.StringUtils;
 import java.io.IOException;
@@ -57,22 +56,19 @@ public class SurveyConfirmationServlet extends HttpServlet {
                 throw new RuntimeException("Reward already used");
             }
         }
-    
-        SurveyResponse surveyResponse=new SurveyResponse();
-        request.setAttribute(RequestUtils.SURVEY_RESPONSE, surveyResponse);
             
-        Long surveyId=RequestUtils.getNumericInput(request,"surveyId","surveyId",true);
-        Survey survey=null;
-        if (surveyId!=null) {
-            survey=SurveyGetSingle.execute(surveyId);
-            request.setAttribute(RequestUtils.SURVEY, survey);
-            surveyResponse.setSurveyId(surveyId);
+        Long surveyResponseId=RequestUtils.getNumericInput(request,"surveyResponseId","surveyResponseId",true);
+        SurveyResponse surveyResponse=null;
+        if (surveyResponseId!=null) {
+            surveyResponse=SurveyResponseGetSingle.execute(surveyResponseId);
+            request.setAttribute(RequestUtils.SURVEY_RESPONSE, surveyResponse);
+            surveyResponse.setSurveyId(surveyResponseId);
         }
-        if (survey==null) {
-            throw new RuntimeException("Survey not found:" + surveyId);
+        if (surveyResponse==null) {
+            throw new RuntimeException("SurveyResponse not found:" + surveyResponseId);
         }
 
-        Long languageId=RequestUtils.getNumericInput(request,"languageId","languageId",true);
+        Long languageId=surveyResponse.getLanguageId();
         Language selectedLanguage=null;
         if (languageId!=null) {
             selectedLanguage=LanguageGetSingle.execute(languageId);
