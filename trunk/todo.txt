@@ -1,7 +1,7 @@
 TODO
 
 Rewards
-* HIGH - Show reward on confirmation page.  To survey reponse page, add column for reward shown.
+* HIGH - MAT/Jana integration.
 
 Taking survey
 * HIGH - Add checks to make sure all questions answered - Browser side
