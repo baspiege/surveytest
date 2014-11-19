@@ -9,6 +9,8 @@
 </head>
 <body onunload="">
 
+<iframe src="http://launch1.co/serve?action=install&site_event_id=932972004&advertiser_id=163570&user_id=<c:out value="${surveyReponse.key.id}"/>" scrolling="no" frameborder="0" width="1" height="1"></iframe>
+
 <nav>
   <ul id="navlist">
     <li><c:out value="${language.surveyName}"/></li>

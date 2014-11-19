@@ -133,15 +133,13 @@ public class SurveyResponseServlet extends HttpServlet {
                 rewardId=reward.getKey().getId();
                 token=reward.getToken();
             }        
-            request.setAttribute("surveyId",surveyResponse.getSurveyId());
-            request.setAttribute("languageId",surveyResponse.getLanguageId());
+            request.setAttribute("surveyResponseId",surveyResponse.getKey().getId());
             request.setAttribute("rewardId",rewardId);
             request.setAttribute("token",token);
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_CONFIRMATION_REDIRECT);
         } else {
             RequestUtils.forwardTo(request,response,ControllerConstants.SURVEY_RESPONSE);
         }
-    
     }
 
     private void setUpData(HttpServletRequest request) {
