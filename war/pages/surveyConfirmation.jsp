@@ -9,6 +9,7 @@
 </head>
 <body onunload="">
 
+<%-- TODO - Make the MAT code below specific to a survey.  Possibly, add to survey object. --%>
 <iframe src="https://launch1.co/serve?action=install&site_event_id=932972004&advertiser_id=163570&user_id=<c:out value="${surveyResponse.key.id}"/>" scrolling="no" frameborder="0" width="1" height="1"></iframe>
 
 <nav>
